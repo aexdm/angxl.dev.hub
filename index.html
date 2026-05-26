@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>adam.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.discordapp.com">
+  <link rel="preconnect" href="https://i.imgur.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+<header class="mobile-header">
+  <div class="mobile-header-left">
+    <img id="mobileAvatar" class="mobile-avatar" src="" alt="">
+    <div>
+      <div class="mobile-header-logo">adam.dev</div>
+      <div class="mobile-header-sub">// 17 y/o dev</div>
+    </div>
+  </div>
+  <button class="mobile-settings-btn" onclick="openSettings()">
+    <i data-lucide="settings-2"></i>
+  </button>
+</header>
+
+<nav class="mobile-nav">
+  <div class="mobile-nav-inner">
+    <button class="mobile-nav-btn" id="mnav-home" onclick="switchTab('home')">
+      <i data-lucide="sparkles"></i>
+      <span>home</span>
+    </button>
+    <button class="mobile-nav-btn active" id="mnav-about" onclick="switchTab('about')">
+      <i data-lucide="user-circle"></i>
+      <span>about</span>
+    </button>
+    <button class="mobile-nav-btn" id="mnav-projects" onclick="switchTab('projects')">
+      <i data-lucide="layers"></i>
+      <span>projects</span>
+    </button>
+    <button class="mobile-nav-btn" id="mnav-friends" onclick="switchTab('friends')">
+      <i data-lucide="users-round"></i>
+      <span>friends</span>
+    </button>
+    <button class="mobile-nav-btn" id="mnav-skills" onclick="switchTab('skills')">
+      <i data-lucide="code-2"></i>
+      <span>skills</span>
+    </button>
+    <button class="mobile-nav-btn" id="mnav-music" onclick="switchTab('music')">
+      <i data-lucide="music"></i>
+      <span>music</span>
+    </button>
+    <button class="mobile-nav-btn" id="mnav-contact" onclick="switchTab('contact')">
+      <i data-lucide="mail"></i>
+      <span>contact</span>
+    </button>
+  </div>
+</nav>
+
+<div class="shell">
+
+  
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-name">adam.dev</div>
+      <div class="logo-sub">// 17 y/o dev</div>
+    </div>
+
+    <nav class="nav-items">
+      <button onclick="switchTab('home')" class="nav-link" id="nav-home">
+        <i data-lucide="sparkles"></i> home
+      </button>
+      <button onclick="switchTab('about')" class="nav-link active" id="nav-about">
+        <i data-lucide="user-circle"></i> about
+      </button>
+      <button onclick="switchTab('projects')" class="nav-link" id="nav-projects">
+        <i data-lucide="layers"></i> projects
+      </button>
+      <button onclick="switchTab('friends')" class="nav-link" id="nav-friends">
+        <i data-lucide="users-round"></i> friends
+      </button>
+      <button onclick="switchTab('skills')" class="nav-link" id="nav-skills">
+        <i data-lucide="code-2"></i> skills
+      </button>
+      <button onclick="switchTab('music')" class="nav-link" id="nav-music">
+        <i data-lucide="music"></i> music
+      </button>
+      <button onclick="switchTab('contact')" class="nav-link" id="nav-contact">
+        <i data-lucide="mail"></i> contact
+      </button>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <button class="settings-btn" onclick="openSettings()">
+        <i data-lucide="settings-2"></i> settings
+      </button>
+    </div>
+  </aside>
+
+  
+  <main class="main">
+
+    
+    <div id="home" class="tab">
+      <div class="home-eyebrow">welcome</div>
+
+      
+      <div class="term-window" aria-label="terminal welcome">
+        <div class="term-bar">
+          <span class="term-dot term-dot--r"></span>
+          <span class="term-dot term-dot--y"></span>
+          <span class="term-dot term-dot--g"></span>
+            <span class="term-bar-title">adam@portfolio  —  zsh  —  80×24</span>
+          <span class="term-bar-status"><span class="term-bar-pulse"></span> live</span>
+        </div>
+        <div class="term-body" id="termBody" tabindex="0">
+          <div class="term-line">
+            <span class="term-prompt">adam@portfolio</span><span class="term-path">:~</span><span class="term-sep">$</span>
+            <span class="term-input-wrap"><span id="termCmd"></span><span class="term-cursor" id="termCursor">▍</span></span>
+          </div>
+          <div class="term-out" id="termOut"></div>
+        </div>
+      </div>
+
+      <h1 class="home-title">Hey,<br>I'm <span>Adam.</span></h1>
+      <p class="home-desc">I break things,<br>then rebuild them better.</p>
+
+      <div class="home-actions">
+        <a href="#" onclick="switchTab('projects'); return false;" class="btn-amber">
+          <i data-lucide="arrow-right"></i> view work
+        </a>
+        <a href="#" onclick="switchTab('about'); return false;" class="btn-ghost">about me</a>
+      </div>
+
+      <div class="home-counter">
+        <div class="counter-item">
+          <div class="counter-num" id="ctrProjects">3+</div>
+          <div class="counter-label">// projects</div>
+        </div>
+        <div class="counter-item">
+          <div class="counter-num" id="ctrUptime">—</div>
+          <div class="counter-label">// days alive</div>
+        </div>
+        <div class="counter-item">
+          <div class="counter-num">∞</div>
+          <div class="counter-label">// ideas</div>
+        </div>
+      </div>
+
+      
+      <div class="git-log" aria-label="recent commits">
+        <div class="git-log-head">
+          <i data-lucide="git-commit"></i>
+          <span>recent commits</span>
+          <span class="git-log-branch">main</span>
+        </div>
+        <div class="git-log-body" id="gitLogBody"></div>
+      </div>
+    </div>
+
+    
+    <div id="about" class="tab active">
+      <div class="section-tag">// about</div>
+      <h2 class="section-title">Who am I?</h2>
+
+      <canvas id="starCanvas" class="star-canvas"></canvas>
+
+      <div class="about-grid">
+
+        
+        <div class="profile-card">
+          <div class="profile-banner-wrap">
+            <video class="profile-banner-video" autoplay loop muted playsinline>
+              <source src="video/banner.grey.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="profile-bottom">
+            <div class="avatar-wrap">
+              <img id="avatarBig" alt="avatar" src="">
+              <img id="avatarDecoration" class="avatar-decoration" src="" alt="" style="display:none;">
+            </div>
+            <div class="profile-meta">
+              <div class="profile-name-row">
+                <div id="username">Loading...</div>
+                <span class="guild-tag-wrap" id="guildTagWrap" style="display:none;">
+                  <img id="guildIcon" class="guild-icon" src="" alt="" style="display:none;">
+                  <span class="guild-tag" id="guildTag"></span>
+                </span>
+              </div>
+              <div class="profile-badges">
+                <span class="status-pill" id="statusPill">
+                  <span class="status-dot" id="statusDot"></span>
+                  <span id="statusText">offline</span>
+                </span>
+                <span class="badge">17 y/o dev</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+        <div id="activityCard" class="activity-card hidden" style="grid-column:1/-1;">
+          <button id="activityPrev" class="activity-nav" onclick="navigateActivity(-1)">
+            <i data-lucide="chevron-left"></i>
+          </button>
+          <div class="activity-content">
+            <div class="activity-thumb-wrap">
+              <img id="activityIcon" alt="">
+              <span class="activity-badge"></span>
+            </div>
+            <div class="activity-info">
+              <div class="activity-label">now playing</div>
+              <div id="activityName"></div>
+              <div id="activityState"></div>
+            </div>
+          </div>
+          <button id="activityNext" class="activity-nav" onclick="navigateActivity(1)">
+            <i data-lucide="chevron-right"></i>
+          </button>
+          <div class="activity-counter" id="activityCounter"></div>
+        </div>
+
+        
+        <div class="about-text-card">
+          <div class="card-label">readme.md</div>
+          <p class="cycling-row">I like <span id="aboutWord">things</span></p>
+          <p id="aboutSentence">
+            Haii, I'm <strong>Adam</strong> 17 years old and love breaking things then remaking them better.<br><br>
+            Currently working on this page and whatever else keeps me busy.
+          </p>
+          <br><br>
+          <p id="aboutSentence">
+            I mostly code in <b><u>Lua, Python, and Web</u></b>, but I'm always down to learn new languages and tools!<br><br>
+            I'm also super passionate about art and design, and love working on that whenever I can.
+          </p>
+        </div>
+
+        
+        <div class="social-card">
+          <div class="card-label">find me</div>
+          <div class="social-list">
+
+            <a class="social-item social-item--discord" href="https://discord.com/users/853310319002517524" target="_blank" rel="noopener">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24" style="flex-shrink:0;stroke:none;">
+                <path d="M19.73 4.87a18.2 18.2 0 0 0-4.6-1.44c-.21.4-.4.8-.58 1.21-1.69-.25-3.4-.25-5.1 0-.18-.41-.37-.82-.59-1.2-1.6.27-3.14.75-4.6 1.43A19.04 19.04 0 0 0 .96 17.7a18.43 18.43 0 0 0 5.63 2.87c.46-.62.86-1.28 1.2-1.98-.65-.25-1.29-.55-1.9-.92.17-.12.32-.24.47-.37 3.58 1.7 7.7 1.7 11.28 0l.46.37c-.6.36-1.25.67-1.9.92.35.7.75 1.35 1.2 1.98 2.03-.63 3.94-1.6 5.64-2.87.47-4.87-.78-9.09-3.3-12.83ZM8.3 15.12c-1.1 0-2-1.02-2-2.27 0-1.24.88-2.26 2-2.26s2.02 1.02 2 2.26c0 1.25-.89 2.27-2 2.27Zm7.4 0c-1.1 0-2-1.02-2-2.27 0-1.24.88-2.26 2-2.26s2.02 1.02 2 2.26c0 1.25-.88 2.27-2 2.27Z"/>
+              </svg>
+              <div>
+                <div class="social-item-name">Discord</div>
+                <div class="social-item-handle">@aexdm</div>
+              </div>
+              <span class="social-arrow"><i data-lucide="arrow-up-right"></i></span>
+            </a>
+
+            <a class="social-item social-item--github" href="https://github.com/aexdm" target="_blank" rel="noopener">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24" style="flex-shrink:0;stroke:none;">
+                <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+              </svg>
+              <div>
+                <div class="social-item-name">GitHub</div>
+                <div class="social-item-handle">aexdm</div>
+              </div>
+              <span class="social-arrow"><i data-lucide="arrow-up-right"></i></span>
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    
+    <div id="projects" class="tab">
+      <div class="section-tag">// projects</div>
+      <h2 class="section-title">What I've built</h2>
+
+      <div class="proj-filters" id="projFilters">
+        <button class="proj-filter active" data-filter="all">all<span class="proj-filter-count" data-count="all"></span></button>
+        <button class="proj-filter" data-filter="live">live<span class="proj-filter-count" data-count="live"></span></button>
+        <button class="proj-filter" data-filter="wip">wip<span class="proj-filter-count" data-count="wip"></span></button>
+      </div>
+
+      <div class="projects-grid projects-grid--v2">
+
+        <article class="proj" data-project="AW : Heart Of The Unreturned" data-status="wip">
+          <div class="proj-cover">
+            <img src="https://tr.rbxcdn.com/180DAY-d6495b95d4dd31b15c745e4c72610278/930/480/Image/Png/noFilter" alt="HOTU cover" loading="lazy">
+            <div class="proj-cover-grad"></div>
+            <span class="proj-status proj-status--wip">
+              <span class="proj-status-dot"></span> in progress
+            </span>
+            <a href="https://www.roblox.com/games/132429881613824/ABYSS-WORLD-HOTU" class="proj-ext" target="_blank" rel="noopener" onclick="event.stopPropagation()" aria-label="open external">
+              <i data-lucide="arrow-up-right"></i>
+            </a>
+          </div>
+          <div class="proj-body">
+            <div class="proj-meta">
+              <span class="proj-eyebrow">// roblox</span>
+              <span class="proj-dot">·</span>
+              <span class="proj-eyebrow">lua</span>
+            </div>
+            <h3 class="proj-title">Heart of the Unreturned</h3>
+            <p class="proj-desc">A parkour fan game inspired by Abyss World. Built with a small team — momentum systems, hand-tuned movement, multi-zone maps.</p>
+            <div class="proj-cta">
+              <span>open project</span>
+              <i data-lucide="arrow-right"></i>
+            </div>
+          </div>
+        </article>
+
+        <article class="proj" data-project="showcase" data-status="live">
+  <div class="proj-cover">
+    <img src="images/showcase-1.png" alt="Showcase app preview" loading="lazy">
+    <div class="proj-cover-grad"></div>
+    <span class="proj-status proj-status--live">
+      <span class="proj-status-dot"></span> live
+    </span>
+    <a href="https://github.com/YOUR_USERNAME/YOUR_REPO" class="proj-ext" target="_blank" rel="noopener" onclick="event.stopPropagation()" aria-label="open GitHub">
+      <i data-lucide="arrow-up-right"></i>
+    </a>
+  </div>
+  <div class="proj-body">
+    <div class="proj-meta">
+      <span class="proj-eyebrow">// web · personal</span>
+      <span class="proj-dot">·</span>
+      <span class="proj-eyebrow">php</span>
+    </div>
+    <h3 class="proj-title">Client Portfolio</h3>
+    <p class="proj-desc">Anonymous portfolio showcase — has a custom CMS, project gallery, and admin panel.</p>
+    <div class="proj-cta">
+      <span>open project</span>
+      <i data-lucide="arrow-right"></i>
+    </div>
+  </div>
+</article>
+
+        <article class="proj" data-project="utility bot" data-status="live">
+          <div class="proj-cover proj-cover--mono">
+            <div class="proj-cover-glyph">bot</div>
+            <div class="proj-cover-grid"></div>
+            <span class="proj-status proj-status--live">
+              <span class="proj-status-dot"></span> live
+            </span>
+          </div>
+          <div class="proj-body">
+            <div class="proj-meta">
+              <span class="proj-eyebrow">// automation</span>
+              <span class="proj-dot">·</span>
+              <span class="proj-eyebrow">python</span>
+            </div>
+            <h3 class="proj-title">Utility Bot</h3>
+            <p class="proj-desc">A private automation bot for scheduled maintenance, moderation helpers, and small config-driven workflows.</p>
+            <div class="proj-cta">
+              <span>open project</span>
+              <i data-lucide="arrow-right"></i>
+            </div>
+          </div>
+        </article>
+
+        <article class="proj" data-project="seraph" data-status="live">
+          <div class="proj-cover">
+            <img src="images/panic-1.png" alt="Seraph architecture diagram" loading="lazy">
+            <div class="proj-cover-grad"></div>
+            <span class="proj-status proj-status--live">
+              <span class="proj-status-dot"></span> live
+            </span>
+          </div>
+          <div class="proj-body">
+            <div class="proj-meta">
+              <span class="proj-eyebrow">// windows · desktop</span>
+              <span class="proj-dot">·</span>
+              <span class="proj-eyebrow">python</span>
+            </div>
+            <h3 class="proj-title">Seraph (Panic Button)</h3>
+            <p class="proj-desc">A Windows desktop utility that switches between work/chill/focus/sleep profiles — closes apps, opens URLs, launches programs, and responds to voice commands.</p>
+            <div class="proj-cta">
+              <span>open project</span>
+              <i data-lucide="arrow-right"></i>
+            </div>
+          </div>
+        </article>
+
+        <article class="proj" data-project="adam.dev" data-status="live">
+          <div class="proj-cover">
+            <div class="proj-cover-glyph" style="font-size:28px;">&lt;/&gt;</div>
+            <div class="proj-cover-grid"></div>
+            <span class="proj-status proj-status--live">
+              <span class="proj-status-dot"></span> live
+            </span>
+          </div>
+          <div class="proj-body">
+            <div class="proj-meta">
+              <span class="proj-eyebrow">// web · personal</span>
+              <span class="proj-dot">·</span>
+              <span class="proj-eyebrow">html · css · js</span>
+            </div>
+            <h3 class="proj-title">adam.dev</h3>
+            <p class="proj-desc">This portfolio — interactive terminal, command palette, live Discord presence, 10 themes, zoomable gallery, and more.</p>
+            <div class="proj-cta">
+              <span>open project</span>
+              <i data-lucide="arrow-right"></i>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <div id="friends" class="tab">
+      <div class="section-tag">// friends</div>
+      <h2 class="section-title">People I know</h2>
+
+      <div class="friends-empty">
+        <div class="friends-empty-card">
+          <div class="friends-empty-orbit" aria-hidden="true">
+            <span class="orbit-star orbit-star--1"></span>
+            <span class="orbit-star orbit-star--2"></span>
+            <span class="orbit-star orbit-star--3"></span>
+            <span class="orbit-core"></span>
+          </div>
+          <div class="friends-empty-eyebrow">// directory</div>
+          <h3 class="friends-empty-title">Curating the list.</h3>
+          <p class="friends-empty-desc">A handful of people deserve a slot here. I'm taking my time picking them.</p>
+          <div class="friends-empty-meta">
+            <span><i data-lucide="users-round"></i> 0 entries</span>
+            <span class="friends-empty-sep">·</span>
+            <span><i data-lucide="clock"></i> next sync soon</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="friends-grid" style="display:none;">
+        <div class="friend-card">
+          <div class="friend-banner">
+            <img src="https://i.imgur.com/placeholder.png" alt="" onerror="this.style.display='none'">
+            <div class="friend-banner-gradient"></div>
+          </div>
+          <div class="friend-body">
+            <div class="friend-top">
+              <img class="friend-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="">
+              <div>
+                <div class="friend-name">Display Name</div>
+                <div class="friend-username">@username</div>
+              </div>
+            </div>
+            <p class="friend-desc">Place holder</p>
+            <div class="friend-links">
+              <a href="#" class="friend-btn friend-btn--discord" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 24 24" style="stroke:none;"><path d="M19.73 4.87a18.2 18.2 0 0 0-4.6-1.44c-.21.4-.4.8-.58 1.21-1.69-.25-3.4-.25-5.1 0-.18-.41-.37-.82-.59-1.2-1.6.27-3.14.75-4.6 1.43A19.04 19.04 0 0 0 .96 17.7a18.43 18.43 0 0 0 5.63 2.87c.46-.62.86-1.28 1.2-1.98-.65-.25-1.29-.55-1.9-.92.17-.12.32-.24.47-.37 3.58 1.7 7.7 1.7 11.28 0l.46.37c-.6.36-1.25.67-1.9.92.35.7.75 1.35 1.2 1.98 2.03-.63 3.94-1.6 5.64-2.87.47-4.87-.78-9.09-3.3-12.83ZM8.3 15.12c-1.1 0-2-1.02-2-2.27 0-1.24.88-2.26 2-2.26s2.02 1.02 2 2.26c0 1.25-.89 2.27-2 2.27Zm7.4 0c-1.1 0-2-1.02-2-2.27 0-1.24.88-2.26 2-2.26s2.02 1.02 2 2.26c0 1.25-.88 2.27-2 2.27Z"/></svg>
+                Discord
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div id="skills" class="tab">
+      <div class="section-tag">// skills</div>
+      <h2 class="section-title">What I work with</h2>
+      <div class="skills-grid" id="skillsGrid"></div>
+    </div>
+
+    
+    <div id="music" class="tab">
+      <div class="section-tag">// music</div>
+      <h2 class="section-title">What I listen to</h2>
+      <p class="section-subtitle">Tyler, The Creator · Frank Ocean · Kali Uchis · Steve Lacy · SZA · and more</p>
+      <div class="music-grid" id="musicGrid">
+        <a class="music-card" href="https://open.spotify.com/artist/4V8LLVI7PbaPR0K2TGSxFF" target="_blank" rel="noopener">
+          <div class="music-card-art" style="background:linear-gradient(135deg,#f59e0b,#d97706)">T</div>
+          <div class="music-card-info">
+            <div class="music-card-name">Tyler, The Creator</div>
+            <div class="music-card-role">artist · producer</div>
+          </div>
+        </a>
+        <a class="music-card" href="https://open.spotify.com/artist/2h93pZq0e7k5yf4dywlkpM" target="_blank" rel="noopener">
+          <div class="music-card-art" style="background:linear-gradient(135deg,#065f46,#047857)">FO</div>
+          <div class="music-card-info">
+            <div class="music-card-name">Frank Ocean</div>
+            <div class="music-card-role">artist</div>
+          </div>
+        </a>
+        <a class="music-card" href="https://open.spotify.com/artist/4BZI4E1oNfDNIhkIIHwAkb" target="_blank" rel="noopener">
+          <div class="music-card-art" style="background:linear-gradient(135deg,#7c3aed,#6d28d9)">KU</div>
+          <div class="music-card-info">
+            <div class="music-card-name">Kali Uchis</div>
+            <div class="music-card-role">artist</div>
+          </div>
+        </a>
+        <a class="music-card" href="https://open.spotify.com/artist/4r63FhuTkUYltbVAg5TQnk" target="_blank" rel="noopener">
+          <div class="music-card-art" style="background:linear-gradient(135deg,#0f766e,#0d9488)">SL</div>
+          <div class="music-card-info">
+            <div class="music-card-name">Steve Lacy</div>
+            <div class="music-card-role">artist · producer</div>
+          </div>
+        </a>
+        <a class="music-card" href="https://open.spotify.com/artist/7tYKF4w9nC0nq9CsPZTHyP" target="_blank" rel="noopener">
+          <div class="music-card-art" style="background:linear-gradient(135deg,#be185d,#db2777)">SZA</div>
+          <div class="music-card-info">
+            <div class="music-card-name">SZA</div>
+            <div class="music-card-role">artist</div>
+          </div>
+        </a>
+        <a class="music-card" href="https://open.spotify.com/artist/5INjqkS1o8h1imAzPqGZBb" target="_blank" rel="noopener">
+          <div class="music-card-art" style="background:linear-gradient(135deg,#1d4ed8,#2563eb)">TB</div>
+          <div class="music-card-info">
+            <div class="music-card-name">Tyler, The Creator</div>
+            <div class="music-card-role">ongoing inspiration</div>
+          </div>
+        </a>
+      </div>
+      <div class="music-vibe">
+        <span class="card-label">current rotation</span>
+        <p id="musicRotation" style="font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:8px;">CHROMAKOPIA · Blonde · Isolation · Apollo XXI · SOS · IGOR</p>
+      </div>
+    </div>
+
+    
+    <div id="contact" class="tab">
+      <div class="section-tag">// contact</div>
+      <h2 class="section-title">Get in touch</h2>
+      <div class="contact-grid">
+        <div class="contact-card" style="opacity:0.5;pointer-events:none;">
+          <div class="contact-card-icon" style="background:rgba(88,101,242,0.12);color:#5865f2;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24" style="stroke:none;"><path d="M19.73 4.87a18.2 18.2 0 0 0-4.6-1.44c-.21.4-.4.8-.58 1.21-1.69-.25-3.4-.25-5.1 0-.18-.41-.37-.82-.59-1.2-1.6.27-3.14.75-4.6 1.43A19.04 19.04 0 0 0 .96 17.7a18.43 18.43 0 0 0 5.63 2.87c.46-.62.86-1.28 1.2-1.98-.65-.25-1.29-.55-1.9-.92.17-.12.32-.24.47-.37 3.58 1.7 7.7 1.7 11.28 0l.46.37c-.6.36-1.25.67-1.9.92.35.7.75 1.35 1.2 1.98 2.03-.63 3.94-1.6 5.64-2.87.47-4.87-.78-9.09-3.3-12.83ZM8.3 15.12c-1.1 0-2-1.02-2-2.27 0-1.24.88-2.26 2-2.26s2.02 1.02 2 2.26c0 1.25-.89 2.27-2 2.27Zm7.4 0c-1.1 0-2-1.02-2-2.27 0-1.24.88-2.26 2-2.26s2.02 1.02 2 2.26c0 1.25-.88 2.27-2 2.27Z"/></svg>
+          </div>
+          <div>
+            <div class="contact-card-name">Discord</div>
+            <div class="contact-card-handle">@aexdm</div>
+          </div>
+        </div>
+        <div class="contact-card" style="opacity:0.5;pointer-events:none;">
+          <div class="contact-card-icon" style="background:rgba(255,255,255,0.06);color:#f0eaff;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24" style="stroke:none;"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </div>
+          <div>
+            <div class="contact-card-name">GitHub</div>
+            <div class="contact-card-handle">aexdm</div>
+          </div>
+        </div>
+        <div class="contact-card" style="opacity:0.5;pointer-events:none;">
+          <div class="contact-card-icon" style="background:rgba(212,184,255,0.1);color:var(--amber);">
+            <i data-lucide="mail" style="width:20px;height:20px;"></i>
+          </div>
+          <div>
+            <div class="contact-card-name">Email</div>
+            <div class="contact-card-handle">coming soon</div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-availability">
+        <span class="card-label">availability</span>
+        <p style="font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:8px;line-height:1.7;">
+          // placeholder — reach out on discord for now
+        </p>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<div id="easterEgg" class="easter-egg"></div>
+<audio id="amogus1" preload="auto"><source src="sounds/amogus1.mp3" type="audio/mpeg"></audio>
+<audio id="amogus2" preload="auto"><source src="sounds/amogus2.mp3" type="audio/mpeg"></audio>
+<audio id="amogus3" preload="auto"><source src="sounds/amogus3.mp3" type="audio/mpeg"></audio>
+
+<div id="projectModal" class="modal">
+  <div class="pmodal-shell">
+    <div class="pmodal-gallery-col">
+      <div class="pmodal-gallery-main">
+        <img id="pModalImgMain" src="" alt="">
+        <div class="pmodal-gallery-overlay"></div>
+      </div>
+      <div class="pmodal-gallery-thumbs" id="pModalThumbs">
+        <img class="pmodal-thumb active" data-idx="0" src="" alt="">
+        <img class="pmodal-thumb" data-idx="1" src="" alt="">
+        <img class="pmodal-thumb" data-idx="2" src="" alt="">
+        <img class="pmodal-thumb" data-idx="3" src="" alt="">
+      </div>
+    </div>
+    <div class="pmodal-info-col">
+      <div class="pmodal-scroll-area">
+        <div class="pmodal-top-bar">
+          <span class="pmodal-eyebrow" id="pModalLang">// lua</span>
+          <button class="pmodal-close-btn" onclick="closeProjectModal()">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+        <h2 class="pmodal-title" id="pModalTitle">Project Title</h2>
+        <p class="pmodal-subtitle" id="pModalIntro">Short intro here.</p>
+        <div class="pmodal-divider"></div>
+        <p class="pmodal-desc" id="pModalDescription">Description goes here.</p>
+        <div class="pmodal-divider"></div>
+        <div class="pmodal-roadmap-label">// roadmap</div>
+        <div class="pmodal-tabs" id="pModalTabBtns"></div>
+        <div class="pmodal-roadmap-content" id="pModalRoadmapContent"></div>
+      </div>
+      <div class="pmodal-action-wrap">
+        <a id="pModalAction" href="#" class="btn-amber pmodal-action-btn" target="_blank">
+          <i data-lucide="arrow-up-right"></i>
+          <span id="pModalActionLabel">View Project</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="zoomOverlay" class="zoom-overlay">
+  <button class="zoom-close" id="zoomClose" aria-label="Close zoom">
+    <i data-lucide="x"></i>
+  </button>
+  <div class="zoom-container" id="zoomContainer">
+    <img id="zoomImg" src="" alt="" draggable="false">
+  </div>
+  <div class="zoom-controls">
+    <span class="zoom-label">zoom</span>
+    <input type="range" class="zoom-slider" id="zoomSlider" min="1" max="5" step="0.1" value="1">
+    <span class="zoom-value" id="zoomValue">1x</span>
+  </div>
+</div>
+
+<div id="settingsModal" class="modal">
+  <div class="modal-box settings-box">
+    <div class="settings-scroll">
+      <h2>Settings</h2>
+      <div class="settings-section">
+        <p>Choose your theme</p>
+        <div class="theme-grid">
+          <button onclick="setTheme('pfp'); updateThemeButtons();">PFP</button>
+          <button onclick="setTheme('midnight'); updateThemeButtons();">Midnight</button>
+          <button onclick="setTheme('orange'); updateThemeButtons();">Orange</button>
+          <button onclick="setTheme('red'); updateThemeButtons();">Red</button>
+          <button onclick="setTheme('blue'); updateThemeButtons();">Blue</button>
+          <button onclick="setTheme('green'); updateThemeButtons();">Green</button>
+          <button onclick="setTheme('purple'); updateThemeButtons();">Purple</button>
+          <button onclick="setTheme('pink'); updateThemeButtons();">Pink</button>
+          <button onclick="setTheme('cyan'); updateThemeButtons();">Cyan</button>
+          <button onclick="setTheme('rose'); updateThemeButtons();">Rose</button>
+        </div>
+      </div>
+      <div class="settings-section">
+        <p>Preferences</p>
+        <div class="settings-toggles">
+          <label class="toggle-row">
+            <span>Cursor trail</span>
+            <input type="checkbox" id="toggleTrail" checked>
+            <span class="toggle-track"></span>
+          </label>
+          <label class="toggle-row">
+            <span>Animations</span>
+            <input type="checkbox" id="toggleAnim" checked>
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <button onclick="closeSettings()" style="background:var(--amber-dim);border:1px solid var(--amber-dim2);color:var(--amber);">Close</button>
+  </div>
+</div>
+
+<div id="shortcuts" class="shortcuts" aria-hidden="true">
+  <div class="shortcuts-box">
+    <div class="shortcuts-head">
+      <span><i data-lucide="keyboard"></i> keyboard shortcuts</span>
+      <button class="shortcuts-close" onclick="toggleShortcuts(false)" aria-label="close"><i data-lucide="x"></i></button>
+    </div>
+    <div class="shortcuts-grid">
+      <div><kbd>1</kbd>–<kbd>7</kbd> jump to tab</div>
+      <div><kbd>g</kbd> then <kbd>h/a/p/f/s/m/c</kbd> vim nav</div>
+      <div><kbd>t</kbd> cycle theme</div>
+      <div><kbd>ctrl+k</kbd> command palette</div>
+      <div><kbd>?</kbd> this menu</div>
+      <div><kbd>esc</kbd> close anything</div>
+    </div>
+  </div>
+</div>
+
+<div id="cmdPalette" class="cmd-palette">
+  <div class="cmd-palette-box">
+    <div class="cmd-palette-input-wrap">
+      <i data-lucide="search" style="width:16px;height:16px;flex-shrink:0;color:var(--muted);"></i>
+      <input id="cmdPaletteInput" class="cmd-palette-input" type="text" placeholder="Search commands, tabs, projects..." autocomplete="off" spellcheck="false">
+      <kbd class="cmd-palette-hint">esc</kbd>
+    </div>
+    <div class="cmd-palette-results" id="cmdPaletteResults"></div>
+  </div>
+</div>
+
+<canvas id="trailCanvas" class="trail-canvas" aria-hidden="true"></canvas>
+
+<script>
+(function() {
+  const vid = document.querySelector('.profile-banner-video');
+  if (!vid) return;
+  vid.muted = true;
+  const tryPlay = () => vid.play().catch(() => {});
+  tryPlay();
+  document.addEventListener('click', tryPlay, { once: true });
+  document.addEventListener('touchstart', tryPlay, { once: true });
+  vid.style.transition = 'opacity 0.6s ease';
+  vid.addEventListener('timeupdate', () => {
+    const remaining = vid.duration - vid.currentTime;
+    if (remaining < 0.7) vid.style.opacity = '0';
+  });
+  vid.addEventListener('seeked', () => {
+    if (vid.currentTime < 0.5) vid.style.opacity = '1';
+  });
+})();
+</script>
+
+<script src="index.js"></script>
+<script>lucide.createIcons();</script>
+
+<script>initStarCanvas();</script>
+
+<div id="bootOverlay" class="boot-overlay" aria-hidden="true">
+  <div class="boot-scanlines"></div>
+  <div class="boot-content">
+    <pre class="boot-logo">
+   ▄▀█ █▀▄ ▄▀█ █▄▄█
+   █▀█ █▄▀ █▀█ █▀▀█  // .dev
+    </pre>
+    <div class="boot-stream" id="bootStream"></div>
+    <div class="boot-progress" id="bootProgress">
+      <div class="boot-progress-label">loading assets...</div>
+      <div class="boot-progress-track">
+        <div class="boot-progress-fill" id="bootProgressFill"></div>
+      </div>
+      <div class="boot-progress-pct" id="bootProgressPct">0%</div>
+    </div>
+    <div class="boot-skip">press any key to skip</div>
+  </div>
+</div>
+
+</body>
+</html>
