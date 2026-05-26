@@ -280,11 +280,9 @@ const projectData = {
   "seraph": {
     lang: "// python · windows · desktop",
     intro: "A Windows panic button / profile switcher with voice control.",
-    description: "Seraph is a desktop utility that replaces entire app contexts at the press of a hotkey. Profiles switch between work/chill/focus/sleep — each one closes specific apps, opens predefined URLs, launches programs, sets browser profiles, and plays transition sounds. Includes a built-in AI assistant with voice recognition (French/English), a panic button that kills all user apps and opens YouTube, keyboard hook hotkeys, system tray integration, and autostart. Built with Python/Flask + pywebview for the UI.",
+    description: "Windows panic button / profile switcher with voice control. Replaces app contexts with a hotkey — switch between work/chill/focus/sleep profiles.",
     images: [
       "images/panic-1.png",
-      "images/seraph-ui-1.png",
-      "images/seraph-ui-2.png",
     ],
     action: { label: "Private project", href: "#" },
     roadmap: [
@@ -312,8 +310,8 @@ const projectData = {
 },
 "adam.dev": {
   lang: "// html · css · js",
-  intro: "This very site — my personal corner of the internet.",
-  description: "my own portfolio where it all comes together. features include real-time discord presence, dynamic theming, project showcase with zoomable gallery, interactive terminal, command palette, cursor trails, starfield canvas, boot sequence, keyboard-driven navigation, and full responsive design. built from scratch with no frameworks.",
+  intro: "The main project — everything else orbits this site.",
+  description: "my personal portfolio and the thing i keep coming back to. discord presence, dynamic theming, project gallery with zoom, interactive terminal, command palette, cursor trails, starfield, boot sequence, full keyboard nav. built from scratch, no frameworks.",
   images: [],
   action: { label: "View on GitHub", href: "https://github.com/aexdm" },
   roadmap: [

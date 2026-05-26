@@ -461,61 +461,47 @@
     <div id="skills" class="tab">
       <div class="section-tag">// skills</div>
       <h2 class="section-title">What I work with</h2>
-      <div class="skills-grid" id="skillsGrid"></div>
+      <div class="friends-empty">
+        <div class="friends-empty-card">
+          <div class="friends-empty-orbit" aria-hidden="true">
+            <span class="orbit-star orbit-star--1"></span>
+            <span class="orbit-star orbit-star--2"></span>
+            <span class="orbit-star orbit-star--3"></span>
+            <span class="orbit-core"></span>
+          </div>
+          <div class="friends-empty-eyebrow">// stack</div>
+          <h3 class="friends-empty-title">Curating the toolkit.</h3>
+          <p class="friends-empty-desc">I'm documenting the tools and languages I work with — check back soon.</p>
+          <div class="friends-empty-meta">
+            <span><i data-lucide="code-2"></i> 0 tools</span>
+            <span class="friends-empty-sep">·</span>
+            <span><i data-lucide="clock"></i> next update pending</span>
+          </div>
+        </div>
+      </div>
     </div>
 
     
     <div id="music" class="tab">
       <div class="section-tag">// music</div>
       <h2 class="section-title">What I listen to</h2>
-      <p class="section-subtitle">Tyler, The Creator · Frank Ocean · Kali Uchis · Steve Lacy · SZA · and more</p>
-      <div class="music-grid" id="musicGrid">
-        <a class="music-card" href="https://open.spotify.com/artist/4V8LLVI7PbaPR0K2TGSxFF" target="_blank" rel="noopener">
-          <div class="music-card-art" style="background:linear-gradient(135deg,#f59e0b,#d97706)">T</div>
-          <div class="music-card-info">
-            <div class="music-card-name">Tyler, The Creator</div>
-            <div class="music-card-role">artist · producer</div>
+      <div class="friends-empty">
+        <div class="friends-empty-card">
+          <div class="friends-empty-orbit" aria-hidden="true">
+            <span class="orbit-star orbit-star--1"></span>
+            <span class="orbit-star orbit-star--2"></span>
+            <span class="orbit-star orbit-star--3"></span>
+            <span class="orbit-core"></span>
           </div>
-        </a>
-        <a class="music-card" href="https://open.spotify.com/artist/2h93pZq0e7k5yf4dywlkpM" target="_blank" rel="noopener">
-          <div class="music-card-art" style="background:linear-gradient(135deg,#065f46,#047857)">FO</div>
-          <div class="music-card-info">
-            <div class="music-card-name">Frank Ocean</div>
-            <div class="music-card-role">artist</div>
+          <div class="friends-empty-eyebrow">// rotation</div>
+          <h3 class="friends-empty-title">Building the playlist.</h3>
+          <p class="friends-empty-desc">I'll share what I'm listening to once I've pinned down the rotation.</p>
+          <div class="friends-empty-meta">
+            <span><i data-lucide="disc-3"></i> 0 tracks</span>
+            <span class="friends-empty-sep">·</span>
+            <span><i data-lucide="clock"></i> next sync soon</span>
           </div>
-        </a>
-        <a class="music-card" href="https://open.spotify.com/artist/4BZI4E1oNfDNIhkIIHwAkb" target="_blank" rel="noopener">
-          <div class="music-card-art" style="background:linear-gradient(135deg,#7c3aed,#6d28d9)">KU</div>
-          <div class="music-card-info">
-            <div class="music-card-name">Kali Uchis</div>
-            <div class="music-card-role">artist</div>
-          </div>
-        </a>
-        <a class="music-card" href="https://open.spotify.com/artist/4r63FhuTkUYltbVAg5TQnk" target="_blank" rel="noopener">
-          <div class="music-card-art" style="background:linear-gradient(135deg,#0f766e,#0d9488)">SL</div>
-          <div class="music-card-info">
-            <div class="music-card-name">Steve Lacy</div>
-            <div class="music-card-role">artist · producer</div>
-          </div>
-        </a>
-        <a class="music-card" href="https://open.spotify.com/artist/7tYKF4w9nC0nq9CsPZTHyP" target="_blank" rel="noopener">
-          <div class="music-card-art" style="background:linear-gradient(135deg,#be185d,#db2777)">SZA</div>
-          <div class="music-card-info">
-            <div class="music-card-name">SZA</div>
-            <div class="music-card-role">artist</div>
-          </div>
-        </a>
-        <a class="music-card" href="https://open.spotify.com/artist/5INjqkS1o8h1imAzPqGZBb" target="_blank" rel="noopener">
-          <div class="music-card-art" style="background:linear-gradient(135deg,#1d4ed8,#2563eb)">TB</div>
-          <div class="music-card-info">
-            <div class="music-card-name">Tyler, The Creator</div>
-            <div class="music-card-role">ongoing inspiration</div>
-          </div>
-        </a>
-      </div>
-      <div class="music-vibe">
-        <span class="card-label">current rotation</span>
-        <p id="musicRotation" style="font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:8px;">CHROMAKOPIA · Blonde · Isolation · Apollo XXI · SOS · IGOR</p>
+        </div>
       </div>
     </div>
 
@@ -523,11 +509,25 @@
     <div id="contact" class="tab">
       <div class="section-tag">// contact</div>
       <h2 class="section-title">Get in touch</h2>
-      <div class="contact-grid">
-        <div class="contact-card" style="opacity:0.5;pointer-events:none;">
-          <div class="contact-card-icon" style="background:rgba(88,101,242,0.12);color:#5865f2;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24" style="stroke:none;"><path d="M19.73 4.87a18.2 18.2 0 0 0-4.6-1.44c-.21.4-.4.8-.58 1.21-1.69-.25-3.4-.25-5.1 0-.18-.41-.37-.82-.59-1.2-1.6.27-3.14.75-4.6 1.43A19.04 19.04 0 0 0 .96 17.7a18.43 18.43 0 0 0 5.63 2.87c.46-.62.86-1.28 1.2-1.98-.65-.25-1.29-.55-1.9-.92.17-.12.32-.24.47-.37 3.58 1.7 7.7 1.7 11.28 0l.46.37c-.6.36-1.25.67-1.9.92.35.7.75 1.35 1.2 1.98 2.03-.63 3.94-1.6 5.64-2.87.47-4.87-.78-9.09-3.3-12.83ZM8.3 15.12c-1.1 0-2-1.02-2-2.27 0-1.24.88-2.26 2-2.26s2.02 1.02 2 2.26c0 1.25-.89 2.27-2 2.27Zm7.4 0c-1.1 0-2-1.02-2-2.27 0-1.24.88-2.26 2-2.26s2.02 1.02 2 2.26c0 1.25-.88 2.27-2 2.27Z"/></svg>
+      <div class="friends-empty">
+        <div class="friends-empty-card">
+          <div class="friends-empty-orbit" aria-hidden="true">
+            <span class="orbit-star orbit-star--1"></span>
+            <span class="orbit-star orbit-star--2"></span>
+            <span class="orbit-star orbit-star--3"></span>
+            <span class="orbit-core"></span>
           </div>
+          <div class="friends-empty-eyebrow">// inbox</div>
+          <h3 class="friends-empty-title">Opening channels.</h3>
+          <p class="friends-empty-desc">Setting up contact methods — Discord works best in the meantime.</p>
+          <div class="friends-empty-meta">
+            <span><i data-lucide="message-circle"></i> @aexdm</span>
+            <span class="friends-empty-sep">·</span>
+            <span><i data-lucide="clock"></i> more coming</span>
+          </div>
+        </div>
+      </div>
+    </div>
           <div>
             <div class="contact-card-name">Discord</div>
             <div class="contact-card-handle">@aexdm</div>
