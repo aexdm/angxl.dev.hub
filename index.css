@@ -662,9 +662,9 @@ body::before {
 .cycling-row { font-family: var(--serif); font-size: 17px; color: var(--muted); margin-bottom: 12px; font-style: italic; }
 #aboutWord { color: var(--amber); font-weight: 600; font-style: italic; transition: opacity 0.2s, transform 0.2s; display: inline-block; }
 
-#aboutSentence { font-family: var(--mono); font-size: 12px; line-height: 1.85; color: var(--muted); }
-#aboutSentence strong { color: var(--text); font-weight: 400; }
-#aboutSentence a { color: var(--amber); text-decoration: none; }
+.about-sentence { font-family: var(--mono); font-size: 12px; line-height: 1.85; color: var(--muted); }
+.about-sentence strong { color: var(--text); font-weight: 400; }
+.about-sentence a { color: var(--amber); text-decoration: none; }
 
 .social-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 24px; }
 .social-list { display: flex; flex-direction: column; gap: 4px; margin-top: 2px; }
