@@ -34,8 +34,6 @@ function connectLanyard() {
 
 let allActivities = [];
 let currentActivityIndex = 0;
-let trailEnabled = localStorage.getItem('trail') !== 'false';
-let reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function resolveImg(raw, appId) {
   if (!raw) return null;
@@ -245,7 +243,7 @@ const projectData = {
     action: { label: "View GitHub", href: CLIENT_STUDIO_GITHUB },
     roadmap: [
       { cat: "CMS",      title: "Admin Panel",    desc: "Full backend with login, sessions, brute-force protection.", items: ["Secure PHP auth with bcrypt", "Lockout system + activity log"], status: "done" },
-      { cat: "Frontend", title: "Portfolio UI",   desc: "Public-facing portfolio with projects, skills.",      items: ["Tab navigation", "Project modal with gallery"], status: "done" },
+      { cat: "Frontend", title: "Portfolio UI",   desc: "Public-facing portfolio with projects, skills, music.",      items: ["Tab navigation", "Project modal with gallery"], status: "done" },
       { cat: "Media",    title: "Cloudinary",     desc: "Cloud media upload and optimization.",                        items: ["Image + video upload via API", "Auto-quality transforms"], status: "done" },
     ],
   },
@@ -274,23 +272,8 @@ const projectData = {
     images: [
       "https://placehold.co/930x480/111111/d4b8ff?text=Utility+Bot",
     ],
-    action: { label: "View on GitHub", href: "https://github.com/aexdm/nigbot" },
+    action: { label: "Private repository", href: "#" },
     roadmap: [],
-  },
-  "seraph": {
-    lang: "// python · windows · desktop",
-    intro: "A Windows panic button / profile switcher with voice control.",
-    description: "Windows panic button / profile switcher with voice control. Replaces app contexts with a hotkey — switch between work/chill/focus/sleep profiles.",
-    images: [
-      "images/panic-1.png",
-    ],
-    action: { label: "Private project", href: "#" },
-    roadmap: [
-      { cat: "Profiles",  title: "Profile Engine",  desc: "Multi-profile system for context switching.", items: ["Work/Chill/Focus/Sleep presets", "Per-profile URL lists, apps, hotkeys", "Session save/restore per profile"], status: "done" },
-      { cat: "Panic",     title: "Panic Button",     desc: "Emergency killswitch that closes everything.", items: ["Closes all non-system processes", "Opens YouTube as a safe distraction", "Protected system processes list"], status: "done" },
-      { cat: "Voice",     title: "Voice Assistant",  desc: "Speech recognition for hands-free triggering.",  items: ["French + English language support", "Trigger phrases per profile", "Continuous listening mode"], status: "done" },
-      { cat: "UI",        title: "Desktop UI",       desc: "Webview dashboard built with Flask.",            items: ["Profile management panel", "Activity log + live status", "System tray with quick actions"], status: "done" },
-    ],
   },
   "showcase": {
   lang: "// php · css · js",
@@ -301,143 +284,14 @@ const projectData = {
     "images/showcase-2.png",
     "images/showcase-3.png",
   ],
-  action: { label: "View GitHub", href: "https://github.com/aexdm/showcase" },
+  action: { label: "View GitHub", href: "https://github.com/aexdm/client-portfolio" },
  roadmap: [
   { cat: "Auth", title: "Admin Panel", desc: "Secure PHP login system with session management.", items: ["bcrypt password hashing", "Brute-force lockout after 5 attempts", "Session regeneration + expiry"], status: "done" },
   { cat: "CMS", title: "Content System", desc: "Dynamic JSON-based content with atomic saves.", items: ["Single content.json source of truth", "AJAX-powered live editing", "CSRF protection on all mutations"], status: "done" },
   { cat: "Media", title: "Cloudinary", desc: "Cloud media upload with auto-optimisation.", items: ["Image + video upload via signed API", "Auto quality transforms", "100MB upload limit with MIME validation"], status: "done" },
 ],
 },
-"adam.dev": {
-  lang: "// html · css · js",
-  intro: "The main project — everything else orbits this site.",
-  description: "my personal portfolio and the thing i keep coming back to. discord presence, dynamic theming, project gallery with zoom, interactive terminal, command palette, cursor trails, starfield, boot sequence, full keyboard nav. built from scratch, no frameworks.",
-  images: [],
-  action: { label: "View on GitHub", href: "https://github.com/aexdm" },
-  roadmap: [
-    { cat: "UI", title: "Core Layout", desc: "Shell layout with sidebar + mobile nav.", items: ["CSS grid shell", "Animated tab transitions", "Responsive breakpoints"], status: "done" },
-    { cat: "Presence", title: "Discord Integration", desc: "Live Discord status via Lanyard.", items: ["WebSocket connection", "Activity carousel", "Avatar + banner sync"], status: "done" },
-    { cat: "Projects", title: "Project Showcase", desc: "Card grid + modal with gallery.", items: ["Project cards with filters", "Image gallery with thumbnails", "Roadmap tab system", "Zoom overlay with pan"], status: "done" },
-    { cat: "UX", title: "Terminal & Palette", desc: "Interactive terminal + command palette.", items: ["Live terminal with commands", "Ctrl+K command palette", "Keyboard shortcuts"], status: "done" },
-    { cat: "Theme", title: "Theme System", desc: "10 themes with dynamic colors.", items: ["CSS custom properties", "Theme persistence", "Color extraction from avatar"], status: "done" },
-  ],
-},
 };
-
-const skillsData = [
-  { icon: "🌙", name: "Lua",           level: "advanced"     },
-  { icon: "🐍", name: "Python",        level: "advanced"     },
-  { icon: "🌐", name: "JavaScript",    level: "intermediate" },
-  { icon: "🎨", name: "HTML & CSS",    level: "intermediate" },
-  { icon: "🐘", name: "PHP",           level: "intermediate" },
-  { icon: "🎮", name: "Roblox Studio", level: "advanced"     },
-  { icon: "🔧", name: "Git & GitHub",  level: "intermediate" },
-  { icon: "⚗️",  name: "Flask",         level: "intermediate" },
-];
-function renderSkills() {
-  const grid = document.getElementById("skillsGrid");
-  if (!grid) return;
-  if (skillsData.length) {
-    grid.innerHTML = skillsData.map(s => `
-      <div class="skill-item">
-        <span class="skill-item-icon">${s.icon}</span>
-        <div class="skill-item-name">${s.name}</div>
-        <div class="skill-item-level">${s.level}</div>
-      </div>
-    `).join("");
-  } else {
-    grid.innerHTML = `
-      <div style="grid-column:1/-1;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:32px;text-align:center;">
-        <div style="font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:6px;">// skills</div>
-        <div style="font-family:var(--serif);font-style:italic;font-size:18px;font-weight:300;color:var(--amber);">coming soon</div>
-        <div style="font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-top:8px;">i'm curating my stack — check back later</div>
-      </div>`;
-  }
-}
-
-const blogPosts = [
-  { title: "Setting up the site", date: "May 2026", body: "Got the portfolio live with Discord presence, terminal, command palette, and dynamic theming. Next up: PWA, blog, and that dashboard." },
-  { title: "Going offline-first", date: "May 2026", body: "Added a service worker and manifest. The site should now work offline and feel more like an app. Also dropped in loading skeletons." },
-];
-function renderBlog() {
-  const container = document.getElementById("blogList");
-  if (!container) return;
-  if (!blogPosts.length) {
-    container.innerHTML = '<div class="blog-empty">no posts yet</div>';
-    return;
-  }
-  container.innerHTML = blogPosts.map(p => `
-    <div class="blog-post">
-      <div class="blog-post-title">${p.title}</div>
-      <div class="blog-post-date">${p.date}</div>
-      <div class="blog-post-body">${p.body}</div>
-    </div>
-  `).join("");
-}
-
-function populateNowTab() {
-  const dashNow = JSON.parse(localStorage.getItem("dash_now"));
-  if (dashNow) {
-    const statusEl = document.getElementById("nowStatusText");
-    if (statusEl) statusEl.textContent = dashNow.status || "building this site";
-    const noteEl = document.getElementById("nowNote");
-    if (noteEl) noteEl.textContent = dashNow.note || "";
-  }
-  const uptimeEl = document.getElementById("nowUptime");
-  if (uptimeEl) uptimeEl.textContent = `${uptimeDays()} days`;
-}
-const LASTFM_USER = "";
-const LASTFM_KEY  = "";
-async function fetchNowPlaying() {
-  if (!LASTFM_USER || !LASTFM_KEY) return;
-  try {
-    const url = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${LASTFM_USER}&api_key=${LASTFM_KEY}&format=json&limit=1`;
-    const r = await fetch(url).then(r => r.json());
-    const track = r?.recenttracks?.track?.[0];
-    if (track) {
-      const el = document.getElementById("nowPlayingText");
-      if (el) el.textContent = `${track.name} — ${track.artist?.["#text"] || "?"}`;
-    }
-  } catch {}
-}
-
-const GB_WEBHOOK = "";
-async function sendGuestbook() {
-  const name = document.getElementById("gbName").value.trim();
-  const msg  = document.getElementById("gbMsg").value.trim();
-  if (!name || !msg) return;
-  if (!GB_WEBHOOK) {
-    document.getElementById("gbMessages").innerHTML = `<div class="guestbook-message"><div class="guestbook-message-name">${name}</div><div class="guestbook-message-text">${msg}</div><div class="guestbook-message-time">saved locally</div></div>` + document.getElementById("gbMessages").innerHTML.replace('<div class="guestbook-empty">', '<div style="display:none">');
-    document.getElementById("gbName").value = "";
-    document.getElementById("gbMsg").value = "";
-    return;
-  }
-  try {
-    await fetch(GB_WEBHOOK, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ content: `**${name}**: ${msg}` }),
-    });
-    document.getElementById("gbMessages").innerHTML = `<div class="guestbook-message"><div class="guestbook-message-name">${name}</div><div class="guestbook-message-text">${msg}</div><div class="guestbook-message-time">just now</div></div>` + document.getElementById("gbMessages").innerHTML.replace('<div class="guestbook-empty">', '<div style="display:none">');
-    document.getElementById("gbName").value = "";
-    document.getElementById("gbMsg").value = "";
-  } catch {}
-}
-
-function showSkeleton(containerId, type) {
-  const el = document.getElementById(containerId);
-  if (!el) return;
-  if (type === "row") {
-    el.innerHTML = Array(3).fill('<div class="skeleton-row"><div class="skeleton skeleton-avatar"></div><div><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-line skeleton-line--short"></div></div></div>').join("");
-  } else {
-    el.innerHTML = Array(3).fill('<div class="skeleton skeleton-line"></div>').join("") + '<div class="skeleton skeleton-line skeleton-line--short"></div>';
-  }
-}
-function hideSkeleton(containerId) {
-  const el = document.getElementById(containerId);
-  if (!el) return;
-  el.querySelectorAll(".skeleton").forEach(s => s.remove());
-}
 
 function openProjectModal(projectName) {
   const data = projectData[projectName] || {};
@@ -513,65 +367,6 @@ document.getElementById("projectModal").addEventListener("click", e => {
   if (e.target.id === "projectModal") closeProjectModal();
 });
 
-// Zoom overlay
-(function() {
-  const zoomOverlay = document.getElementById("zoomOverlay");
-  const zoomImg = document.getElementById("zoomImg");
-  const zoomSlider = document.getElementById("zoomSlider");
-  const zoomValue = document.getElementById("zoomValue");
-  const zoomContainer = document.getElementById("zoomContainer");
-  let zoomLevel = 1, isDragging = false, startX, startY, panX = 0, panY = 0;
-
-  document.getElementById("pModalImgMain").addEventListener("click", function() {
-    zoomImg.src = this.src;
-    zoomLevel = 1; panX = 0; panY = 0;
-    zoomSlider.value = 1;
-    zoomValue.textContent = "1x";
-    zoomImg.style.transform = "scale(1) translate(0, 0)";
-    zoomOverlay.classList.add("open");
-    lucide.createIcons();
-  });
-
-  document.getElementById("zoomClose").onclick = () => zoomOverlay.classList.remove("open");
-  zoomOverlay.addEventListener("click", e => { if (e.target === zoomOverlay) zoomOverlay.classList.remove("open"); });
-  document.addEventListener("keydown", e => { if (e.key === "Escape" && zoomOverlay.classList.contains("open")) zoomOverlay.classList.remove("open"); });
-
-  zoomSlider.addEventListener("input", () => {
-    zoomLevel = parseFloat(zoomSlider.value);
-    zoomValue.textContent = zoomLevel.toFixed(1) + "x";
-    zoomImg.style.transform = `scale(${zoomLevel}) translate(${panX}px, ${panY}px)`;
-  });
-
-  zoomContainer.addEventListener("wheel", e => {
-    e.preventDefault();
-    const delta = e.deltaY > 0 ? -0.1 : 0.1;
-    zoomLevel = Math.max(1, Math.min(5, zoomLevel + delta));
-    zoomSlider.value = zoomLevel;
-    zoomValue.textContent = zoomLevel.toFixed(1) + "x";
-    zoomImg.style.transform = `scale(${zoomLevel}) translate(${panX}px, ${panY}px)`;
-  }, { passive: false });
-
-  zoomContainer.addEventListener("mousedown", e => {
-    if (zoomLevel <= 1) return;
-    isDragging = true;
-    startX = e.clientX - panX;
-    startY = e.clientY - panY;
-    zoomContainer.classList.add("dragging");
-  });
-
-  document.addEventListener("mousemove", e => {
-    if (!isDragging) return;
-    panX = e.clientX - startX;
-    panY = e.clientY - startY;
-    zoomImg.style.transform = `scale(${zoomLevel}) translate(${panX}px, ${panY}px)`;
-  });
-
-  document.addEventListener("mouseup", () => {
-    isDragging = false;
-    zoomContainer.classList.remove("dragging");
-  });
-})();
-
 document.querySelectorAll(".project-row, .project-card").forEach(row => {
   row.addEventListener("click", e => {
     e.preventDefault();
@@ -584,7 +379,7 @@ const cycleWords = [
   "MY BED I LOVE IT", "money", "roblox", "art", "my friends", "code",
   "my phone", "drawing", "fashion", "chaos", "summer",
   "Tyler The Creator", "anime", "memes", "food", "sleep",
-  "cats", "the vibe", "adam.dev",
+  "cats", "the vibe",
 ];
 let wordIndex = 0;
 setInterval(() => {
@@ -675,9 +470,9 @@ window.addEventListener("load", () => {
 
 
 const AIDEN_BIRTHDATE = "2008-09-22"; 
-const AIDEN_EMAIL          = "adam@adam.dev";
-const AIDEN_GITHUB         = "https://github.com/aexdm";
-const AIDEN_DISCORD_INVITE = "https://discord.com/users/853310319002517524"; 
+const AIDEN_EMAIL     = "hello@example.dev";
+const AIDEN_GITHUB    = "#";
+const AIDEN_DISCORD_INVITE = ""; 
 
 const $  = (id) => document.getElementById(id);
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
@@ -714,20 +509,19 @@ const BOOT_LINES = [
   ['',       '[    0.0833] resolving dns api.lanyard.rest <span class="ok">OK</span>',  90],
   ['',       '[    0.0961] negotiating tls ............. <span class="ok">tls 1.3</span>', 85],
   ['',       '[    0.1129] starting twinkle subsystem .. <span class="ok">OK</span>',     85],
-  ['',       '[    0.1322] generating constellation map  <span class="ok">60 stars</span>', 100],
+  ['',       '[    0.1322] generating constellation map  <span class="ok">22 stars</span>', 100],
   ['',       '[    0.1547] loading themes .............. <span class="ok">9 themes</span>',  85],
   ['',       '[    0.1718] mounting cursor pack ........ <span class="ok">★ stars</span>',  85],
   ['',       '[    0.1922] checking sleep status ....... <span class="warn">DEFICIT</span> <span class="dim">(estimated -3h)</span>', 110],
   ['',       '[    0.2107] linking discord presence .... <span class="accent">connected</span>', 100],
   ['',       '[    0.2244] spawning easter eggs ........ <span class="ok">3 sounds</span>',         85],
+  ['',       '[    0.2398] enabling command palette .... <span class="ok">⌘ K</span>',               85],
   ['',       '[    0.2541] mounting keyboard shortcuts . <span class="ok">OK</span> <span class="dim">(press ?)</span>', 100],
-  ['',       '[    0.2703] indexing projects ........... <span class="ok">6 found</span>',          85],
+  ['',       '[    0.2703] indexing projects ........... <span class="ok">2 found</span>',          85],
   ['',       '[    0.2848] indexing friends ............ <span class="warn">empty</span>',          100],
-  ['',       '[    0.2919] indexing skills ............ <span class="ok">12 found</span>',          85],
   ['',       '[    0.3019] hydrating ui state .......... <span class="ok">OK</span>',                85],
   ['',       '[    0.3166] running self-tests .......... <span class="ok">112/112 passed</span>',    125],
   ['dim',    '[    0.3322] all systems nominal',                                                     175],
-  ['',       '[    0.3488] preloading assets ......... <span class="accent">queued</span>',                 85],
   ['',       ''],
   ['accent', '$ ./welcome --user=adam',                                                             225],
 ];
@@ -758,59 +552,14 @@ async function runBoot() {
     if (klass) div.className = klass;
     div.innerHTML = line || '&nbsp;';
     stream.appendChild(div);
-
+    
     const p = Math.round(((i + 1) / BOOT_LINES.length) * 100);
     if (fill) fill.style.width = p + '%';
     if (pct)  pct.textContent  = p + '%';
     await sleep(pace);
   }
   if (skipped) return;
-
-  // preload images + video before dismissing
-  const prog = $('bootProgress');
-  if (prog) prog.classList.add('visible');
-
-  const images = document.querySelectorAll('img[src]');
-  const video  = document.querySelector('video.profile-banner-video source');
-  const total  = images.length + (video ? 1 : 0);
-  let loaded   = 0;
-
-  const tick = () => {
-    loaded++;
-    const p = total ? Math.round((loaded / total) * 100) : 100;
-    if (fill) fill.style.width = p + '%';
-    if (pct)  pct.textContent  = p + '%';
-  };
-
-  const loadImg = src => new Promise(r => {
-    const img = new Image();
-    img.onload = img.onerror = r;
-    img.src = src;
-  });
-
-  const jobs = [];
-  for (const img of images) {
-    const src = img.getAttribute('src');
-    if (src) jobs.push(loadImg(src).then(tick));
-  }
-  if (video) {
-    jobs.push(new Promise(r => {
-      const v = video.parentElement;
-      v.addEventListener('canplaythrough', () => { tick(); r(); }, { once: true });
-      v.addEventListener('error',           () => { tick(); r(); }, { once: true });
-      v.load();
-      setTimeout(() => { if (loaded < total) tick(); r(); }, 3000);
-    }));
-  }
-
-  if (jobs.length) {
-    await Promise.race([
-      Promise.all(jobs),
-      sleep(8000),
-    ]);
-  }
-
-  await sleep(200);
+  await sleep(350);
   skip();
 }
 
@@ -840,7 +589,7 @@ async function runHomeTerminal() {
     ['role',     '17 y/o dev · roblox + js + python'],
     ['location', 'the chair, somewhere'],
     ['uptime',   `<span class="live" id="liveUptime">—</span>`],
-    ['shipped',  '<span class="accent">6</span> projects · <span class="dim">always cooking</span>'],
+    ['shipped',  '<span class="accent">3</span> projects · <span class="dim">4 cooking</span>'],
     ['now',      'building <span class="accent">HOTU</span> · sleeping less than i should'],
     ['status',   '<span class="live">● online</span>'],
   ];
@@ -862,118 +611,89 @@ async function runHomeTerminal() {
 
   const ctr = $('ctrUptime');
   if (ctr) ctr.textContent = uptimeDays().toLocaleString();
-
-  // Interactive terminal setup
-  const termBody = document.getElementById("termBody");
-  if (!termBody) return;
-  let termBuffer = "", termHistory = [], termHistIdx = -1;
-
-  const TERM_COMMANDS = {
-    help() { return `available commands:
-  <span class="term-line-muted">help</span>       show this message
-  <span class="term-line-muted">whoami</span>     about me
-  <span class="term-line-muted">projects</span>   list my projects
-  <span class="term-line-muted">skills</span>     what I work with
-  <span class="term-line-muted">social</span>     my links
-
-  <span class="term-line-muted">clear</span>      clear terminal
-  <span class="term-line-muted">theme</span>      cycle theme
-  <span class="term-line-muted">date</span>       current date/time
-  <span class="term-line-muted">uptime</span>     days since start
-  <span class="term-line-muted">echo</span>       echo something back
-  <span class="term-line-muted">neofetch</span>   show system info`;
-    },
-    whoami() { return "adam · 17 · dev/designer · lua/python/js"; },
-    projects() { return Object.keys(projectData).map(p => `  <span class="accent">→</span> ${p}`).join("\n"); },
-    skills() { return skillsData.map(s => `  <span class="accent">→</span> ${s.name} <span class="dim">(${s.level})</span>`).join("\n"); },
-    social() { return `  <span class="accent">discord</span>  @aexdm\n  <span class="accent">github</span>   github.com/aexdm`; },
-    clear() { return "__CLEAR__"; },
-    theme() { setThemeAndPersist(THEME_CYCLE[(THEME_CYCLE.indexOf(localStorage.getItem('theme')||'pfp')+1)%THEME_CYCLE.length]); return "theme cycled"; },
-    date() { return new Date().toLocaleString(); },
-    uptime() { return `${uptimeDays()} days since aidenhub.dev was born`; },
-    echo(_, ...args) { return args.join(" "); },
-    neofetch() { return `adam@portfolio
-  <span class="term-line-muted">os</span>         windows 11
-  <span class="term-line-muted">host</span>       adam.dev
-  <span class="term-line-muted">kernel</span>     creative chaos
-  <span class="term-line-muted">shell</span>      zsh (custom)
-  <span class="term-line-muted">editor</span>     vscode
-  <span class="term-line-muted">uptime</span>     ${uptimeDays()} days
-  <span class="term-line-muted">theme</span>      ${localStorage.getItem('theme') || 'pfp'}
-  <span class="term-line-muted">projects</span>   ${Object.keys(projectData).length}`;
-    },
-  };
-
-  termBody.addEventListener("focus", () => { termBody.classList.add("focused"); });
-  termBody.addEventListener("blur", () => { termBody.classList.remove("focused"); });
-
-  termBody.addEventListener("keydown", e => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      const input = termBuffer.trim();
-      termBuffer = "";
-
-      const cmdEl = document.getElementById("termCmd");
-      if (cmdEl) cmdEl.textContent = "";
-
-      if (input) {
-        termHistory.push(input);
-        termHistIdx = termHistory.length;
-
-        const [cmd, ...args] = input.toLowerCase().split(/\s+/);
-        const outDiv = document.createElement("div");
-        outDiv.className = "row";
-        outDiv.innerHTML = `<span class="arrow">→</span><span class="key" style="color:var(--amber)">$</span><span class="val">${input}</span>`;
-        out.appendChild(outDiv);
-
-        const fn = TERM_COMMANDS[cmd];
-        if (fn) {
-          const result = fn(input, ...args);
-          if (result === "__CLEAR__") {
-            out.innerHTML = "";
-          } else {
-            const resDiv = document.createElement("div");
-            resDiv.className = "row";
-            resDiv.innerHTML = `<span class="arrow" style="opacity:0">→</span><span class="key" style="opacity:0">_</span><span class="val">${result}</span>`;
-            out.appendChild(resDiv);
-          }
-        } else {
-          const errDiv = document.createElement("div");
-          errDiv.innerHTML = `<span class="arrow" style="opacity:0">→</span><span class="key" style="opacity:0">_</span><span class="val term-line-error">${input}: command not found. try 'help'</span>`;
-          out.appendChild(errDiv);
-        }
-      }
-
-      out.scrollTop = out.scrollHeight;
-      return;
-    }
-
-    if (e.key === "Backspace") {
-      termBuffer = termBuffer.slice(0, -1);
-    } else if (e.key === "ArrowUp") {
-      e.preventDefault();
-      if (termHistory.length) {
-        termHistIdx = Math.max(0, termHistIdx - 1);
-        termBuffer = termHistory[termHistIdx] || "";
-      }
-    } else if (e.key === "ArrowDown") {
-      e.preventDefault();
-      if (termHistIdx < termHistory.length - 1) {
-        termHistIdx++;
-        termBuffer = termHistory[termHistIdx] || "";
-      } else {
-        termHistIdx = termHistory.length;
-        termBuffer = "";
-      }
-    } else if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
-      termBuffer += e.key;
-    }
-
-    const cmdEl = document.getElementById("termCmd");
-    if (cmdEl) cmdEl.textContent = termBuffer;
-  });
 }
 
+const PALETTE_ITEMS = [
+  { id: 'tab-home',     label: 'Home',                  sub: 'go to home',         icon: 'terminal',    tag: 'tab',   action: () => switchTab('home') },
+  { id: 'tab-about',    label: 'About',                 sub: 'go to about',        icon: 'user-circle', tag: 'tab',   action: () => switchTab('about') },
+  { id: 'tab-projects', label: 'Projects',              sub: 'go to projects',     icon: 'layers',      tag: 'tab',   action: () => switchTab('projects') },
+  { id: 'tab-friends',  label: 'Friends',               sub: 'go to friends',      icon: 'users-round', tag: 'tab',   action: () => switchTab('friends') },
+  { id: 'open-hotu',    label: 'Open HOTU',             sub: 'roblox parkour fan game', icon: 'gamepad-2', tag: 'project', action: () => { switchTab('projects'); setTimeout(() => openProjectModal('AW : Heart Of The Unreturned'), 320); } },
+  { id: 'open-utility', label: 'Open utility bot',      sub: 'automation bot',      icon: 'bot',         tag: 'project', action: () => { switchTab('projects'); setTimeout(() => openProjectModal('utility bot'), 320); } },
+  { id: 'github',       label: 'GitHub',                sub: AIDEN_GITHUB,           icon: 'github',     tag: 'link',  action: () => window.open(AIDEN_GITHUB, '_blank') },
+  { id: 'copy-email',   label: 'Copy email',            sub: AIDEN_EMAIL,            icon: 'mail',       tag: 'copy',  action: () => copyText(AIDEN_EMAIL, 'email copied') },
+  { id: 'theme-pfp',     label: 'Theme: pfp (auto)',    sub: 'derive from avatar',   icon: 'paintbrush', tag: 'theme', action: () => setThemeAndPersist('pfp') },
+  { id: 'theme-midnight',label: 'Theme: midnight',      sub: 'deep blue',            icon: 'moon',       tag: 'theme', action: () => setThemeAndPersist('midnight') },
+  { id: 'theme-orange',  label: 'Theme: orange',        sub: 'warm amber',           icon: 'sun',        tag: 'theme', action: () => setThemeAndPersist('orange') },
+  { id: 'theme-rose',    label: 'Theme: rose',          sub: 'soft pink',            icon: 'flower',     tag: 'theme', action: () => setThemeAndPersist('rose') },
+  { id: 'theme-red',     label: 'Theme: red',           sub: '',                     icon: 'circle',     tag: 'theme', action: () => setThemeAndPersist('red') },
+  { id: 'theme-blue',    label: 'Theme: blue',          sub: '',                     icon: 'circle',     tag: 'theme', action: () => setThemeAndPersist('blue') },
+  { id: 'theme-green',   label: 'Theme: green',         sub: '',                     icon: 'circle',     tag: 'theme', action: () => setThemeAndPersist('green') },
+  { id: 'theme-purple',  label: 'Theme: purple',        sub: '',                     icon: 'circle',     tag: 'theme', action: () => setThemeAndPersist('purple') },
+  { id: 'theme-pink',    label: 'Theme: pink',          sub: '',                     icon: 'circle',     tag: 'theme', action: () => setThemeAndPersist('pink') },
+  { id: 'theme-cyan',    label: 'Theme: cyan',          sub: '',                     icon: 'circle',     tag: 'theme', action: () => setThemeAndPersist('cyan') },
+  { id: 'shortcuts',     label: 'Show keyboard shortcuts', sub: 'press ? anytime',   icon: 'keyboard',   tag: 'help',  action: () => toggleShortcuts(true) },
+  { id: 'settings',      label: 'Open settings',        sub: '',                    icon: 'settings-2', tag: 'app',   action: () => openSettings() },
+  { id: 'easter',        label: 'amogus',               sub: 'play random sound',    icon: 'volume-2',   tag: 'fun',   action: () => $('easterEgg')?.click() },
+];
+
+let paletteOpen = false, paletteIdx = 0, paletteFiltered = [];
+function openPalette() {
+  paletteOpen = true;
+  paletteIdx = 0;
+  $('palette').classList.add('open');
+  $('palette').setAttribute('aria-hidden', 'false');
+  const inp = $('paletteInput');
+  inp.value = '';
+  inp.focus();
+  renderPalette('');
+}
+function closePalette() {
+  paletteOpen = false;
+  $('palette').classList.remove('open');
+  $('palette').setAttribute('aria-hidden', 'true');
+}
+function fuzzyScore(q, s) {
+  q = q.toLowerCase(); s = s.toLowerCase();
+  if (!q) return 1;
+  if (s.includes(q)) return 100 - (s.indexOf(q));
+
+  let qi = 0;
+  for (let i = 0; i < s.length && qi < q.length; i++) if (s[i] === q[qi]) qi++;
+  return qi === q.length ? 10 : 0;
+}
+function renderPalette(q) {
+  const results = $('paletteResults');
+  results.innerHTML = '';
+  paletteFiltered = PALETTE_ITEMS
+    .map(it => ({ it, score: Math.max(fuzzyScore(q, it.label), fuzzyScore(q, it.sub || ''), fuzzyScore(q, it.tag || '')) }))
+    .filter(x => x.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .map(x => x.it);
+
+  if (!paletteFiltered.length) {
+    results.innerHTML = `<div class="palette-empty">no commands match "${q}"</div>`;
+    return;
+  }
+  paletteFiltered.forEach((it, i) => {
+    const row = document.createElement('div');
+    row.className = 'palette-item' + (i === paletteIdx ? ' active' : '');
+    row.innerHTML = `
+      <i data-lucide="${it.icon}"></i>
+      <div><span>${it.label}</span>${it.sub ? `<span class="pi-sub">${it.sub}</span>` : ''}</div>
+      <span class="pi-tag">${it.tag || ''}</span>`;
+    row.addEventListener('click', () => { closePalette(); it.action(); });
+    row.addEventListener('mouseenter', () => { paletteIdx = i; updatePaletteActive(); });
+    results.appendChild(row);
+  });
+  if (window.lucide) lucide.createIcons();
+}
+function updatePaletteActive() {
+  const items = document.querySelectorAll('.palette-item');
+  items.forEach((el, i) => el.classList.toggle('active', i === paletteIdx));
+  const active = items[paletteIdx];
+  if (active) active.scrollIntoView({ block: 'nearest' });
+}
 function copyText(t, msg) {
   navigator.clipboard?.writeText(t).then(() => toast(msg)).catch(() => toast('clipboard blocked'));
 }
@@ -1007,25 +727,36 @@ function toggleShortcuts(force) {
   el.setAttribute('aria-hidden', open ? 'false' : 'true');
 }
 
-const TAB_BY_KEY = { '1': 'home', '2': 'projects', '3': 'about', '4': 'friends', '5': 'skills', '6': 'now', '7': 'blog', '8': 'guestbook' };
-const VIM_TAB    = { 'h': 'home', 'a': 'about', 'p': 'projects', 'f': 'friends', 's': 'skills', 'n': 'now', 'b': 'blog', 'g': 'guestbook' };
+const TAB_BY_KEY = { '1': 'home', '2': 'projects', '3': 'about', '4': 'friends' };
+const VIM_TAB    = { 'h': 'home', 'a': 'about', 'p': 'projects', 'f': 'friends' };
 const THEME_CYCLE = ['pfp','midnight','orange','red','blue','green','purple','pink','cyan','rose'];
 
 let vimPending = false, vimTimer = null;
 window.addEventListener('keydown', (e) => {
   const t = e.target;
   const inField = (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable);
+
+  if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+    e.preventDefault();
+    paletteOpen ? closePalette() : openPalette();
+    return;
+  }
+
+  if (paletteOpen) {
+    if (e.key === 'Escape')      { e.preventDefault(); closePalette(); }
+    else if (e.key === 'ArrowDown') { e.preventDefault(); if (paletteIdx < paletteFiltered.length - 1) { paletteIdx++; updatePaletteActive(); } }
+    else if (e.key === 'ArrowUp')   { e.preventDefault(); if (paletteIdx > 0) { paletteIdx--; updatePaletteActive(); } }
+    else if (e.key === 'Enter')     { e.preventDefault(); const it = paletteFiltered[paletteIdx]; if (it) { closePalette(); it.action(); } }
+    return;
+  }
+
   if (inField) return;
 
   if (e.key === 'Escape') {
     closeSettings(); closeProjectModal(); toggleShortcuts(false);
-    document.getElementById("cmdPalette")?.classList.remove("open");
     return;
   }
-  if (e.key === '?' && !e.ctrlKey && !e.metaKey) { e.preventDefault(); toggleShortcuts(); return; }
-  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
-    e.preventDefault(); toggleCmdPalette(); return;
-  }
+  if (e.key === '?') { e.preventDefault(); toggleShortcuts(); return; }
   if (e.key === 't') {
     const cur = localStorage.getItem('theme') || 'pfp';
     const next = THEME_CYCLE[(THEME_CYCLE.indexOf(cur) + 1) % THEME_CYCLE.length];
@@ -1044,83 +775,17 @@ window.addEventListener('keydown', (e) => {
     switchTab(VIM_TAB[e.key.toLowerCase()]);
   }
 });
-
-// Command palette
-const PALETTE_ITEMS = [
-  ...['home','about','projects','friends','skills','now','blog','guestbook'].map(id => ({ label: `Go to ${id}`, cat: 'tab', icon: 'arrow-right', action: () => { switchTab(id); toggleCmdPalette(); } })),
-  { label: 'Toggle theme', cat: 'action', icon: 'palette', action: () => { setThemeAndPersist(THEME_CYCLE[(THEME_CYCLE.indexOf(localStorage.getItem('theme')||'pfp')+1)%THEME_CYCLE.length]); toggleCmdPalette(); } },
-  { label: 'Toggle shortcuts', cat: 'action', icon: 'keyboard', action: () => { toggleShortcuts(); toggleCmdPalette(); } },
-  { label: 'Open settings', cat: 'action', icon: 'settings-2', action: () => { openSettings(); toggleCmdPalette(); } },
-  { label: `View source`, cat: 'link', icon: 'github', action: () => { window.open('https://github.com/aexdm','_blank'); toggleCmdPalette(); } },
-];
-function toggleCmdPalette() {
-  const el = document.getElementById("cmdPalette");
-  el.classList.toggle("open");
-  if (el.classList.contains("open")) {
-    document.getElementById("cmdPaletteInput").value = "";
-    document.getElementById("cmdPaletteResults").innerHTML = "";
-    setTimeout(() => document.getElementById("cmdPaletteInput").focus(), 100);
-  }
-}
-document.getElementById("cmdPaletteInput")?.addEventListener("input", function() {
-  const q = this.value.toLowerCase();
-  const results = document.getElementById("cmdPaletteResults");
-  if (!q) { results.innerHTML = ""; return; }
-  results.innerHTML = PALETTE_ITEMS
-    .filter(i => i.label.toLowerCase().includes(q) || i.cat.includes(q))
-    .map((i, idx) => `<div class="cmd-palette-item${idx===0?' active':''}" data-idx="${idx}">
-      <span class="cmd-palette-item-icon"><i data-lucide="${i.icon}" style="width:14px;height:14px;"></i></span>
-      <span>${i.label}</span>
-      <span class="cmd-palette-item-cat">${i.cat}</span>
-    </div>`).join("");
-  lucide.createIcons();
-  results.querySelectorAll(".cmd-palette-item").forEach(el => {
-    el.addEventListener("click", () => {
-      const idx = parseInt(el.dataset.idx);
-      const filtered = PALETTE_ITEMS.filter(i => (q ? i.label.toLowerCase().includes(q) || i.cat.includes(q) : true));
-      if (filtered[idx]) filtered[idx].action();
-    });
-  });
+$('paletteInput')?.addEventListener('input', (e) => {
+  paletteIdx = 0;
+  renderPalette(e.target.value);
 });
-document.getElementById("cmdPaletteInput")?.addEventListener("keydown", e => {
-  const results = document.getElementById("cmdPaletteResults");
-  const items = results.querySelectorAll(".cmd-palette-item");
-  const active = results.querySelector(".cmd-palette-item.active");
-  if (e.key === "Enter" && active) { active.click(); return; }
-  if (e.key === "ArrowDown" || e.key === "ArrowUp") {
-    e.preventDefault();
-    const dir = e.key === "ArrowDown" ? 1 : -1;
-    let next = active ? Array.from(items).indexOf(active) + dir : 0;
-    if (next < 0) next = items.length - 1;
-    if (next >= items.length) next = 0;
-    items.forEach(i => i.classList.remove("active"));
-    if (items[next]) items[next].classList.add("active");
-  }
+$('palette')?.addEventListener('click', (e) => {
+  if (e.target.id === 'palette') closePalette();
 });
-
-// GitHub activity feed
-async function fetchGitHubActivity() {
-  try {
-    const r = await fetch("https://api.github.com/users/aexdm/events/public?per_page=5");
-    if (!r.ok) return;
-    const events = await r.json();
-    const body = document.getElementById("gitLogBody");
-    if (!body) return;
-    const typeLabels = { PushEvent: "pushed", CreateEvent: "created", IssuesEvent: "opened issue", WatchEvent: "starred", ForkEvent: "forked", IssueCommentEvent: "commented", PullRequestEvent: "opened PR" };
-    body.innerHTML = events.slice(0, 5).map(e => {
-      const repo = (e.repo?.name || "").split("/").pop();
-      const type = typeLabels[e.type] || e.type.replace("Event","").toLowerCase();
-      const msg = e.type === "PushEvent" ? (e.payload?.commits?.[0]?.message || "commits") : repo;
-      const ago = relativeTime(e.created_at);
-      return `<div class="git-row"><span class="git-hash" style="color:var(--amber)">${type}</span><span class="git-msg"><span class="scope">[${repo}]</span>${msg}</span><span class="git-time">${ago}</span></div>`;
-    }).join("");
-  } catch (_) {}
-}
 
 (function cursorTrail() {
   const c = $('trailCanvas');
   if (!c) return;
-  if (reducedMotion) { c.style.display = 'none'; return; }
   const ctx = c.getContext('2d');
   function resize() { c.width = innerWidth; c.height = innerHeight; }
   resize(); addEventListener('resize', resize);
@@ -1128,7 +793,6 @@ async function fetchGitHubActivity() {
   const particles = [];
   let lastSpawn = 0;
   addEventListener('mousemove', (e) => {
-    if (!trailEnabled) return;
     const now = performance.now();
     if (now - lastSpawn < 22) return; 
     lastSpawn = now;
@@ -1139,30 +803,25 @@ async function fetchGitHubActivity() {
       size: 2 + Math.random() * 2.5,
       life: 1,
       decay: 0.025 + Math.random() * 0.02,
-      hue: Math.random() * 0.2 - 0.1,
     });
-    if (particles.length > 150) particles.splice(0, particles.length - 150);
+    if (particles.length > 90) particles.splice(0, particles.length - 90);
   });
 
-  function accent(alpha, hueShift) {
+  function accent(alpha) {
     const v = (getComputedStyle(document.documentElement).getPropertyValue('--amber') || '#e8a030').trim();
-    let r, g, b;
     if (v.startsWith('#')) {
-      const n = v.length === 4 ? v.slice(1).split('').map(c => parseInt(c+c,16)) : [parseInt(v.slice(1,3),16), parseInt(v.slice(3,5),16), parseInt(v.slice(5,7),16)];
-      r = n[0]; g = n[1]; b = n[2];
-    } else if (v.startsWith('rgb')) {
-      const m = v.match(/\d+/g);
-      r = +m[0]; g = +m[1]; b = +m[2];
-    } else { return `rgba(232,160,48,${alpha})`; }
-    if (hueShift) {
-      r = Math.min(255, Math.max(0, r + hueShift * 60));
-      g = Math.min(255, Math.max(0, g + hueShift * 40));
-      b = Math.min(255, Math.max(0, b + hueShift * 80));
+      const n = v.length === 4
+        ? v.slice(1).split('').map(c => parseInt(c+c,16))
+        : [parseInt(v.slice(1,3),16), parseInt(v.slice(3,5),16), parseInt(v.slice(5,7),16)];
+      return `rgba(${n[0]},${n[1]},${n[2]},${alpha})`;
     }
-    return `rgba(${r|0},${g|0},${b|0},${alpha})`;
+    if (v.startsWith('rgb')) {
+      const m = v.match(/\d+/g);
+      return `rgba(${m[0]},${m[1]},${m[2]},${alpha})`;
+    }
+    return `rgba(232,160,48,${alpha})`;
   }
-
-  function tinyStar(x, y, r, a, hs) {
+  function tinyStar(x, y, r, a) {
     ctx.beginPath();
     for (let i = 0; i < 5; i++) {
       const ang = -Math.PI/2 + i * (Math.PI * 2 / 5);
@@ -1171,180 +830,23 @@ async function fetchGitHubActivity() {
       ctx.lineTo(x + Math.cos(ang2) * r * 0.45, y + Math.sin(ang2) * r * 0.45);
     }
     ctx.closePath();
-    ctx.fillStyle = accent(a, hs);
+    ctx.fillStyle = accent(a);
     ctx.fill();
   }
 
-  const CONNECT_DIST = 70;
   function loop() {
     ctx.clearRect(0, 0, c.width, c.height);
-
-    if (trailEnabled) {
-      for (let i = particles.length - 1; i >= 0; i--) {
-        const p = particles[i];
-        p.x += p.vx; p.y += p.vy;
-        p.life -= p.decay;
-        if (p.life <= 0) { particles.splice(i, 1); continue; }
-        tinyStar(p.x, p.y, p.size * p.life, 0.55 * p.life, p.hue);
-      }
-
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const a = particles[i], b = particles[j];
-          const dx = a.x - b.x, dy = a.y - b.y;
-          const d = Math.hypot(dx, dy);
-          if (d < CONNECT_DIST) {
-            const t = (1 - d / CONNECT_DIST) * Math.min(a.life, b.life);
-            ctx.strokeStyle = accent(0.08 * t);
-            ctx.lineWidth = 0.5;
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.stroke();
-          }
-        }
-      }
-    } else {
-      ctx.clearRect(0, 0, c.width, c.height);
-      particles.length = 0;
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const p = particles[i];
+      p.x += p.vx; p.y += p.vy;
+      p.life -= p.decay;
+      if (p.life <= 0) { particles.splice(i, 1); continue; }
+      tinyStar(p.x, p.y, p.size * p.life, 0.55 * p.life);
     }
     requestAnimationFrame(loop);
   }
   loop();
 })();
-
-function initStarCanvas() {
-  const canvas = document.getElementById('starCanvas');
-  if (!canvas) return;
-  if (reducedMotion) { canvas.style.display = 'none'; return; }
-  const ctx = canvas.getContext('2d');
-
-  function accent(alpha) {
-    const root = getComputedStyle(document.documentElement);
-    const v = (root.getPropertyValue('--amber') || '#d4b8ff').trim();
-    if (v.startsWith('#')) {
-      const n = v.length === 4 ? v.slice(1).split('').map(c => parseInt(c+c,16)) : [parseInt(v.slice(1,3),16), parseInt(v.slice(3,5),16), parseInt(v.slice(5,7),16)];
-      return `rgba(${n[0]},${n[1]},${n[2]},${alpha})`;
-    }
-    if (v.startsWith('rgb')) { const m = v.match(/\d+/g); return `rgba(${m[0]},${m[1]},${m[2]},${alpha})`; }
-    return `rgba(212,184,255,${alpha})`;
-  }
-
-  function resize() { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
-  resize();
-  window.addEventListener('resize', resize);
-
-  const STAR_COUNT = 60;
-  const stars = [];
-  const newStar = () => ({
-    x: Math.random() * canvas.width, y: Math.random() * canvas.height,
-    size: 2 + Math.random() * 7, speed: 0.15 + Math.random() * 0.6,
-    opacity: 0.2 + Math.random() * 0.4,
-    twinkleSpeed: 0.006 + Math.random() * 0.025, twinkleOff: Math.random() * Math.PI * 2,
-    rot: Math.random() * Math.PI * 2, rotSpeed: (Math.random() - 0.5) * 0.02,
-  });
-  for (let i = 0; i < STAR_COUNT; i++) stars.push(newStar());
-
-  const mouse = { x: -9999, y: -9999, active: false };
-  canvas.addEventListener('mousemove', e => {
-    const r = canvas.getBoundingClientRect();
-    mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; mouse.active = true;
-  });
-  canvas.addEventListener('mouseleave', () => { mouse.active = false; });
-
-  const LINK_DIST = 150, CURSOR_DIST = 220;
-  let frame = 0;
-  let shootingStars = [];
-
-  setInterval(() => {
-    if (shootingStars.length >= 2) return;
-    shootingStars.push({
-      x: Math.random() * canvas.width * 1.2, y: Math.random() * canvas.height * 0.3,
-      dx: -(2 + Math.random() * 3), dy: 1.5 + Math.random() * 2,
-      life: 1, trail: [],
-    });
-  }, 4000 + Math.random() * 3000);
-
-  function drawStar(x, y, size, opacity, rot) {
-    const spikes = 5, outerR = size, innerR = size * 0.42;
-    let r = -Math.PI / 2 + rot;
-    const step = Math.PI / spikes;
-    ctx.beginPath();
-    for (let i = 0; i < spikes; i++) {
-      ctx.lineTo(x + Math.cos(r) * outerR, y + Math.sin(r) * outerR); r += step;
-      ctx.lineTo(x + Math.cos(r) * innerR, y + Math.sin(r) * innerR); r += step;
-    }
-    ctx.closePath();
-    ctx.fillStyle = `rgba(240,220,255,${opacity})`;
-    ctx.shadowColor = `rgba(212,184,255,${opacity * 0.6})`;
-    ctx.shadowBlur = size * 3;
-    ctx.fill();
-    ctx.shadowBlur = 0;
-  }
-
-  function tick() {
-    const tab = document.getElementById('about');
-    if (!tab || !tab.classList.contains('active')) { requestAnimationFrame(tick); return; }
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    frame++;
-
-    for (let i = 0; i < stars.length; i++) {
-      for (let j = i + 1; j < stars.length; j++) {
-        const a = stars[i], b = stars[j];
-        const d = Math.hypot(a.x - b.x, a.y - b.y);
-        if (d < LINK_DIST) {
-          const t = 1 - d / LINK_DIST;
-          ctx.strokeStyle = accent(0.06 * t);
-          ctx.lineWidth = 0.6;
-          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
-        }
-      }
-    }
-
-    if (mouse.active) {
-      for (const s of stars) {
-        const d = Math.hypot(s.x - mouse.x, s.y - mouse.y);
-        if (d < CURSOR_DIST) {
-          const t = 1 - d / CURSOR_DIST;
-          ctx.strokeStyle = accent(0.2 * t);
-          ctx.lineWidth = 1;
-          ctx.beginPath(); ctx.moveTo(mouse.x, mouse.y); ctx.lineTo(s.x, s.y); ctx.stroke();
-        }
-      }
-    }
-
-    for (const s of stars) {
-      s.y -= s.speed;
-      s.rot += s.rotSpeed;
-      if (s.y < -s.size * 2) { Object.assign(s, newStar()); s.y = canvas.height + s.size * 2; }
-      const twinkle = 0.7 + 0.3 * Math.sin(frame * s.twinkleSpeed + s.twinkleOff);
-      drawStar(s.x, s.y, s.size, s.opacity * twinkle, s.rot);
-    }
-
-    for (let i = shootingStars.length - 1; i >= 0; i--) {
-      const ss = shootingStars[i];
-      ss.trail.push({ x: ss.x, y: ss.y });
-      if (ss.trail.length > 15) ss.trail.shift();
-      ss.x += ss.dx; ss.y += ss.dy;
-      ss.life -= 0.006;
-      if (ss.life <= 0 || ss.x < -50 || ss.y > canvas.height + 50) { shootingStars.splice(i, 1); continue; }
-      for (let t = 0; t < ss.trail.length; t++) {
-        const a = (t / ss.trail.length) * ss.life;
-        ctx.beginPath();
-        ctx.arc(ss.trail[t].x, ss.trail[t].y, 1.2 * (t / ss.trail.length), 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(240,220,255,${a * 0.6})`;
-        ctx.fill();
-      }
-      ctx.beginPath();
-      ctx.arc(ss.x, ss.y, 2.5, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255,255,255,${ss.life * 0.9})`;
-      ctx.fill();
-    }
-
-    requestAnimationFrame(tick);
-  }
-  tick();
-}
 
 function bindTilt() {
   document.querySelectorAll('.project-card, .proj').forEach(card => {
@@ -1394,56 +896,13 @@ function bindProjectFilters() {
   });
 }
 
-(function initSwipe() {
-  let sx = 0, sy = 0;
-  const tabOrder = ['home', 'about', 'projects', 'friends'];
-  document.addEventListener('touchstart', e => {
-    sx = e.changedTouches[0].screenX;
-    sy = e.changedTouches[0].screenY;
-  }, { passive: true });
-  document.addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].screenX - sx;
-    const dy = e.changedTouches[0].screenY - sy;
-    if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 2) return;
-    const cur = document.querySelector('.tab.active');
-    const idx = tabOrder.indexOf(cur?.id);
-    if (idx < 0) return;
-    const next = dx < 0 ? idx + 1 : idx - 1;
-    if (next >= 0 && next < tabOrder.length) switchTab(tabOrder[next]);
-  }, { passive: true });
-})();
-
-function initSettingsUI() {
-  const trail = document.getElementById('toggleTrail');
-  const anim = document.getElementById('toggleAnim');
-  if (trail) {
-    trail.checked = localStorage.getItem('trail') !== 'false';
-    trail.addEventListener('change', () => {
-      trailEnabled = trail.checked;
-      localStorage.setItem('trail', trail.checked);
-    });
-  }
-  if (anim) {
-    anim.checked = localStorage.getItem('anim') !== 'false';
-    anim.addEventListener('change', () => {
-      localStorage.setItem('anim', anim.checked);
-    });
-  }
-}
-
 const COMMITS = [
   { hash: 'a3f2c19', scope: 'home',       msg: 'replace headline with terminal welcome',   minutesAgo:    18 },
   { hash: 'c81b074', scope: 'canvas',     msg: 'wire up constellation lines + cursor pull', minutesAgo:    62 },
+  { hash: '7fe9d22', scope: 'palette',    msg: 'add ⌘K command palette w/ fuzzy search',    minutesAgo:   180 },
   { hash: '1b5a8e0', scope: 'a11y',       msg: 'add keyboard shortcuts + ? help overlay',   minutesAgo:   420 },
   { hash: '9d04733', scope: 'projects',   msg: 'parallax tilt on project cards',           minutesAgo:  1280 },
   { hash: 'fd2670a', scope: 'theme',      msg: 'preserve dominant-color from pfp on load', minutesAgo:  3120 },
-  { hash: 'b3e8f11', scope: 'cursors',    msg: 'organize cursor files into cursors/',       minutesAgo:     5 },
-  { hash: 'e7a2c04', scope: 'trail',      msg: 'add particle connections + 150 cap',        minutesAgo:     4 },
-  { hash: 'd4f1b09', scope: 'canvas',     msg: 'bump stars to 60 + shooting stars',         minutesAgo:     3 },
-  { hash: 'c9b3d70', scope: 'settings',   msg: 'add trail + animation toggles',             minutesAgo:     2 },
-  { hash: 'a1e8c3f', scope: 'mobile',     msg: 'add swipe gesture for tab switching',       minutesAgo:     1 },
-  { hash: 'f4d6e82', scope: 'branding',   msg: 'rename to Adam across the site',             minutesAgo:     0 },
-  { hash: 'e9b7d43', scope: 'boot',       msg: 'preload images + video before dismiss',     minutesAgo:     0 },
 ];
 function renderGitLog() {
   const body = $('gitLogBody');
@@ -1466,19 +925,11 @@ function refreshGitTimes() {
 window.addEventListener('load', async () => {
 
   await runBoot();
-  renderSkills();
-  renderBlog();
-  populateNowTab();
-  fetchNowPlaying();
-  const ctr = document.getElementById("ctrProjects");
-  if (ctr) ctr.textContent = Object.keys(projectData).length + "+";
   runHomeTerminal();
   renderGitLog();
-  fetchGitHubActivity();
   setInterval(refreshGitTimes, 30000);
   bindTilt();
   bindProjectFilters();
-  initSettingsUI();
   if (window.lucide) lucide.createIcons();
 });
 
