@@ -275,6 +275,21 @@ const projectData = {
     action: { label: "Private repository", href: "#" },
     roadmap: [],
   },
+  "seraph": {
+    lang: "// python · windows · desktop",
+    intro: "A Windows panic button / profile switcher with voice control.",
+    description: "Windows panic button that swaps between work/chill/focus/sleep profiles at a hotkey — closes apps, opens URLs, launches programs, voice-controlled.",
+    images: [
+      "images/panic-1.png",
+    ],
+    action: { label: "Private project", href: "#" },
+    roadmap: [
+      { cat: "Profiles",  title: "Profile Engine",  desc: "Multi-profile system for context switching.", items: ["Work/Chill/Focus/Sleep presets", "Per-profile URL lists, apps, hotkeys", "Session save/restore per profile"], status: "done" },
+      { cat: "Panic",     title: "Panic Button",     desc: "Emergency killswitch that closes everything.", items: ["Closes all non-system processes", "Opens YouTube as a safe distraction", "Protected system processes list"], status: "done" },
+      { cat: "Voice",     title: "Voice Assistant",  desc: "Speech recognition for hands-free triggering.",  items: ["French + English language support", "Trigger phrases per profile", "Continuous listening mode"], status: "done" },
+      { cat: "UI",        title: "Desktop UI",       desc: "Webview dashboard built with Flask.",            items: ["Profile management panel", "Activity log + live status", "System tray with quick actions"], status: "done" },
+    ],
+  },
   "showcase": {
   lang: "// php · css · js",
   intro: "An anonymous portfolio website for one of my client to showcase their work and passion.",
