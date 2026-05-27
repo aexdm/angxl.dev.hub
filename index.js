@@ -245,7 +245,7 @@ const projectData = {
     action: { label: "View GitHub", href: CLIENT_STUDIO_GITHUB },
     roadmap: [
       { cat: "CMS",      title: "Admin Panel",    desc: "Full backend with login, sessions, brute-force protection.", items: ["Secure PHP auth with bcrypt", "Lockout system + activity log"], status: "done" },
-      { cat: "Frontend", title: "Portfolio UI",   desc: "Public-facing portfolio with projects, skills, music.",      items: ["Tab navigation", "Project modal with gallery"], status: "done" },
+      { cat: "Frontend", title: "Portfolio UI",   desc: "Public-facing portfolio with projects, skills.",      items: ["Tab navigation", "Project modal with gallery"], status: "done" },
       { cat: "Media",    title: "Cloudinary",     desc: "Cloud media upload and optimization.",                        items: ["Image + video upload via API", "Auto-quality transforms"], status: "done" },
     ],
   },
@@ -791,7 +791,7 @@ async function runHomeTerminal() {
   <span class="term-line-muted">projects</span>   list my projects
   <span class="term-line-muted">skills</span>     what I work with
   <span class="term-line-muted">social</span>     my links
-  <span class="term-line-muted">music</span>      what I listen to
+
   <span class="term-line-muted">clear</span>      clear terminal
   <span class="term-line-muted">theme</span>      cycle theme
   <span class="term-line-muted">date</span>       current date/time
@@ -803,7 +803,6 @@ async function runHomeTerminal() {
     projects() { return Object.keys(projectData).map(p => `  <span class="accent">→</span> ${p}`).join("\n"); },
     skills() { return skillsData.map(s => `  <span class="accent">→</span> ${s.name} <span class="dim">(${s.level})</span>`).join("\n"); },
     social() { return `  <span class="accent">discord</span>  @aexdm\n  <span class="accent">github</span>   github.com/aexdm`; },
-    music() { return "Tyler, The Creator · Frank Ocean · Kali Uchis · Steve Lacy · SZA"; },
     clear() { return "__CLEAR__"; },
     theme() { setThemeAndPersist(THEME_CYCLE[(THEME_CYCLE.indexOf(localStorage.getItem('theme')||'pfp')+1)%THEME_CYCLE.length]); return "theme cycled"; },
     date() { return new Date().toLocaleString(); },
@@ -924,8 +923,8 @@ function toggleShortcuts(force) {
   el.setAttribute('aria-hidden', open ? 'false' : 'true');
 }
 
-const TAB_BY_KEY = { '1': 'home', '2': 'projects', '3': 'about', '4': 'friends', '5': 'skills', '6': 'music', '7': 'contact' };
-const VIM_TAB    = { 'h': 'home', 'a': 'about', 'p': 'projects', 'f': 'friends', 's': 'skills', 'm': 'music', 'c': 'contact' };
+const TAB_BY_KEY = { '1': 'home', '2': 'projects', '3': 'about', '4': 'friends', '5': 'skills' };
+const VIM_TAB    = { 'h': 'home', 'a': 'about', 'p': 'projects', 'f': 'friends', 's': 'skills' };
 const THEME_CYCLE = ['pfp','midnight','orange','red','blue','green','purple','pink','cyan','rose'];
 
 let vimPending = false, vimTimer = null;
@@ -964,7 +963,7 @@ window.addEventListener('keydown', (e) => {
 
 // Command palette
 const PALETTE_ITEMS = [
-  ...['home','about','projects','friends','skills','music','contact'].map(id => ({ label: `Go to ${id}`, cat: 'tab', icon: 'arrow-right', action: () => { switchTab(id); toggleCmdPalette(); } })),
+  ...['home','about','projects','friends','skills'].map(id => ({ label: `Go to ${id}`, cat: 'tab', icon: 'arrow-right', action: () => { switchTab(id); toggleCmdPalette(); } })),
   { label: 'Toggle theme', cat: 'action', icon: 'palette', action: () => { setThemeAndPersist(THEME_CYCLE[(THEME_CYCLE.indexOf(localStorage.getItem('theme')||'pfp')+1)%THEME_CYCLE.length]); toggleCmdPalette(); } },
   { label: 'Toggle shortcuts', cat: 'action', icon: 'keyboard', action: () => { toggleShortcuts(); toggleCmdPalette(); } },
   { label: 'Open settings', cat: 'action', icon: 'settings-2', action: () => { openSettings(); toggleCmdPalette(); } },
