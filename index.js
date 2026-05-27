@@ -301,7 +301,7 @@ const projectData = {
     "images/showcase-2.png",
     "images/showcase-3.png",
   ],
-  action: { label: "View GitHub", href: "https://github.com/YOUR_USERNAME/YOUR_REPO" },
+  action: { label: "View GitHub", href: "https://github.com/aexdm/showcase" },
  roadmap: [
   { cat: "Auth", title: "Admin Panel", desc: "Secure PHP login system with session management.", items: ["bcrypt password hashing", "Brute-force lockout after 5 attempts", "Session regeneration + expiry"], status: "done" },
   { cat: "CMS", title: "Content System", desc: "Dynamic JSON-based content with atomic saves.", items: ["Single content.json source of truth", "AJAX-powered live editing", "CSRF protection on all mutations"], status: "done" },
@@ -324,7 +324,16 @@ const projectData = {
 },
 };
 
-const skillsData = []; // placeholder — add your skills here
+const skillsData = [
+  { icon: "🌙", name: "Lua",           level: "advanced"     },
+  { icon: "🐍", name: "Python",        level: "advanced"     },
+  { icon: "🌐", name: "JavaScript",    level: "intermediate" },
+  { icon: "🎨", name: "HTML & CSS",    level: "intermediate" },
+  { icon: "🐘", name: "PHP",           level: "intermediate" },
+  { icon: "🎮", name: "Roblox Studio", level: "advanced"     },
+  { icon: "🔧", name: "Git & GitHub",  level: "intermediate" },
+  { icon: "⚗️",  name: "Flask",         level: "intermediate" },
+];
 function renderSkills() {
   const grid = document.getElementById("skillsGrid");
   if (!grid) return;
@@ -582,9 +591,9 @@ window.addEventListener("load", () => {
 
 
 const AIDEN_BIRTHDATE = "2008-09-22"; 
-const AIDEN_EMAIL     = "hello@example.dev";
-const AIDEN_GITHUB    = "#";
-const AIDEN_DISCORD_INVITE = ""; 
+const AIDEN_EMAIL          = "adam@adam.dev";
+const AIDEN_GITHUB         = "https://github.com/aexdm";
+const AIDEN_DISCORD_INVITE = "https://discord.com/users/853310319002517524"; 
 
 const $  = (id) => document.getElementById(id);
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
