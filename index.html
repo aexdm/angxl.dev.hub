@@ -10,7 +10,11 @@
   <link rel="preconnect" href="https://i.imgur.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="index.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#0e0c12">
+  <link rel="apple-touch-icon" href="/images/icon-192.png">
   <script src="https://unpkg.com/lucide@latest"></script>
+  <script defer src="https://scripts.tinylytics.app/PLACEHOLDER_ID.js"></script>
 </head>
 <body>
 
@@ -49,6 +53,18 @@
       <i data-lucide="code-2"></i>
       <span>skills</span>
     </button>
+    <button class="mobile-nav-btn" id="mnav-now" onclick="switchTab('now')">
+      <i data-lucide="activity"></i>
+      <span>now</span>
+    </button>
+    <button class="mobile-nav-btn" id="mnav-blog" onclick="switchTab('blog')">
+      <i data-lucide="book-open"></i>
+      <span>blog</span>
+    </button>
+    <button class="mobile-nav-btn" id="mnav-guestbook" onclick="switchTab('guestbook')">
+      <i data-lucide="message-square"></i>
+      <span>guestbook</span>
+    </button>
 
   </div>
 </nav>
@@ -78,13 +94,24 @@
       <button onclick="switchTab('skills')" class="nav-link" id="nav-skills">
         <i data-lucide="code-2"></i> skills
       </button>
-
+      <button onclick="switchTab('now')" class="nav-link" id="nav-now">
+        <i data-lucide="activity"></i> now
+      </button>
+      <button onclick="switchTab('blog')" class="nav-link" id="nav-blog">
+        <i data-lucide="book-open"></i> blog
+      </button>
+      <button onclick="switchTab('guestbook')" class="nav-link" id="nav-guestbook">
+        <i data-lucide="message-square"></i> guestbook
+      </button>
     </nav>
 
     <div class="sidebar-bottom">
       <button class="settings-btn" onclick="openSettings()">
         <i data-lucide="settings-2"></i> settings
       </button>
+      <a href="/dashboard.html" class="settings-btn" style="text-decoration:none;display:flex;align-items:center;gap:8px;">
+        <i data-lucide="layout-dashboard"></i> dashboard
+      </a>
     </div>
   </aside>
 
@@ -224,21 +251,58 @@
             I mostly code in <b><u>Lua, Python, and Web</u></b>, but I'm always down to learn new languages and tools!<br><br>
             I'm also super passionate about art and design, and love working on that whenever I can.
           </p>
+    </div>
+
+    
+    <div id="now" class="tab">
+      <div class="section-tag">// now</div>
+      <h2 class="section-title">Current status</h2>
+      <div class="now-grid">
+        <div class="now-card" id="nowStatusCard">
+          <div class="now-card-icon"><i data-lucide="activity"></i></div>
+          <div>
+            <div class="now-card-label">focusing on</div>
+            <div class="now-card-value" id="nowStatusText">building this site</div>
+          </div>
         </div>
+        <div class="now-card" id="nowListeningCard">
+          <div class="now-card-icon"><i data-lucide="headphones"></i></div>
+          <div>
+            <div class="now-card-label">listening to</div>
+            <div class="now-card-value" id="nowPlayingText">—</div>
+          </div>
+        </div>
+      </div>
+      <div class="now-note" id="nowNote">working on the portfolio — adding PWA, blog, guestbook, and a dashboard</div>
+      <div class="now-uptime">
+        <span class="card-label">uptime</span>
+        <p class="now-uptime-value" id="nowUptime">—</p>
+      </div>
+    </div>
 
-        
-        <div class="social-card">
-          <div class="card-label">find me</div>
-          <div class="social-list">
+    
+    <div id="blog" class="tab">
+      <div class="section-tag">// blog</div>
+      <h2 class="section-title">Devlog</h2>
+      <div class="blog-list" id="blogList"></div>
+    </div>
 
-            <a class="social-item social-item--discord" href="https://discord.com/users/853310319002517524" target="_blank" rel="noopener">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24" style="flex-shrink:0;stroke:none;">
-                <path d="M19.73 4.87a18.2 18.2 0 0 0-4.6-1.44c-.21.4-.4.8-.58 1.21-1.69-.25-3.4-.25-5.1 0-.18-.41-.37-.82-.59-1.2-1.6.27-3.14.75-4.6 1.43A19.04 19.04 0 0 0 .96 17.7a18.43 18.43 0 0 0 5.63 2.87c.46-.62.86-1.28 1.2-1.98-.65-.25-1.29-.55-1.9-.92.17-.12.32-.24.47-.37 3.58 1.7 7.7 1.7 11.28 0l.46.37c-.6.36-1.25.67-1.9.92.35.7.75 1.35 1.2 1.98 2.03-.63 3.94-1.6 5.64-2.87.47-4.87-.78-9.09-3.3-12.83ZM8.3 15.12c-1.1 0-2-1.02-2-2.27 0-1.24.88-2.26 2-2.26s2.02 1.02 2 2.26c0 1.25-.89 2.27-2 2.27Zm7.4 0c-1.1 0-2-1.02-2-2.27 0-1.24.88-2.26 2-2.26s2.02 1.02 2 2.26c0 1.25-.88 2.27-2 2.27Z"/>
-              </svg>
-              <div>
-                <div class="social-item-name">Discord</div>
-                <div class="social-item-handle">@aexdm</div>
-              </div>
+    
+    <div id="guestbook" class="tab">
+      <div class="section-tag">// guestbook</div>
+      <h2 class="section-title">Leave a note</h2>
+      <div class="guestbook-form">
+        <input type="text" id="gbName" class="guestbook-input" placeholder="your name" autocomplete="off">
+        <textarea id="gbMsg" class="guestbook-textarea" placeholder="say something..." rows="3"></textarea>
+        <button class="btn-amber" onclick="sendGuestbook()">send</button>
+      </div>
+      <div class="guestbook-messages" id="gbMessages">
+        <div class="guestbook-empty">no messages yet — be the first</div>
+      </div>
+    </div>
+
+  </main>
+</div>
               <span class="social-arrow"><i data-lucide="arrow-up-right"></i></span>
             </a>
 
@@ -400,21 +464,71 @@
       <div class="section-tag">// friends</div>
       <h2 class="section-title">People I know</h2>
 
-      <div class="friends-empty">
-        <div class="friends-empty-card">
-          <div class="friends-empty-orbit" aria-hidden="true">
-            <span class="orbit-star orbit-star--1"></span>
-            <span class="orbit-star orbit-star--2"></span>
-            <span class="orbit-star orbit-star--3"></span>
-            <span class="orbit-core"></span>
+      <div class="friends-grid" id="friendsGrid">
+        <div class="friend-card">
+          <div class="friend-banner">
+            <img src="https://i.imgur.com/placeholder.png" alt="" onerror="this.style.display='none'" loading="lazy">
+            <div class="friend-banner-gradient"></div>
           </div>
-          <div class="friends-empty-eyebrow">// directory</div>
-          <h3 class="friends-empty-title">Curating the list.</h3>
-          <p class="friends-empty-desc">A handful of people deserve a slot here. I'm taking my time picking them.</p>
-          <div class="friends-empty-meta">
-            <span><i data-lucide="users-round"></i> 0 entries</span>
-            <span class="friends-empty-sep">·</span>
-            <span><i data-lucide="clock"></i> next sync soon</span>
+          <div class="friend-body">
+            <div class="friend-top">
+              <img class="friend-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="" loading="lazy">
+              <div>
+                <div class="friend-name">Friend 1</div>
+                <div class="friend-username">@username</div>
+              </div>
+            </div>
+            <p class="friend-desc">Description here</p>
+            <div class="friend-links">
+              <a href="#" class="friend-btn friend-btn--discord" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 24 24" style="stroke:none;"><path d="M19.73 4.87a18.2 18.2 0 0 0-4.6-1.44c-.21.4-.4.8-.58 1.21-1.69-.25-3.4-.25-5.1 0-.18-.41-.37-.82-.59-1.2-1.6.27-3.14.75-4.6 1.43A19.04 19.04 0 0 0 .96 17.7a18.43 18.43 0 0 0 5.63 2.87c.46-.62.86-1.28 1.2-1.98-.65-.25-1.29-.55-1.9-.92.17-.12.32-.24.47-.37 3.58 1.7 7.7 1.7 11.28 0l.46.37c-.6.36-1.25.67-1.9.92.35.7.75 1.35 1.2 1.98 2.03-.63 3.94-1.6 5.64-2.87.47-4.87-.78-9.09-3.3-12.83ZM8.3 15.12c-1.1 0-2-1.02-2-2.27 0-1.24.88-2.26 2-2.26s2.02 1.02 2 2.26c0 1.25-.89 2.27-2 2.27Zm7.4 0c-1.1 0-2-1.02-2-2.27 0-1.24.88-2.26 2-2.26s2.02 1.02 2 2.26c0 1.25-.88 2.27-2 2.27Z"/></svg>
+                Discord
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="friend-card">
+          <div class="friend-banner">
+            <img src="https://i.imgur.com/placeholder.png" alt="" onerror="this.style.display='none'" loading="lazy">
+            <div class="friend-banner-gradient"></div>
+          </div>
+          <div class="friend-body">
+            <div class="friend-top">
+              <img class="friend-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="" loading="lazy">
+              <div>
+                <div class="friend-name">Friend 2</div>
+                <div class="friend-username">@username</div>
+              </div>
+            </div>
+            <p class="friend-desc">Description here</p>
+            <div class="friend-links">
+              <a href="#" class="friend-btn friend-btn--discord" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 24 24" style="stroke:none;"><path d="M19.73 4.87a18.2 18.2 0 0 0-4.6-1.44c-.21.4-.4.8-.58 1.21-1.69-.25-3.4-.25-5.1 0-.18-.41-.37-.82-.59-1.2-1.6.27-3.14.75-4.6 1.43A19.04 19.04 0 0 0 .96 17.7a18.43 18.43 0 0 0 5.63 2.87c.46-.62.86-1.28 1.2-1.98-.65-.25-1.29-.55-1.9-.92.17-.12.32-.24.47-.37 3.58 1.7 7.7 1.7 11.28 0l.46.37c-.6.36-1.25.67-1.9.92.35.7.75 1.35 1.2 1.98 2.03-.63 3.94-1.6 5.64-2.87.47-4.87-.78-9.09-3.3-12.83ZM8.3 15.12c-1.1 0-2-1.02-2-2.27 0-1.24.88-2.26 2-2.26s2.02 1.02 2 2.26c0 1.25-.89 2.27-2 2.27Zm7.4 0c-1.1 0-2-1.02-2-2.27 0-1.24.88-2.26 2-2.26s2.02 1.02 2 2.26c0 1.25-.88 2.27-2 2.27Z"/></svg>
+                Discord
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="friend-card">
+          <div class="friend-banner">
+            <img src="https://i.imgur.com/placeholder.png" alt="" onerror="this.style.display='none'" loading="lazy">
+            <div class="friend-banner-gradient"></div>
+          </div>
+          <div class="friend-body">
+            <div class="friend-top">
+              <img class="friend-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="" loading="lazy">
+              <div>
+                <div class="friend-name">Friend 3</div>
+                <div class="friend-username">@username</div>
+              </div>
+            </div>
+            <p class="friend-desc">Description here</p>
+            <div class="friend-links">
+              <a href="#" class="friend-btn friend-btn--discord" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 24 24" style="stroke:none;"><path d="M19.73 4.87a18.2 18.2 0 0 0-4.6-1.44c-.21.4-.4.8-.58 1.21-1.69-.25-3.4-.25-5.1 0-.18-.41-.37-.82-.59-1.2-1.6.27-3.14.75-4.6 1.43A19.04 19.04 0 0 0 .96 17.7a18.43 18.43 0 0 0 5.63 2.87c.46-.62.86-1.28 1.2-1.98-.65-.25-1.29-.55-1.9-.92.17-.12.32-.24.47-.37 3.58 1.7 7.7 1.7 11.28 0l.46.37c-.6.36-1.25.67-1.9.92.35.7.75 1.35 1.2 1.98 2.03-.63 3.94-1.6 5.64-2.87.47-4.87-.78-9.09-3.3-12.83ZM8.3 15.12c-1.1 0-2-1.02-2-2.27 0-1.24.88-2.26 2-2.26s2.02 1.02 2 2.26c0 1.25-.89 2.27-2 2.27Zm7.4 0c-1.1 0-2-1.02-2-2.27 0-1.24.88-2.26 2-2.26s2.02 1.02 2 2.26c0 1.25-.88 2.27-2 2.27Z"/></svg>
+                Discord
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -566,8 +680,8 @@
       <button class="shortcuts-close" onclick="toggleShortcuts(false)" aria-label="close"><i data-lucide="x"></i></button>
     </div>
     <div class="shortcuts-grid">
-      <div><kbd>1</kbd>–<kbd>7</kbd> jump to tab</div>
-      <div><kbd>g</kbd> then <kbd>h/a/p/f/s/m/c</kbd> vim nav</div>
+      <div><kbd>1</kbd>–<kbd>8</kbd> jump to tab</div>
+      <div><kbd>g</kbd> then <kbd>h/a/p/f/s/n/b/g</kbd> vim nav</div>
       <div><kbd>t</kbd> cycle theme</div>
       <div><kbd>ctrl+k</kbd> command palette</div>
       <div><kbd>?</kbd> this menu</div>
@@ -613,6 +727,7 @@
 <script>lucide.createIcons();</script>
 
 <script>initStarCanvas();</script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');</script>
 
 <div id="bootOverlay" class="boot-overlay" aria-hidden="true">
   <div class="boot-scanlines"></div>

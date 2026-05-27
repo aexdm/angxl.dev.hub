@@ -1,0 +1,13 @@
+{
+  "name": "adam.dev",
+  "short_name": "adam.dev",
+  "description": "adam · 17 · dev/designer",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0e0c12",
+  "theme_color": "#0e0c12",
+  "icons": [
+    { "src": "/images/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/images/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

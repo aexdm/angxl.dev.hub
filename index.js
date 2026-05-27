@@ -355,6 +355,90 @@ function renderSkills() {
   }
 }
 
+const blogPosts = [
+  { title: "Setting up the site", date: "May 2026", body: "Got the portfolio live with Discord presence, terminal, command palette, and dynamic theming. Next up: PWA, blog, and that dashboard." },
+  { title: "Going offline-first", date: "May 2026", body: "Added a service worker and manifest. The site should now work offline and feel more like an app. Also dropped in loading skeletons." },
+];
+function renderBlog() {
+  const container = document.getElementById("blogList");
+  if (!container) return;
+  if (!blogPosts.length) {
+    container.innerHTML = '<div class="blog-empty">no posts yet</div>';
+    return;
+  }
+  container.innerHTML = blogPosts.map(p => `
+    <div class="blog-post">
+      <div class="blog-post-title">${p.title}</div>
+      <div class="blog-post-date">${p.date}</div>
+      <div class="blog-post-body">${p.body}</div>
+    </div>
+  `).join("");
+}
+
+function populateNowTab() {
+  const dashNow = JSON.parse(localStorage.getItem("dash_now"));
+  if (dashNow) {
+    const statusEl = document.getElementById("nowStatusText");
+    if (statusEl) statusEl.textContent = dashNow.status || "building this site";
+    const noteEl = document.getElementById("nowNote");
+    if (noteEl) noteEl.textContent = dashNow.note || "";
+  }
+  const uptimeEl = document.getElementById("nowUptime");
+  if (uptimeEl) uptimeEl.textContent = `${uptimeDays()} days`;
+}
+const LASTFM_USER = "";
+const LASTFM_KEY  = "";
+async function fetchNowPlaying() {
+  if (!LASTFM_USER || !LASTFM_KEY) return;
+  try {
+    const url = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${LASTFM_USER}&api_key=${LASTFM_KEY}&format=json&limit=1`;
+    const r = await fetch(url).then(r => r.json());
+    const track = r?.recenttracks?.track?.[0];
+    if (track) {
+      const el = document.getElementById("nowPlayingText");
+      if (el) el.textContent = `${track.name} — ${track.artist?.["#text"] || "?"}`;
+    }
+  } catch {}
+}
+
+const GB_WEBHOOK = "";
+async function sendGuestbook() {
+  const name = document.getElementById("gbName").value.trim();
+  const msg  = document.getElementById("gbMsg").value.trim();
+  if (!name || !msg) return;
+  if (!GB_WEBHOOK) {
+    document.getElementById("gbMessages").innerHTML = `<div class="guestbook-message"><div class="guestbook-message-name">${name}</div><div class="guestbook-message-text">${msg}</div><div class="guestbook-message-time">saved locally</div></div>` + document.getElementById("gbMessages").innerHTML.replace('<div class="guestbook-empty">', '<div style="display:none">');
+    document.getElementById("gbName").value = "";
+    document.getElementById("gbMsg").value = "";
+    return;
+  }
+  try {
+    await fetch(GB_WEBHOOK, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ content: `**${name}**: ${msg}` }),
+    });
+    document.getElementById("gbMessages").innerHTML = `<div class="guestbook-message"><div class="guestbook-message-name">${name}</div><div class="guestbook-message-text">${msg}</div><div class="guestbook-message-time">just now</div></div>` + document.getElementById("gbMessages").innerHTML.replace('<div class="guestbook-empty">', '<div style="display:none">');
+    document.getElementById("gbName").value = "";
+    document.getElementById("gbMsg").value = "";
+  } catch {}
+}
+
+function showSkeleton(containerId, type) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  if (type === "row") {
+    el.innerHTML = Array(3).fill('<div class="skeleton-row"><div class="skeleton skeleton-avatar"></div><div><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-line skeleton-line--short"></div></div></div>').join("");
+  } else {
+    el.innerHTML = Array(3).fill('<div class="skeleton skeleton-line"></div>').join("") + '<div class="skeleton skeleton-line skeleton-line--short"></div>';
+  }
+}
+function hideSkeleton(containerId) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.querySelectorAll(".skeleton").forEach(s => s.remove());
+}
+
 function openProjectModal(projectName) {
   const data = projectData[projectName] || {};
   const placeholder = "https://tr.rbxcdn.com/180DAY-d6495b95d4dd31b15c745e4c72610278/930/480/Image/Png/noFilter";
@@ -923,8 +1007,8 @@ function toggleShortcuts(force) {
   el.setAttribute('aria-hidden', open ? 'false' : 'true');
 }
 
-const TAB_BY_KEY = { '1': 'home', '2': 'projects', '3': 'about', '4': 'friends', '5': 'skills' };
-const VIM_TAB    = { 'h': 'home', 'a': 'about', 'p': 'projects', 'f': 'friends', 's': 'skills' };
+const TAB_BY_KEY = { '1': 'home', '2': 'projects', '3': 'about', '4': 'friends', '5': 'skills', '6': 'now', '7': 'blog', '8': 'guestbook' };
+const VIM_TAB    = { 'h': 'home', 'a': 'about', 'p': 'projects', 'f': 'friends', 's': 'skills', 'n': 'now', 'b': 'blog', 'g': 'guestbook' };
 const THEME_CYCLE = ['pfp','midnight','orange','red','blue','green','purple','pink','cyan','rose'];
 
 let vimPending = false, vimTimer = null;
@@ -963,7 +1047,7 @@ window.addEventListener('keydown', (e) => {
 
 // Command palette
 const PALETTE_ITEMS = [
-  ...['home','about','projects','friends','skills'].map(id => ({ label: `Go to ${id}`, cat: 'tab', icon: 'arrow-right', action: () => { switchTab(id); toggleCmdPalette(); } })),
+  ...['home','about','projects','friends','skills','now','blog','guestbook'].map(id => ({ label: `Go to ${id}`, cat: 'tab', icon: 'arrow-right', action: () => { switchTab(id); toggleCmdPalette(); } })),
   { label: 'Toggle theme', cat: 'action', icon: 'palette', action: () => { setThemeAndPersist(THEME_CYCLE[(THEME_CYCLE.indexOf(localStorage.getItem('theme')||'pfp')+1)%THEME_CYCLE.length]); toggleCmdPalette(); } },
   { label: 'Toggle shortcuts', cat: 'action', icon: 'keyboard', action: () => { toggleShortcuts(); toggleCmdPalette(); } },
   { label: 'Open settings', cat: 'action', icon: 'settings-2', action: () => { openSettings(); toggleCmdPalette(); } },
@@ -1383,6 +1467,9 @@ window.addEventListener('load', async () => {
 
   await runBoot();
   renderSkills();
+  renderBlog();
+  populateNowTab();
+  fetchNowPlaying();
   const ctr = document.getElementById("ctrProjects");
   if (ctr) ctr.textContent = Object.keys(projectData).length + "+";
   runHomeTerminal();
