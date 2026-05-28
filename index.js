@@ -880,7 +880,7 @@ document.getElementById('pModalImgMain').addEventListener('click', () => {
   });
 })();
 
-
+function bindTilt() {
   document.querySelectorAll('.project-card, .proj').forEach(card => {
     if (card.__tilt) return;
     card.__tilt = true;
