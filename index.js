@@ -1033,15 +1033,22 @@ window.addEventListener('load', async () => {
   bindTilt();
   bindProjectFilters();
   if (window.lucide) lucide.createIcons();
-  updateNowStamp();
-  fetchNowPlaying();
-  setInterval(fetchNowPlaying, 15000);
-  renderNowGitLog();
-  populateSiteStats();
 });
+
+let _nowInit = false;
+function initNowTab() {
+  if (_nowInit) return;
+  _nowInit = true;
+  try { updateNowStamp(); } catch {}
+  try { fetchNowPlaying(); } catch {}
+  setInterval(() => { try { fetchNowPlaying(); } catch {} }, 15000);
+  try { renderNowGitLog(); } catch {}
+  try { populateSiteStats(); } catch {}
+}
 
 const _origSwitchTab = window.switchTab;
 window.switchTab = function (id) {
   _origSwitchTab(id);
+  if (id === 'now') setTimeout(initNowTab, 100);
   if (id === 'projects') setTimeout(() => { bindTilt(); bindProjectFilters(); }, 50);
 };
