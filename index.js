@@ -959,13 +959,15 @@ function refreshGitTimes() {
 
 const NOW_ISO = "2026-05-28T13:00:00Z";
 
+const REPO = "aexdm/aidendev.hub";
+
 function updateNowStamp() {
   const el = document.getElementById('nowUpdated');
-  if (el) el.textContent = `updated ${relativeTime(NOW_ISO)} — edit index.html to bump`;
+  if (el) el.textContent = relativeTime(NOW_ISO);
 }
 
 async function fetchNowPlaying() {
-  const row = document.getElementById('npRow');
+  const card = document.getElementById('npCard');
   const art = document.getElementById('npArt');
   const track = document.getElementById('npTrack');
   const artist = document.getElementById('npArtist');
@@ -977,9 +979,49 @@ async function fetchNowPlaying() {
       track.textContent = s.song;
       artist.textContent = s.artist;
       art.src = s.album_art_url;
-      row.style.display = 'flex';
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+    const d = data?.data?.discord_status || 'offline';
+    const el = document.getElementById('nsDiscord');
+    if (el) {
+      const s = STATUS_STYLES[d] || STATUS_STYLES.offline;
+      el.innerHTML = `<span class="live" style="color:${s.dot}">●</span> ${s.text}`;
     }
   } catch {}
+}
+
+async function renderNowGitLog() {
+  const body = document.getElementById('nowGitLog');
+  if (!body) return;
+  try {
+    const res = await fetch(`https://api.github.com/repos/${REPO}/commits?per_page=5`);
+    const commits = await res.json();
+    if (!Array.isArray(commits)) throw new Error();
+    body.innerHTML = commits.map(c => {
+      const msg = c.commit.message.split('\n')[0];
+      const hash = c.sha.slice(0, 7);
+      return `<div class="now-git-row">
+        <a href="${c.html_url}" target="_blank" rel="noopener" class="now-git-hash">${hash}</a>
+        <span class="now-git-msg">${msg}</span>
+        <span class="now-git-time">${relativeTime(c.commit.author.date)}</span>
+      </div>`;
+    }).join('');
+  } catch {
+    body.innerHTML = '<div class="now-loading">failed to load commits</div>';
+  }
+}
+
+function populateSiteStats() {
+  const files = document.querySelectorAll('link[rel="stylesheet"], script[src], img[src], source[src]');
+  const cssSize = document.querySelector('link[rel="stylesheet"][href*="index.css"]') ? '43kb' : '—';
+  const jsSize = document.querySelector('script[src*="index.js"]') ? '44kb' : '—';
+  const count = document.querySelectorAll('.proj').length;
+  const fEl = document.getElementById('nsFiles'); if (fEl) fEl.textContent = files.length + ' assets';
+  const cEl = document.getElementById('nsCss'); if (cEl) cEl.textContent = cssSize;
+  const jEl = document.getElementById('nsJs'); if (jEl) jEl.textContent = jsSize;
+  const pEl = document.getElementById('nsProjCount'); if (pEl) pEl.textContent = count;
 }
 
 window.addEventListener('load', async () => {
@@ -994,6 +1036,8 @@ window.addEventListener('load', async () => {
   updateNowStamp();
   fetchNowPlaying();
   setInterval(fetchNowPlaying, 15000);
+  renderNowGitLog();
+  populateSiteStats();
 });
 
 const _origSwitchTab = window.switchTab;

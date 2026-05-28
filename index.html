@@ -375,52 +375,70 @@
     <!-- NOW PAGE -->
     <div id="now" class="tab">
       <div class="section-tag">// now</div>
-      <h2 class="section-title">What I'm up to</h2>
-      <div class="about-grid">
+      <h2 class="section-title">Live Dashboard</h2>
 
-        <div class="about-text-card" style="grid-column:1/-1;">
-          <div class="card-label">status.md</div>
-          <div style="display:flex;flex-direction:column;gap:18px;margin-top:8px;">
+      <div class="now-dash">
 
-            <div class="now-row np-row" id="npRow" style="display:none;">
-              <img id="npArt" class="np-art" src="" alt="">
-              <div class="np-body">
-                <div class="np-eyebrow"><i data-lucide="disc-3"></i> now playing</div>
-                <div class="np-track" id="npTrack">—</div>
-                <div class="np-artist" id="npArtist">—</div>
-              </div>
+        <div class="now-card now-card--focus">
+          <div class="card-label"><i data-lucide="target"></i> current focus</div>
+          <div class="now-focus-body">
+            <div class="now-focus-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 24 24" style="stroke:none;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
             </div>
-
-            <div class="now-row">
-              <span class="now-label"><i data-lucide="monitor"></i> working on</span>
-              <span class="now-val">HOTU on Roblox + this site</span>
+            <div>
+              <div class="now-focus-title">aidendev.hub</div>
+              <div class="now-focus-sub">this site — rebuilding the dashboard, refining the now tab</div>
             </div>
+          </div>
+        </div>
 
-            <div class="now-row">
-              <span class="now-label"><i data-lucide="gamepad-2"></i> playing</span>
-              <span class="now-val">Roblox (it's research)</span>
+        <div class="now-card now-card--status">
+          <div class="card-label"><i data-lucide="radio"></i> live status</div>
+          <div class="now-status-body">
+            <div class="now-status-row">
+              <span class="now-status-key">discord</span>
+              <span class="now-status-val" id="nsDiscord"><span class="live">●</span> loading...</span>
             </div>
-
-            <div class="now-row">
-              <span class="now-label"><i data-lucide="book-open"></i> learning</span>
-              <span class="now-val">better Lua patterns + Flask</span>
+            <div class="now-status-row now-np-row" id="nsNpRow" style="display:none;">
+              <span class="now-status-key">listening</span>
+              <span class="now-status-val" id="nsNpVal">—</span>
             </div>
-
-            <div class="now-row">
-              <span class="now-label"><i data-lucide="tv"></i> watching</span>
-              <span class="now-val">nothing right now, taking recs</span>
+            <div class="now-status-row">
+              <span class="now-status-key">uptime</span>
+              <span class="now-status-val" id="nsUptime">—</span>
             </div>
-
-            <div class="now-row">
-              <span class="now-label"><i data-lucide="coffee"></i> craving</span>
-              <span class="now-val">a reason to leave the house</span>
+            <div class="now-status-row">
+              <span class="now-status-key">projects</span>
+              <span class="now-status-val"><span class="accent" id="nsProjCount">0</span> shipped</span>
             </div>
+          </div>
+        </div>
 
-            <div class="now-row">
-              <span class="now-label"><i data-lucide="clock"></i> last updated</span>
-              <span class="now-val" style="color:var(--muted);font-size:12px;" id="nowUpdated"><!-- filled by JS --></span>
+        <div class="now-card now-card--activity" style="grid-column:1/-1;">
+          <div class="card-label"><i data-lucide="git-commit-horizontal"></i> recent commits</div>
+          <div class="now-activity-body" id="nowGitLog">
+            <div class="now-loading">fetching...</div>
+          </div>
+        </div>
+
+        <div class="now-card now-card--music" id="npCard" style="display:none;">
+          <div class="card-label"><i data-lucide="disc-3"></i> now playing</div>
+          <div class="now-music-body">
+            <img id="npArt" class="np-art" src="" alt="">
+            <div class="now-music-info">
+              <div class="np-track" id="npTrack">—</div>
+              <div class="np-artist" id="npArtist">—</div>
             </div>
+          </div>
+        </div>
 
+        <div class="now-card now-card--meta">
+          <div class="card-label"><i data-lucide="hash"></i> site stats</div>
+          <div class="now-meta-body">
+            <div class="now-meta-row"><span class="now-meta-key">files</span><span class="now-meta-val" id="nsFiles">—</span></div>
+            <div class="now-meta-row"><span class="now-meta-key">css</span><span class="now-meta-val" id="nsCss">—</span></div>
+            <div class="now-meta-row"><span class="now-meta-key">js</span><span class="now-meta-val" id="nsJs">—</span></div>
+            <div class="now-meta-row"><span class="now-meta-key">updated</span><span class="now-meta-val now-meta-ts" id="nowUpdated">—</span></div>
           </div>
         </div>
 
