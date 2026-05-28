@@ -1274,3 +1274,10 @@ body::before {
 }
 .now-label svg { width: 14px; height: 14px; color: var(--amber); }
 .now-val { color: var(--text); }
+.np-row { gap: 14px; padding: 10px 14px; }
+.np-art { width: 44px; height: 44px; border-radius: 6px; object-fit: cover; flex-shrink: 0; }
+.np-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.np-eyebrow { display: flex; align-items: center; gap: 5px; font-size: 10px; color: var(--amber); text-transform: uppercase; letter-spacing: 0.5px; }
+.np-eyebrow svg { width: 12px; height: 12px; }
+.np-track { font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.np-artist { font-size: 11px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }

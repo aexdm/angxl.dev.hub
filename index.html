@@ -382,14 +382,18 @@
           <div class="card-label">status.md</div>
           <div style="display:flex;flex-direction:column;gap:18px;margin-top:8px;">
 
-            <div class="now-row">
-              <span class="now-label"><i data-lucide="monitor"></i> working on</span>
-              <span class="now-val">HOTU on Roblox + this site</span>
+            <div class="now-row np-row" id="npRow" style="display:none;">
+              <img id="npArt" class="np-art" src="" alt="">
+              <div class="np-body">
+                <div class="np-eyebrow"><i data-lucide="disc-3"></i> now playing</div>
+                <div class="np-track" id="npTrack">—</div>
+                <div class="np-artist" id="npArtist">—</div>
+              </div>
             </div>
 
             <div class="now-row">
-              <span class="now-label"><i data-lucide="music"></i> listening to</span>
-              <span class="now-val">Tyler the Creator — Chromakopia</span>
+              <span class="now-label"><i data-lucide="monitor"></i> working on</span>
+              <span class="now-val">HOTU on Roblox + this site</span>
             </div>
 
             <div class="now-row">
@@ -403,8 +407,18 @@
             </div>
 
             <div class="now-row">
+              <span class="now-label"><i data-lucide="tv"></i> watching</span>
+              <span class="now-val">nothing right now, taking recs</span>
+            </div>
+
+            <div class="now-row">
+              <span class="now-label"><i data-lucide="coffee"></i> craving</span>
+              <span class="now-val">a reason to leave the house</span>
+            </div>
+
+            <div class="now-row">
               <span class="now-label"><i data-lucide="clock"></i> last updated</span>
-              <span class="now-val" style="color:var(--muted);font-size:12px;">May 2025 — edit index.html to update</span>
+              <span class="now-val" style="color:var(--muted);font-size:12px;" id="nowUpdated"><!-- filled by JS --></span>
             </div>
 
           </div>

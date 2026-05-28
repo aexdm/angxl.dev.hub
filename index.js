@@ -957,6 +957,31 @@ function refreshGitTimes() {
   });
 }
 
+const NOW_ISO = "2026-05-28T13:00:00Z";
+
+function updateNowStamp() {
+  const el = document.getElementById('nowUpdated');
+  if (el) el.textContent = `updated ${relativeTime(NOW_ISO)} — edit index.html to bump`;
+}
+
+async function fetchNowPlaying() {
+  const row = document.getElementById('npRow');
+  const art = document.getElementById('npArt');
+  const track = document.getElementById('npTrack');
+  const artist = document.getElementById('npArtist');
+  try {
+    const res = await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_USER_ID}`);
+    const data = await res.json();
+    if (data?.data?.spotify) {
+      const s = data.data.spotify;
+      track.textContent = s.song;
+      artist.textContent = s.artist;
+      art.src = s.album_art_url;
+      row.style.display = 'flex';
+    }
+  } catch {}
+}
+
 window.addEventListener('load', async () => {
 
   await runBoot();
@@ -966,6 +991,9 @@ window.addEventListener('load', async () => {
   bindTilt();
   bindProjectFilters();
   if (window.lucide) lucide.createIcons();
+  updateNowStamp();
+  fetchNowPlaying();
+  setInterval(fetchNowPlaying, 15000);
 });
 
 const _origSwitchTab = window.switchTab;
