@@ -38,6 +38,10 @@
       <i data-lucide="layers"></i>
       <span>projects</span>
     </button>
+    <button class="mobile-nav-btn" id="mnav-now" onclick="switchTab('now')">
+      <i data-lucide="radio"></i>
+      <span>now</span>
+    </button>
     <button class="mobile-nav-btn" id="mnav-friends" onclick="switchTab('friends')">
       <i data-lucide="users-round"></i>
       <span>friends</span>
@@ -63,6 +67,9 @@
       </button>
       <button onclick="switchTab('projects')" class="nav-link" id="nav-projects">
         <i data-lucide="layers"></i> projects
+      </button>
+      <button onclick="switchTab('now')" class="nav-link" id="nav-now">
+        <i data-lucide="radio"></i> now
       </button>
       <button onclick="switchTab('friends')" class="nav-link" id="nav-friends">
         <i data-lucide="users-round"></i> friends
@@ -320,6 +327,9 @@
             <span class="proj-status proj-status--live">
               <span class="proj-status-dot"></span> live
             </span>
+            <a href="https://github.com/aexdm/nigbot" class="proj-ext" target="_blank" rel="noopener" onclick="event.stopPropagation()" aria-label="open GitHub">
+              <i data-lucide="arrow-up-right"></i>
+            </a>
           </div>
           <div class="proj-body">
             <div class="proj-meta">
@@ -362,7 +372,48 @@
       </div>
     </div>
 
-    
+    <!-- NOW PAGE -->
+    <div id="now" class="tab">
+      <div class="section-tag">// now</div>
+      <h2 class="section-title">What I'm up to</h2>
+      <div class="about-grid">
+
+        <div class="about-text-card" style="grid-column:1/-1;">
+          <div class="card-label">status.md</div>
+          <div style="display:flex;flex-direction:column;gap:18px;margin-top:8px;">
+
+            <div class="now-row">
+              <span class="now-label"><i data-lucide="monitor"></i> working on</span>
+              <span class="now-val">HOTU on Roblox + this site</span>
+            </div>
+
+            <div class="now-row">
+              <span class="now-label"><i data-lucide="music"></i> listening to</span>
+              <span class="now-val">Tyler the Creator — Chromakopia</span>
+            </div>
+
+            <div class="now-row">
+              <span class="now-label"><i data-lucide="gamepad-2"></i> playing</span>
+              <span class="now-val">Roblox (it's research)</span>
+            </div>
+
+            <div class="now-row">
+              <span class="now-label"><i data-lucide="book-open"></i> learning</span>
+              <span class="now-val">better Lua patterns + Flask</span>
+            </div>
+
+            <div class="now-row">
+              <span class="now-label"><i data-lucide="clock"></i> last updated</span>
+              <span class="now-val" style="color:var(--muted);font-size:12px;">May 2025 — edit index.html to update</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- FRIENDS -->
     <div id="friends" class="tab">
       <div class="section-tag">// friends</div>
       <h2 class="section-title">People I know</h2>
@@ -535,6 +586,10 @@
   });
 })();
 </script>
+
+<div id="imgZoomOverlay" onclick="this.classList.remove('open')">
+  <img id="imgZoomTarget" src="" alt="">
+</div>
 
 <script src="index.js"></script>
 <script>lucide.createIcons();</script>

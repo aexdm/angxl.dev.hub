@@ -272,7 +272,7 @@ const projectData = {
     images: [
       "https://placehold.co/930x480/111111/d4b8ff?text=Utility+Bot",
     ],
-    action: { label: "Private repository", href: "#" },
+    action: { label: "View GitHub", href: "https://github.com/aexdm/nigbot" },
     roadmap: [],
   },
   "seraph": {
@@ -863,7 +863,24 @@ $('palette')?.addEventListener('click', (e) => {
   loop();
 })();
 
-function bindTilt() {
+// ── Image zoom ──────────────────────────────────────────────
+document.getElementById('pModalImgMain').addEventListener('click', () => {
+  const src = document.getElementById('pModalImgMain').src;
+  document.getElementById('imgZoomTarget').src = src;
+  document.getElementById('imgZoomOverlay').classList.add('open');
+});
+
+// ── Konami code ──────────────────────────────────────────────
+(function(){
+  const code = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+  let i = 0;
+  window.addEventListener('keydown', e => {
+    if (e.key === code[i]) { i++; if (i === code.length) { i = 0; $('easterEgg')?.click(); toast('🎮 cheat code activated'); } }
+    else i = 0;
+  });
+})();
+
+
   document.querySelectorAll('.project-card, .proj').forEach(card => {
     if (card.__tilt) return;
     card.__tilt = true;
@@ -911,25 +928,28 @@ function bindProjectFilters() {
   });
 }
 
-const COMMITS = [
-  { hash: 'a3f2c19', scope: 'home',       msg: 'replace headline with terminal welcome',   minutesAgo:    18 },
-  { hash: 'c81b074', scope: 'canvas',     msg: 'wire up constellation lines + cursor pull', minutesAgo:    62 },
-  { hash: '7fe9d22', scope: 'palette',    msg: 'add ⌘K command palette w/ fuzzy search',    minutesAgo:   180 },
-  { hash: '1b5a8e0', scope: 'a11y',       msg: 'add keyboard shortcuts + ? help overlay',   minutesAgo:   420 },
-  { hash: '9d04733', scope: 'projects',   msg: 'parallax tilt on project cards',           minutesAgo:  1280 },
-  { hash: 'fd2670a', scope: 'theme',      msg: 'preserve dominant-color from pfp on load', minutesAgo:  3120 },
-];
-function renderGitLog() {
+async function renderGitLog() {
   const body = $('gitLogBody');
   if (!body) return;
-  body.innerHTML = COMMITS.map(c => {
-    const iso = new Date(Date.now() - c.minutesAgo * 60000).toISOString();
-    return `<div class="git-row">
-      <span class="git-hash">${c.hash}</span>
-      <span class="git-msg"><span class="scope">[${c.scope}]</span>${c.msg}</span>
-      <span class="git-time" data-iso="${iso}">${relativeTime(iso)}</span>
-    </div>`;
-  }).join('');
+  try {
+    const res = await fetch('https://api.github.com/repos/aexdm/client-portfolio/commits?per_page=6');
+    const commits = await res.json();
+    if (!Array.isArray(commits)) throw new Error();
+    body.innerHTML = commits.map(c => {
+      const msg   = c.commit.message.split('\n')[0];
+      const scope = msg.includes(':') ? msg.split(':')[0] : 'update';
+      const text  = msg.includes(':') ? msg.split(':').slice(1).join(':').trim() : msg;
+      const iso   = c.commit.author.date;
+      const hash  = c.sha.slice(0, 7);
+      return `<div class="git-row">
+        <a href="${c.html_url}" target="_blank" rel="noopener" class="git-hash" style="text-decoration:none;">${hash}</a>
+        <span class="git-msg"><span class="scope">[${scope}]</span>${text}</span>
+        <span class="git-time" data-iso="${iso}">${relativeTime(iso)}</span>
+      </div>`;
+    }).join('');
+  } catch {
+    body.innerHTML = '<div class="git-row"><span class="git-msg" style="color:var(--muted);">could not load commits</span></div>';
+  }
 }
 function refreshGitTimes() {
   document.querySelectorAll('.git-time[data-iso]').forEach(el => {
@@ -941,7 +961,7 @@ window.addEventListener('load', async () => {
 
   await runBoot();
   runHomeTerminal();
-  renderGitLog();
+  await renderGitLog();
   setInterval(refreshGitTimes, 30000);
   bindTilt();
   bindProjectFilters();

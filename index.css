@@ -1230,3 +1230,47 @@ body::before {
   .home-counter { gap: 28px; }
   .projects-grid--v2 { grid-template-columns: 1fr; }
 }
+
+/* ── Image zoom overlay ──────────────────────────────────── */
+#imgZoomOverlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0,0,0,0.92);
+  cursor: zoom-out;
+  align-items: center;
+  justify-content: center;
+}
+#imgZoomOverlay.open { display: flex; }
+#imgZoomOverlay img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 6px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  user-select: none;
+}
+#pModalImgMain { cursor: zoom-in; }
+
+/* ── Now page rows ───────────────────────────────────────── */
+.now-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 14px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: var(--mono);
+  font-size: 13px;
+}
+.now-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--muted);
+  min-width: 160px;
+  flex-shrink: 0;
+}
+.now-label svg { width: 14px; height: 14px; color: var(--amber); }
+.now-val { color: var(--text); }
