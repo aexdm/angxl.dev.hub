@@ -856,6 +856,7 @@ body::before {
 
 #friends { display: none; }
 #friends.active { display: block; }
+#now.active { display: block; }
 
 .friends-empty { display: flex; align-items: center; justify-content: center; min-height: 56vh; padding: 30px 0; }
 .friends-empty-card {
