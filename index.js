@@ -863,16 +863,14 @@ $('palette')?.addEventListener('click', (e) => {
   loop();
 })();
 
-
-
+// ── Image zoom ──────────────────────────────────────────────
 document.getElementById('pModalImgMain').addEventListener('click', () => {
   const src = document.getElementById('pModalImgMain').src;
   document.getElementById('imgZoomTarget').src = src;
   document.getElementById('imgZoomOverlay').classList.add('open');
 });
 
-
-
+// ── Konami code ──────────────────────────────────────────────
 (function(){
   const code = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
   let i = 0;
@@ -1054,3 +1052,167 @@ window.switchTab = function (id) {
   if (id === 'now') setTimeout(initNowTab, 100);
   if (id === 'projects') setTimeout(() => { bindTilt(); bindProjectFilters(); }, 50);
 };
+
+// ── Precise age counter (live ticker) ──────────────────────
+(function () {
+  const BIRTH = new Date(ADAM_BIRTHDATE).getTime();
+  const el = document.getElementById('ctrAge');
+  if (!el) return;
+  function tick() {
+    const diff = Date.now() - BIRTH;
+    const years  = diff / (365.25 * 24 * 3600 * 1000);
+    el.textContent = years.toFixed(9);
+  }
+  tick();
+  setInterval(tick, 100);
+})();
+
+// ── Visitor counter (countapi.xyz) ─────────────────────────
+(async function () {
+  const el = document.getElementById('ctrVisitors');
+  if (!el) return;
+  try {
+    const res  = await fetch('https://api.countapi.xyz/hit/adam.dev/visits');
+    const data = await res.json();
+    if (data && data.value) {
+      el.textContent = data.value.toLocaleString();
+    }
+  } catch {
+    el.textContent = '—';
+  }
+})();
+
+// ── BSOD easter egg ─────────────────────────────────────────
+function triggerBsod() {
+  const overlay = document.getElementById('bsodOverlay');
+  if (!overlay) return;
+  overlay.classList.add('open');
+  overlay.setAttribute('aria-hidden', 'false');
+  let pct = 0;
+  const pctEl = document.getElementById('bsodPct');
+  const iv = setInterval(() => {
+    pct += Math.floor(Math.random() * 4) + 1;
+    if (pct >= 100) { pct = 100; clearInterval(iv); }
+    if (pctEl) pctEl.textContent = pct + '% complete';
+  }, 80);
+}
+function closeBsod() {
+  const overlay = document.getElementById('bsodOverlay');
+  if (!overlay) return;
+  overlay.classList.remove('open');
+  overlay.setAttribute('aria-hidden', 'true');
+}
+
+// ── Matrix rain easter egg ──────────────────────────────────
+let matrixActive = false;
+let matrixCanvas, matrixCtx, matrixRaf;
+
+function triggerMatrix() {
+  if (matrixActive) { closeMatrix(); return; }
+  matrixActive = true;
+  matrixCanvas = document.createElement('canvas');
+  matrixCanvas.style.cssText = 'position:fixed;inset:0;z-index:99997;pointer-events:none;';
+  matrixCanvas.width  = window.innerWidth;
+  matrixCanvas.height = window.innerHeight;
+  document.body.appendChild(matrixCanvas);
+  matrixCtx = matrixCanvas.getContext('2d');
+
+  const cols = Math.floor(matrixCanvas.width / 16);
+  const drops = Array(cols).fill(1);
+  const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノABCDEFGHIJ0123456789';
+
+  function draw() {
+    matrixCtx.fillStyle = 'rgba(0,0,0,0.04)';
+    matrixCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+    const amber = getComputedStyle(document.documentElement).getPropertyValue('--amber').trim() || '#d4b8ff';
+    matrixCtx.fillStyle = amber;
+    matrixCtx.font = '14px "DM Mono", monospace';
+    for (let i = 0; i < drops.length; i++) {
+      const ch = chars[Math.floor(Math.random() * chars.length)];
+      matrixCtx.fillText(ch, i * 16, drops[i] * 16);
+      if (drops[i] * 16 > matrixCanvas.height && Math.random() > 0.975) drops[i] = 0;
+      drops[i]++;
+    }
+    matrixRaf = requestAnimationFrame(draw);
+  }
+  draw();
+  toast('🟢 matrix mode — press M again to exit');
+  setTimeout(closeMatrix, 8000);
+}
+function closeMatrix() {
+  matrixActive = false;
+  if (matrixRaf) cancelAnimationFrame(matrixRaf);
+  if (matrixCanvas) { matrixCanvas.remove(); matrixCanvas = null; }
+}
+
+// ── Extra keyboard shortcuts for easter eggs ────────────────
+window.addEventListener('keydown', (e) => {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  if (e.key === 'b' && !e.metaKey && !e.ctrlKey) triggerBsod();
+  if (e.key === 'm' && !e.metaKey && !e.ctrlKey) triggerMatrix();
+});
+
+// ── Guestbook (localStorage-backed) ────────────────────────
+const GB_KEY = 'adam_guestbook_v1';
+
+function gbLoad() {
+  try { return JSON.parse(localStorage.getItem(GB_KEY)) || []; }
+  catch { return []; }
+}
+function gbSave(entries) {
+  localStorage.setItem(GB_KEY, JSON.stringify(entries));
+}
+function gbRenderEntries() {
+  const container = document.getElementById('gbEntries');
+  if (!container) return;
+  const entries = gbLoad();
+  if (!entries.length) {
+    container.innerHTML = '<div class="gb-empty">no entries yet — be the first ✦</div>';
+    return;
+  }
+  container.innerHTML = entries.slice().reverse().map(e => `
+    <div class="gb-entry">
+      <div class="gb-entry-head">
+        <span class="gb-entry-name">${escHtml(e.name)}</span>
+        <span class="gb-entry-time">${relativeTime(e.ts)}</span>
+      </div>
+      <div class="gb-entry-msg">${escHtml(e.msg)}</div>
+    </div>
+  `).join('');
+}
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function submitGuestbook() {
+  const nameEl = document.getElementById('gbName');
+  const msgEl  = document.getElementById('gbMsg');
+  const name   = (nameEl?.value || '').trim();
+  const msg    = (msgEl?.value  || '').trim();
+  if (!name) { toast('add your name first'); nameEl?.focus(); return; }
+  if (!msg)  { toast('message can\'t be empty'); msgEl?.focus(); return; }
+  const entries = gbLoad();
+  entries.push({ name, msg, ts: new Date().toISOString() });
+  gbSave(entries);
+  nameEl.value = '';
+  msgEl.value  = '';
+  document.getElementById('gbMsgLen').textContent = '0';
+  gbRenderEntries();
+  toast('entry posted ✦');
+}
+
+document.getElementById('gbMsg')?.addEventListener('input', (e) => {
+  document.getElementById('gbMsgLen').textContent = e.target.value.length;
+});
+
+const _origSwitchTab2 = window.switchTab;
+window.switchTab = function(id) {
+  _origSwitchTab2(id);
+  if (id === 'guestbook') setTimeout(gbRenderEntries, 50);
+};
+
+PALETTE_ITEMS.push(
+  { id: 'tab-uses',      label: 'Uses',        sub: 'go to uses / my setup', icon: 'cpu',       tag: 'tab',     action: () => switchTab('uses') },
+  { id: 'tab-guestbook', label: 'Guestbook',   sub: 'leave a message',       icon: 'book-open', tag: 'tab',     action: () => switchTab('guestbook') },
+  { id: 'bsod',          label: 'BSOD',        sub: 'press B anytime',       icon: 'monitor-x', tag: 'fun',     action: () => triggerBsod() },
+  { id: 'matrix',        label: 'Matrix rain', sub: 'press M anytime',       icon: 'terminal',  tag: 'fun',     action: () => triggerMatrix() }
+);

@@ -4,6 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>adam.dev</title>
+  <!-- OG / Social preview -->
+  <meta name="description" content="adam.dev — 17 y/o dev. Lua, Python, Web. Building things and breaking them better.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://adam.dev/">
+  <meta property="og:title" content="adam.dev">
+  <meta property="og:description" content="17 y/o dev. Lua, Python, Web. Building things and breaking them better.">
+  <meta property="og:image" content="https://adam.dev/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="adam.dev">
+  <meta name="twitter:description" content="17 y/o dev. Lua, Python, Web. Building things and breaking them better.">
+  <meta name="twitter:image" content="https://adam.dev/og-image.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="index.css">
@@ -46,6 +57,14 @@
       <i data-lucide="users-round"></i>
       <span>friends</span>
     </button>
+    <button class="mobile-nav-btn" id="mnav-uses" onclick="switchTab('uses')">
+      <i data-lucide="cpu"></i>
+      <span>uses</span>
+    </button>
+    <button class="mobile-nav-btn" id="mnav-guestbook" onclick="switchTab('guestbook')">
+      <i data-lucide="book-open"></i>
+      <span>guest</span>
+    </button>
   </div>
 </nav>
 
@@ -73,6 +92,12 @@
       </button>
       <button onclick="switchTab('friends')" class="nav-link" id="nav-friends">
         <i data-lucide="users-round"></i> friends
+      </button>
+      <button onclick="switchTab('uses')" class="nav-link" id="nav-uses">
+        <i data-lucide="cpu"></i> uses
+      </button>
+      <button onclick="switchTab('guestbook')" class="nav-link" id="nav-guestbook">
+        <i data-lucide="book-open"></i> guestbook
       </button>
     </nav>
 
@@ -127,6 +152,14 @@
         <div class="counter-item">
           <div class="counter-num" id="ctrUptime">—</div>
           <div class="counter-label">// days alive</div>
+        </div>
+        <div class="counter-item">
+          <div class="counter-num" id="ctrAge" title="precise age">17</div>
+          <div class="counter-label">// age (live)</div>
+        </div>
+        <div class="counter-item">
+          <div class="counter-num" id="ctrVisitors">—</div>
+          <div class="counter-label">// visitors</div>
         </div>
         <div class="counter-item">
           <div class="counter-num">∞</div>
@@ -371,8 +404,7 @@
       </div>
     </div>
 
-
-
+    <!-- NOW PAGE -->
     <div id="now" class="tab">
       <div class="section-tag">// now</div>
       <h2 class="section-title">Live Dashboard</h2>
@@ -445,8 +477,7 @@
       </div>
     </div>
 
-
-
+    <!-- FRIENDS -->
     <div id="friends" class="tab">
       <div class="section-tag">// friends</div>
       <h2 class="section-title">People I know</h2>
@@ -496,7 +527,109 @@
       </div>
     </div>
 
+    <!-- USES TAB -->
+    <div id="uses" class="tab">
+      <div class="section-tag">// uses</div>
+      <h2 class="section-title">My Setup</h2>
+      <div class="uses-grid">
+
+        <div class="uses-section">
+          <div class="card-label"><i data-lucide="monitor"></i> hardware</div>
+          <div class="uses-list">
+            <div class="uses-item"><span class="uses-name">Monitor</span><span class="uses-val">2560×1440 @ 144hz</span></div>
+            <div class="uses-item"><span class="uses-name">Keyboard</span><span class="uses-val">Mechanical (loud)</span></div>
+            <div class="uses-item"><span class="uses-name">Mouse</span><span class="uses-val">whatever's on the desk</span></div>
+          </div>
+        </div>
+
+        <div class="uses-section">
+          <div class="card-label"><i data-lucide="terminal"></i> dev tools</div>
+          <div class="uses-list">
+            <div class="uses-item"><span class="uses-name">Editor</span><span class="uses-val">VS Code</span></div>
+            <div class="uses-item"><span class="uses-name">Terminal</span><span class="uses-val">Windows Terminal + zsh</span></div>
+            <div class="uses-item"><span class="uses-name">Version Control</span><span class="uses-val">Git + GitHub</span></div>
+            <div class="uses-item"><span class="uses-name">Browser</span><span class="uses-val">Chrome (DevTools daily)</span></div>
+          </div>
+        </div>
+
+        <div class="uses-section">
+          <div class="card-label"><i data-lucide="code-2"></i> languages</div>
+          <div class="uses-list">
+            <div class="uses-item"><span class="uses-name">Primary</span><span class="uses-val">Lua, Python, JS/HTML/CSS</span></div>
+            <div class="uses-item"><span class="uses-name">Backend</span><span class="uses-val">PHP, Python</span></div>
+            <div class="uses-item"><span class="uses-name">Learning</span><span class="uses-val">TypeScript, more...</span></div>
+          </div>
+        </div>
+
+        <div class="uses-section">
+          <div class="card-label"><i data-lucide="palette"></i> design & art</div>
+          <div class="uses-list">
+            <div class="uses-item"><span class="uses-name">Design</span><span class="uses-val">Figma</span></div>
+            <div class="uses-item"><span class="uses-name">Art</span><span class="uses-val">Procreate / pen & paper</span></div>
+            <div class="uses-item"><span class="uses-name">Fonts</span><span class="uses-val">DM Mono, Syne, Cormorant</span></div>
+          </div>
+        </div>
+
+        <div class="uses-section">
+          <div class="card-label"><i data-lucide="cloud"></i> services</div>
+          <div class="uses-list">
+            <div class="uses-item"><span class="uses-name">Media hosting</span><span class="uses-val">Cloudinary</span></div>
+            <div class="uses-item"><span class="uses-name">Status / presence</span><span class="uses-val">Lanyard (Discord)</span></div>
+            <div class="uses-item"><span class="uses-name">Deployment</span><span class="uses-val">GitHub Pages / custom VPS</span></div>
+          </div>
+        </div>
+
+        <div class="uses-section">
+          <div class="card-label"><i data-lucide="headphones"></i> music</div>
+          <div class="uses-list">
+            <div class="uses-item"><span class="uses-name">Service</span><span class="uses-val">Spotify</span></div>
+            <div class="uses-item"><span class="uses-name">Vibe</span><span class="uses-val">Tyler the Creator, anything that goes</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- GUESTBOOK TAB -->
+    <div id="guestbook" class="tab">
+      <div class="section-tag">// guestbook</div>
+      <h2 class="section-title">Leave a mark.</h2>
+      <p class="gb-sub">Say hi, leave a thought, anything. It sticks.</p>
+
+      <div class="gb-form-wrap">
+        <div class="gb-form">
+          <div class="card-label">new entry</div>
+          <div class="gb-fields">
+            <input id="gbName" type="text" placeholder="your name (or alias)" maxlength="32" autocomplete="off" spellcheck="false">
+            <input id="gbMsg" type="text" placeholder="leave a message..." maxlength="140" autocomplete="off" spellcheck="false">
+          </div>
+          <div class="gb-form-foot">
+            <span class="gb-char-count"><span id="gbMsgLen">0</span>/140</span>
+            <button class="btn-amber gb-submit" onclick="submitGuestbook()">
+              <i data-lucide="send"></i> post
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="gb-entries" id="gbEntries">
+        <div class="gb-loading">loading entries...</div>
+      </div>
+    </div>
+
   </main>
+</div>
+
+<!-- BSOD easter egg overlay -->
+<div id="bsodOverlay" class="bsod-overlay" aria-hidden="true" onclick="closeBsod()">
+  <div class="bsod-content">
+    <div class="bsod-emoji">:(</div>
+    <div class="bsod-title">Your PC ran into a problem and needs to restart.</div>
+    <div class="bsod-sub">We're just collecting some error info, and then we'll restart for you.</div>
+    <div class="bsod-pct" id="bsodPct">0% complete</div>
+    <div class="bsod-code">Stop code: <span>TOO_MUCH_CODING</span></div>
+    <div class="bsod-hint">click anywhere to dismiss</div>
+  </div>
 </div>
 
 <div id="easterEgg" class="easter-egg"></div>
@@ -594,6 +727,8 @@
       <div><kbd>t</kbd> cycle theme</div>
       <div><kbd>?</kbd> this menu</div>
       <div><kbd>esc</kbd> close anything</div>
+      <div><kbd>b</kbd> BSOD easter egg</div>
+      <div><kbd>m</kbd> matrix rain</div>
     </div>
   </div>
 </div>
