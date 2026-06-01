@@ -1075,23 +1075,18 @@ window.switchTab = function (id) {
   setInterval(tick, 100);
 })();
 
-// ── Visitor counter (countapi.xyz) ─────────────────────────
 (async function () {
   const el = document.getElementById('ctrVisitors');
   if (!el) return;
+  const TOKEN = 'ut_8MVX9wlgEFUk7SjjnKziP7xdHEucRkAHQGpGA51K';
   try {
-    const getRes = await fetch('https://api.countapi.xyz/get/adam.dev/visits');
-    const getData = await getRes.json();
-    if (!getData || !getData.value || getData.value < 104) {
-      await fetch('https://api.countapi.xyz/set/adam.dev/visits?value=104');
-    }
-    const hitRes = await fetch('https://api.countapi.xyz/hit/adam.dev/visits');
-    const hitData = await hitRes.json();
-    if (hitData && hitData.value) {
-      el.textContent = hitData.value.toLocaleString();
-    }
+    const res = await fetch('https://api.counterapi.dev/v2/aidens-team/site-visitors/up', {
+      headers: { 'Authorization': `Bearer ${TOKEN}` }
+    });
+    const data = await res.json();
+    el.textContent = (103 + data.value).toLocaleString();
   } catch {
-    el.textContent = '—';
+    el.textContent = '104';
   }
 })();
 
