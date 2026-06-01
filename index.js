@@ -484,10 +484,10 @@ window.addEventListener("load", () => {
 
 
 
-const AIDEN_BIRTHDATE = "2008-09-22"; 
-const AIDEN_EMAIL     = "hello@example.dev";
-const AIDEN_GITHUB    = "#";
-const AIDEN_DISCORD_INVITE = ""; 
+const ADAM_BIRTHDATE = "2008-09-22"; 
+const ADAM_EMAIL     = "hello@example.dev";
+const ADAM_GITHUB    = "https://github.com/aexdm";
+const ADAM_DISCORD_INVITE = ""; 
 
 const $  = (id) => document.getElementById(id);
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
@@ -586,7 +586,7 @@ async function typeInto(el, text, speed = 35) {
   }
 }
 function uptimeDays() {
-  return Math.floor((Date.now() - new Date(AIDEN_BIRTHDATE).getTime()) / 86400000);
+  return Math.floor((Date.now() - new Date(ADAM_BIRTHDATE).getTime()) / 86400000);
 }
 async function runHomeTerminal() {
   const cmd = $('termCmd');
@@ -619,7 +619,7 @@ async function runHomeTerminal() {
   const live = $('liveUptime');
   const tick = () => {
     if (!live) return;
-    live.textContent = fmtDuration(Date.now() - new Date(AIDEN_BIRTHDATE).getTime());
+    live.textContent = fmtDuration(Date.now() - new Date(ADAM_BIRTHDATE).getTime());
   };
   tick();
   setInterval(tick, 1000);
@@ -635,8 +635,8 @@ const PALETTE_ITEMS = [
   { id: 'tab-friends',  label: 'Friends',               sub: 'go to friends',      icon: 'users-round', tag: 'tab',   action: () => switchTab('friends') },
   { id: 'open-hotu',    label: 'Open HOTU',             sub: 'roblox parkour fan game', icon: 'gamepad-2', tag: 'project', action: () => { switchTab('projects'); setTimeout(() => openProjectModal('AW : Heart Of The Unreturned'), 320); } },
   { id: 'open-utility', label: 'Open utility bot',      sub: 'automation bot',      icon: 'bot',         tag: 'project', action: () => { switchTab('projects'); setTimeout(() => openProjectModal('utility bot'), 320); } },
-  { id: 'github',       label: 'GitHub',                sub: AIDEN_GITHUB,           icon: 'github',     tag: 'link',  action: () => window.open(AIDEN_GITHUB, '_blank') },
-  { id: 'copy-email',   label: 'Copy email',            sub: AIDEN_EMAIL,            icon: 'mail',       tag: 'copy',  action: () => copyText(AIDEN_EMAIL, 'email copied') },
+  { id: 'github',       label: 'GitHub',                sub: ADAM_GITHUB,            icon: 'github',     tag: 'link',  action: () => window.open(ADAM_GITHUB, '_blank') },
+  { id: 'copy-email',   label: 'Copy email',            sub: ADAM_EMAIL,             icon: 'mail',       tag: 'copy',  action: () => copyText(ADAM_EMAIL, 'email copied') },
   { id: 'theme-pfp',     label: 'Theme: pfp (auto)',    sub: 'derive from avatar',   icon: 'paintbrush', tag: 'theme', action: () => setThemeAndPersist('pfp') },
   { id: 'theme-midnight',label: 'Theme: midnight',      sub: 'deep blue',            icon: 'moon',       tag: 'theme', action: () => setThemeAndPersist('midnight') },
   { id: 'theme-orange',  label: 'Theme: orange',        sub: 'warm amber',           icon: 'sun',        tag: 'theme', action: () => setThemeAndPersist('orange') },
@@ -863,14 +863,16 @@ $('palette')?.addEventListener('click', (e) => {
   loop();
 })();
 
-// ── Image zoom ──────────────────────────────────────────────
+
+
 document.getElementById('pModalImgMain').addEventListener('click', () => {
   const src = document.getElementById('pModalImgMain').src;
   document.getElementById('imgZoomTarget').src = src;
   document.getElementById('imgZoomOverlay').classList.add('open');
 });
 
-// ── Konami code ──────────────────────────────────────────────
+
+
 (function(){
   const code = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
   let i = 0;
@@ -957,7 +959,7 @@ function refreshGitTimes() {
   });
 }
 
-const NOW_ISO = "2026-05-28T13:00:00Z";
+const NOW_ISO = new Date().toISOString();
 
 const REPO = "aexdm/angxl.dev.hub";
 
