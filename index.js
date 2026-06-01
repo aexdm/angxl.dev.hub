@@ -438,6 +438,13 @@ const themes = {
     "--amber": "#fb7185", "--amber-dim": "rgba(251,113,133,0.12)", "--amber-dim2": "rgba(251,113,133,0.22)",
     "--green": "#f472b6", "--green-dim": "rgba(244,114,182,0.12)",
   },
+  nujabes: {
+    "--bg": "#0f0d1a", "--bg2": "#1a1628", "--card": "#221e32", "--card-hover": "#2a2540",
+    "--border": "rgba(212,168,83,0.1)", "--border2": "rgba(212,168,83,0.2)",
+    "--text": "#f0e8d8", "--muted": "rgba(200,185,160,0.45)",
+    "--amber": "#d4a853", "--amber-dim": "rgba(212,168,83,0.12)", "--amber-dim2": "rgba(212,168,83,0.22)",
+    "--green": "#5dba7e", "--green-dim": "rgba(93,186,126,0.12)",
+  },
 };
 
 function setTheme(name) {
@@ -525,7 +532,7 @@ const BOOT_LINES = [
   ['',       '[    0.0961] negotiating tls ............. <span class="ok">tls 1.3</span>', 85],
   ['',       '[    0.1129] starting twinkle subsystem .. <span class="ok">OK</span>',     85],
   ['',       '[    0.1322] generating constellation map  <span class="ok">22 stars</span>', 100],
-  ['',       '[    0.1547] loading themes .............. <span class="ok">9 themes</span>',  85],
+  ['',       '[    0.1547] loading themes .............. <span class="ok">10 themes</span>',  85],
   ['',       '[    0.1718] mounting cursor pack ........ <span class="ok">★ stars</span>',  85],
   ['',       '[    0.1922] checking sleep status ....... <span class="warn">DEFICIT</span> <span class="dim">(estimated -3h)</span>', 110],
   ['',       '[    0.2107] linking discord presence .... <span class="accent">connected</span>', 100],
@@ -641,6 +648,7 @@ const PALETTE_ITEMS = [
   { id: 'theme-midnight',label: 'Theme: midnight',      sub: 'deep blue',            icon: 'moon',       tag: 'theme', action: () => setThemeAndPersist('midnight') },
   { id: 'theme-orange',  label: 'Theme: orange',        sub: 'warm amber',           icon: 'sun',        tag: 'theme', action: () => setThemeAndPersist('orange') },
   { id: 'theme-rose',    label: 'Theme: rose',          sub: 'soft pink',            icon: 'flower',     tag: 'theme', action: () => setThemeAndPersist('rose') },
+  { id: 'theme-nujabes', label: 'Theme: nujabes',       sub: 'luv (sic) vibes',       icon: 'music',      tag: 'theme', action: () => setThemeAndPersist('nujabes') },
   { id: 'theme-red',     label: 'Theme: red',           sub: '',                     icon: 'circle',     tag: 'theme', action: () => setThemeAndPersist('red') },
   { id: 'theme-blue',    label: 'Theme: blue',          sub: '',                     icon: 'circle',     tag: 'theme', action: () => setThemeAndPersist('blue') },
   { id: 'theme-green',   label: 'Theme: green',         sub: '',                     icon: 'circle',     tag: 'theme', action: () => setThemeAndPersist('green') },
@@ -744,7 +752,7 @@ function toggleShortcuts(force) {
 
 const TAB_BY_KEY = { '1': 'home', '2': 'projects', '3': 'about', '4': 'friends' };
 const VIM_TAB    = { 'h': 'home', 'a': 'about', 'p': 'projects', 'f': 'friends' };
-const THEME_CYCLE = ['pfp','midnight','orange','red','blue','green','purple','pink','cyan','rose'];
+const THEME_CYCLE = ['pfp','midnight','orange','red','blue','green','purple','pink','cyan','rose','nujabes'];
 
 let vimPending = false, vimTimer = null;
 window.addEventListener('keydown', (e) => {
@@ -1072,10 +1080,15 @@ window.switchTab = function (id) {
   const el = document.getElementById('ctrVisitors');
   if (!el) return;
   try {
-    const res  = await fetch('https://api.countapi.xyz/hit/adam.dev/visits');
-    const data = await res.json();
-    if (data && data.value) {
-      el.textContent = data.value.toLocaleString();
+    const getRes = await fetch('https://api.countapi.xyz/get/adam.dev/visits');
+    const getData = await getRes.json();
+    if (!getData || !getData.value || getData.value < 104) {
+      await fetch('https://api.countapi.xyz/set/adam.dev/visits?value=104');
+    }
+    const hitRes = await fetch('https://api.countapi.xyz/hit/adam.dev/visits');
+    const hitData = await hitRes.json();
+    if (hitData && hitData.value) {
+      el.textContent = hitData.value.toLocaleString();
     }
   } catch {
     el.textContent = '—';
