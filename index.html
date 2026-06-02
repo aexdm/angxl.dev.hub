@@ -3,25 +3,74 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>adam.dev</title>
-  <!-- OG / Social preview -->
-  <meta name="description" content="adam.dev — 17 y/o dev. Lua, Python, Web. Building things and breaking them better.">
+  <title>adam.dev — full-stack developer portfolio</title>
+
+  <!-- Primary SEO -->
+  <meta name="description" content="adam.dev — 17 y/o full-stack developer. Lua, Python, JavaScript & web. Building things and breaking them better. Projects, live status, and a guestbook.">
+  <meta name="author" content="Adam">
+  <meta name="keywords" content="Adam, adam.dev, developer, portfolio, full-stack, Lua, Python, JavaScript, web developer, Roblox">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0e0c12">
+  <meta name="color-scheme" content="dark">
+  <link rel="canonical" href="https://adam.dev/">
+
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="adam.dev">
   <meta property="og:url" content="https://adam.dev/">
-  <meta property="og:title" content="adam.dev">
-  <meta property="og:description" content="17 y/o dev. Lua, Python, Web. Building things and breaking them better.">
+  <meta property="og:title" content="adam.dev — full-stack developer portfolio">
+  <meta property="og:description" content="17 y/o full-stack dev. Lua, Python, Web. Projects, a live dashboard, and a Discord-powered guestbook.">
   <meta property="og:image" content="https://adam.dev/og-image.png">
+  <meta property="og:image:alt" content="adam.dev portfolio preview">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="adam.dev">
-  <meta name="twitter:description" content="17 y/o dev. Lua, Python, Web. Building things and breaking them better.">
+  <meta name="twitter:title" content="adam.dev — full-stack developer portfolio">
+  <meta name="twitter:description" content="17 y/o full-stack dev. Lua, Python, Web. Projects, a live dashboard, and a Discord-powered guestbook.">
   <meta name="twitter:image" content="https://adam.dev/og-image.png">
+  <meta name="twitter:image:alt" content="adam.dev portfolio preview">
+
+  <!-- Structured data: Person + WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "name": "Adam",
+        "alternateName": "adam.dev",
+        "url": "https://adam.dev/",
+        "jobTitle": "Full-stack Developer",
+        "knowsAbout": ["Lua", "Python", "JavaScript", "PHP", "Web Development", "Roblox"],
+        "sameAs": ["https://github.com/aexdm"]
+      },
+      {
+        "@type": "WebSite",
+        "name": "adam.dev",
+        "url": "https://adam.dev/",
+        "description": "Portfolio of Adam — full-stack developer.",
+        "inLanguage": "en"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Perf: preconnect to third-party origins -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="https://cdn.discordapp.com">
+
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="index.css">
   <script src="https://unpkg.com/lucide@latest"></script>
   <script async src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js"></script>
 </head>
 <body>
+
+<a href="#main" class="skip-link">Skip to content</a>
 
 <header class="mobile-header">
   <div class="mobile-header-left">
@@ -36,7 +85,7 @@
   </button>
 </header>
 
-<nav class="mobile-nav">
+<nav class="mobile-nav" aria-label="Mobile navigation">
   <div class="mobile-nav-inner">
     <button class="mobile-nav-btn" id="mnav-home" onclick="switchTab('home')">
       <i data-lucide="sparkles"></i>
@@ -78,7 +127,7 @@
       <div class="logo-sub">// 17 y/o dev</div>
     </div>
 
-    <nav class="nav-items">
+    <nav class="nav-items" aria-label="Primary navigation">
       <button onclick="switchTab('home')" class="nav-link" id="nav-home">
         <i data-lucide="sparkles"></i> home
       </button>
@@ -111,7 +160,7 @@
   </aside>
 
   
-  <main class="main">
+  <main class="main" id="main" tabindex="-1">
 
     
     <div id="home" class="tab">
@@ -301,6 +350,42 @@
 
       <div class="projects-grid projects-grid--v2">
 
+        <article class="proj proj--featured" data-project="adam.dev — this site" data-status="live">
+          <div class="proj-cover">
+            <div class="proj-cover-art" aria-hidden="true">
+              <span class="proj-cover-glyph">&lt;/&gt;</span>
+            </div>
+            <div class="proj-cover-grad"></div>
+            <span class="proj-featured-badge"><i data-lucide="star"></i> featured</span>
+            <span class="proj-status proj-status--live">
+              <span class="proj-status-dot"></span> live
+            </span>
+            <a href="https://github.com/aexdm" class="proj-ext" target="_blank" rel="noopener" onclick="event.stopPropagation()" aria-label="open GitHub">
+              <i data-lucide="arrow-up-right"></i>
+            </a>
+          </div>
+          <div class="proj-body">
+            <div class="proj-meta">
+              <span class="proj-eyebrow">// web</span>
+              <span class="proj-dot">·</span>
+              <span class="proj-eyebrow">full-stack</span>
+            </div>
+            <h3 class="proj-title">adam.dev — this site</h3>
+            <p class="proj-desc">The site you're on. A hand-built portfolio with a live dashboard, command palette, and a real backend: SQLite guestbook, Discord OAuth, and admin moderation.</p>
+            <div class="proj-tags">
+              <span class="proj-chip">HTML/CSS/JS</span>
+              <span class="proj-chip">Node · Express</span>
+              <span class="proj-chip">SQLite</span>
+              <span class="proj-chip">Discord OAuth</span>
+            </div>
+            <div class="proj-cta">
+              <span>open project</span>
+              <i data-lucide="arrow-right"></i>
+            </div>
+          </div>
+        </article>
+
+
         <article class="proj" data-project="AW : Heart Of The Unreturned" data-status="wip">
           <div class="proj-cover">
             <img src="https://tr.rbxcdn.com/180DAY-d6495b95d4dd31b15c745e4c72610278/930/480/Image/Png/noFilter" alt="HOTU cover" loading="lazy">
@@ -408,9 +493,11 @@
     <!-- NOW PAGE -->
     <div id="now" class="tab">
       <div class="section-tag">// now</div>
-      <h2 class="section-title">Live Dashboard</h2>
+      <h2 class="section-title">Now</h2>
+      <p class="now-intro">A snapshot of what's filling my time right now — part live dashboard, part digital journal. <span class="now-last-updated"><i data-lucide="calendar-clock"></i> updated <time datetime="2026-06-02">June 2, 2026</time></span></p>
 
       <div class="now-dash">
+
 
         <div class="now-card now-card--focus">
           <div class="card-label"><i data-lucide="target"></i> current focus</div>
@@ -476,9 +563,65 @@
         </div>
 
       </div>
+
+      <div class="now-journal-head">
+        <span class="section-tag">// journal</span>
+        <h3 class="now-journal-title">What I'm into lately</h3>
+      </div>
+
+      <div class="now-journal">
+
+        <article class="now-jcard">
+          <div class="now-jcard-head"><span class="now-jcard-icon"><i data-lucide="hammer"></i></span><h4>Currently Working On</h4></div>
+          <ul class="now-jlist">
+            <li>Rebuilding this site — backend guestbook, Discord auth, and a cleaner design system.</li>
+            <li><span class="now-tag">roblox</span> Heart of the Unreturned — tuning movement &amp; momentum.</li>
+          </ul>
+        </article>
+
+        <article class="now-jcard">
+          <div class="now-jcard-head"><span class="now-jcard-icon"><i data-lucide="book-open"></i></span><h4>Learning</h4></div>
+          <ul class="now-jlist">
+            <li>TypeScript — proper typing, generics, and project structure.</li>
+            <li>Backend fundamentals: auth, sessions, and API design.</li>
+          </ul>
+        </article>
+
+        <article class="now-jcard">
+          <div class="now-jcard-head"><span class="now-jcard-icon"><i data-lucide="gamepad-2"></i></span><h4>Playing</h4></div>
+          <ul class="now-jlist">
+            <li>Roblox — research &amp; inspiration for my own projects.</li>
+            <li class="now-jsoon">more soon <span class="uses-soon">placeholder</span></li>
+          </ul>
+        </article>
+
+        <article class="now-jcard">
+          <div class="now-jcard-head"><span class="now-jcard-icon"><i data-lucide="sparkles"></i></span><h4>Creating</h4></div>
+          <ul class="now-jlist">
+            <li>This portfolio — design, code, and the little easter eggs.</li>
+            <li>Experiments with UI animation &amp; micro-interactions.</li>
+          </ul>
+        </article>
+
+        <article class="now-jcard">
+          <div class="now-jcard-head"><span class="now-jcard-icon"><i data-lucide="flag"></i></span><h4>Goals</h4></div>
+          <ul class="now-jlist">
+            <li>Ship a production-ready portfolio I'm proud to show employers.</li>
+            <li>Go full-stack confident — frontend, backend, and deployment.</li>
+          </ul>
+        </article>
+
+        <article class="now-jcard">
+          <div class="now-jcard-head"><span class="now-jcard-icon"><i data-lucide="compass"></i></span><h4>Recent Discoveries</h4></div>
+          <ul class="now-jlist">
+            <li>SQLite + WAL is a perfectly good "real database" for small apps.</li>
+            <li class="now-jsoon">always finding new things <span class="uses-soon">placeholder</span></li>
+          </ul>
+        </article>
+
+      </div>
     </div>
 
-    <!-- FRIENDS -->
     <div id="friends" class="tab">
       <div class="section-tag">// friends</div>
       <h2 class="section-title">People I know</h2>
@@ -532,81 +675,115 @@
     <div id="uses" class="tab">
       <div class="section-tag">// uses</div>
       <h2 class="section-title">My Setup</h2>
-      <div class="uses-grid">
+      <p class="uses-intro">The gear, software, and tools I reach for every day. A living page — it grows as my workflow does.</p>
 
-        <div class="uses-section">
-          <div class="card-label"><i data-lucide="monitor"></i> hardware</div>
+      <div class="uses-grid uses-grid--v2">
+
+        <!-- HARDWARE -->
+        <section class="uses-card">
+          <div class="uses-card-head">
+            <span class="uses-card-icon"><i data-lucide="monitor"></i></span>
+            <h3 class="uses-card-title">Hardware</h3>
+          </div>
           <div class="uses-list">
-            <div class="uses-item"><span class="uses-name">Monitor</span><span class="uses-val">2560×1440 @ 144hz</span></div>
+            <div class="uses-item"><span class="uses-name">Display</span><span class="uses-val">2560×1440 @ 144Hz</span></div>
             <div class="uses-item"><span class="uses-name">Keyboard</span><span class="uses-val">Mechanical (loud)</span></div>
             <div class="uses-item"><span class="uses-name">Mouse</span><span class="uses-val">whatever's on the desk</span></div>
+            <div class="uses-item uses-item--soon"><span class="uses-name">Headset</span><span class="uses-soon">coming soon</span></div>
           </div>
-        </div>
+        </section>
 
-        <div class="uses-section">
-          <div class="card-label"><i data-lucide="terminal"></i> dev tools</div>
+        <!-- SOFTWARE -->
+        <section class="uses-card">
+          <div class="uses-card-head">
+            <span class="uses-card-icon"><i data-lucide="app-window"></i></span>
+            <h3 class="uses-card-title">Software</h3>
+          </div>
+          <div class="uses-list">
+            <div class="uses-item"><span class="uses-name">OS</span><span class="uses-val">Windows + WSL</span></div>
+            <div class="uses-item"><span class="uses-name">Browser</span><span class="uses-val">Chrome · DevTools daily</span></div>
+            <div class="uses-item"><span class="uses-name">Music</span><span class="uses-val">Spotify</span></div>
+            <div class="uses-item uses-item--soon"><span class="uses-name">More</span><span class="uses-soon">coming soon</span></div>
+          </div>
+        </section>
+
+        <!-- DEVELOPMENT TOOLS -->
+        <section class="uses-card">
+          <div class="uses-card-head">
+            <span class="uses-card-icon"><i data-lucide="terminal"></i></span>
+            <h3 class="uses-card-title">Development Tools</h3>
+          </div>
           <div class="uses-list">
             <div class="uses-item"><span class="uses-name">Editor</span><span class="uses-val">VS Code</span></div>
             <div class="uses-item"><span class="uses-name">Terminal</span><span class="uses-val">Windows Terminal + zsh</span></div>
             <div class="uses-item"><span class="uses-name">Version Control</span><span class="uses-val">Git + GitHub</span></div>
-            <div class="uses-item"><span class="uses-name">Browser</span><span class="uses-val">Chrome (DevTools daily)</span></div>
+            <div class="uses-item"><span class="uses-name">Languages</span><span class="uses-val">Lua · Python · JS · PHP</span></div>
+            <div class="uses-item"><span class="uses-name">Learning</span><span class="uses-val">TypeScript</span></div>
           </div>
-        </div>
+        </section>
 
-        <div class="uses-section">
-          <div class="card-label"><i data-lucide="code-2"></i> languages</div>
+        <!-- ART & DESIGN TOOLS -->
+        <section class="uses-card">
+          <div class="uses-card-head">
+            <span class="uses-card-icon"><i data-lucide="palette"></i></span>
+            <h3 class="uses-card-title">Art &amp; Design Tools</h3>
+          </div>
           <div class="uses-list">
-            <div class="uses-item"><span class="uses-name">Primary</span><span class="uses-val">Lua, Python, JS/HTML/CSS</span></div>
-            <div class="uses-item"><span class="uses-name">Backend</span><span class="uses-val">PHP, Python</span></div>
-            <div class="uses-item"><span class="uses-name">Learning</span><span class="uses-val">TypeScript, more...</span></div>
+            <div class="uses-item"><span class="uses-name">UI / Design</span><span class="uses-val">Figma</span></div>
+            <div class="uses-item"><span class="uses-name">Digital Art</span><span class="uses-val">Krita</span></div>
+            <div class="uses-item"><span class="uses-name">Type</span><span class="uses-val">DM Mono · Syne · Cormorant</span></div>
+            <div class="uses-item uses-item--soon"><span class="uses-name">Palette refs</span><span class="uses-soon">coming soon</span></div>
           </div>
-        </div>
+        </section>
 
-        <div class="uses-section">
-          <div class="card-label"><i data-lucide="palette"></i> design & art</div>
-          <div class="uses-list">
-            <div class="uses-item"><span class="uses-name">Design</span><span class="uses-val">Figma</span></div>
-            <div class="uses-item"><span class="uses-name">Art</span><span class="uses-val">Krita</span></div>
-            <div class="uses-item"><span class="uses-name">Fonts</span><span class="uses-val">DM Mono, Syne, Cormorant</span></div>
+        <!-- PRODUCTIVITY -->
+        <section class="uses-card">
+          <div class="uses-card-head">
+            <span class="uses-card-icon"><i data-lucide="check-circle-2"></i></span>
+            <h3 class="uses-card-title">Productivity</h3>
           </div>
-        </div>
-
-        <div class="uses-section">
-          <div class="card-label"><i data-lucide="cloud"></i> services</div>
           <div class="uses-list">
             <div class="uses-item"><span class="uses-name">Media hosting</span><span class="uses-val">Cloudinary</span></div>
-            <div class="uses-item"><span class="uses-name">Status / presence</span><span class="uses-val">Lanyard (Discord)</span></div>
-            <div class="uses-item"><span class="uses-name">Deployment</span><span class="uses-val">GitHub Pages / custom VPS</span></div>
+            <div class="uses-item"><span class="uses-name">Presence</span><span class="uses-val">Lanyard (Discord)</span></div>
+            <div class="uses-item uses-item--soon"><span class="uses-name">Notes / tasks</span><span class="uses-soon">coming soon</span></div>
           </div>
-        </div>
+        </section>
 
-        <div class="uses-section">
-          <div class="card-label"><i data-lucide="headphones"></i> music</div>
-          <div class="uses-list">
-            <div class="uses-item"><span class="uses-name">Service</span><span class="uses-val">Spotify</span></div>
-            <div class="uses-item"><span class="uses-name">Vibe</span><span class="uses-val">Tyler the Creator, anything that goes</span></div>
+        <!-- SETUP & WORKSPACE -->
+        <section class="uses-card uses-card--placeholder">
+          <div class="uses-card-head">
+            <span class="uses-card-icon"><i data-lucide="armchair"></i></span>
+            <h3 class="uses-card-title">Setup &amp; Workspace</h3>
           </div>
-        </div>
+          <div class="uses-placeholder-body">
+            <i data-lucide="camera"></i>
+            <p>A photo tour of the desk, lighting, and battlestation is on the way.</p>
+            <span class="uses-soon">coming soon</span>
+          </div>
+        </section>
 
       </div>
+
+      <p class="uses-updated"><i data-lucide="history"></i> setup last reviewed — kept current as things change</p>
     </div>
 
-    <!-- GUESTBOOK TAB -->
     <div id="guestbook" class="tab">
       <div class="section-tag">// guestbook</div>
       <h2 class="section-title">Leave a mark.</h2>
       <p class="gb-sub">Say hi, leave a thought, anything. It sticks.</p>
 
       <div class="gb-form-wrap">
+        <div class="gb-auth" id="gbAuth" aria-live="polite">
+          <div class="gb-signin-prompt"><i data-lucide="loader"></i><span>connecting…</span></div>
+        </div>
         <div class="gb-form">
-          <div class="card-label">new entry</div>
+          <label class="card-label" for="gbMsg">new entry</label>
           <div class="gb-fields">
-            <input id="gbName" type="text" placeholder="your name (or alias)" maxlength="32" autocomplete="off" spellcheck="false">
-            <input id="gbMsg" type="text" placeholder="leave a message..." maxlength="140" autocomplete="off" spellcheck="false">
+            <textarea id="gbMsg" rows="2" placeholder="leave a message… (Ctrl+Enter to post)" maxlength="280" autocomplete="off" spellcheck="true" disabled aria-label="guestbook message"></textarea>
           </div>
           <div class="gb-form-foot">
-            <span class="gb-char-count"><span id="gbMsgLen">0</span>/140</span>
-            <button class="btn-amber gb-submit" onclick="submitGuestbook()">
+            <span class="gb-char-count"><span id="gbMsgLen">0</span>/280</span>
+            <button id="gbSubmit" class="btn-amber gb-submit" type="button" onclick="submitGuestbook()" disabled>
               <i data-lucide="send"></i> post
             </button>
           </div>

@@ -231,6 +231,19 @@ document.getElementById("settingsModal").addEventListener("click", e => {
 const CLIENT_STUDIO_GITHUB = "https://github.com/aidenhub/evren";
 
 const projectData = {
+  "adam.dev — this site": {
+    lang: "// html · css · js · node",
+    intro: "The portfolio you're looking at — designed, built, and deployed by me.",
+    description: "A hand-coded personal site with no page framework, focused on personality and performance. It pairs a static, animated frontend (boot sequence, command palette, live Discord status, easter eggs) with a real Node/Express + SQLite backend powering a persistent guestbook. Visitors sign in with Discord (OAuth2) to post; messages are stored permanently in a database and moderated through an admin-only API where authorization is enforced server-side — never in the browser.",
+    images: ["images/showcase-1.png", "images/showcase-2.png"],
+    action: { href: "https://github.com/aexdm", label: "View on GitHub" },
+    roadmap: [
+      { cat: "Purpose",    title: "Why it exists",        desc: "A living portfolio to impress employers, devs, and visitors.", items: ["Show range: design + frontend + backend", "A personal, memorable web presence", "A playground for ideas & micro-interactions"], status: "done" },
+      { cat: "Tech Stack", title: "What it's built with",  desc: "Vanilla frontend, lightweight Node backend.",               items: ["HTML / CSS / vanilla JS (no framework)", "Node.js + Express REST API", "SQLite (better-sqlite3) for persistence", "Discord OAuth2 + httpOnly session cookies"], status: "done" },
+      { cat: "Features",   title: "What it does",          desc: "More than a static page.",                                 items: ["Persistent guestbook with live auto-refresh", "Login with Discord (username + avatar)", "Admin-only moderation, validated server-side", "Live Discord status, commits & now-playing", "Command palette + keyboard navigation"], status: "done" },
+      { cat: "Challenges", title: "Problems solved",       desc: "The hard parts, handled.",                                 items: ["Moved guestbook off localStorage to a real DB", "Secure auth without leaking secrets to the client", "Rate limiting + input validation against abuse", "Server-side role checks (no client-trust)"], status: "done" }
+    ],
+  },
   "client studio": {
     lang: "// php · html · css · js",
     intro: "A full portfolio site built for an anonymous creative client.",
@@ -1160,63 +1173,190 @@ window.addEventListener('keydown', (e) => {
   if (e.key === 'm' && !e.metaKey && !e.ctrlKey) triggerMatrix();
 });
 
-// ── Guestbook (localStorage-backed) ────────────────────────
-const GB_KEY = 'adam_guestbook_v1';
+// ── Guestbook (API-backed: SQLite + Discord OAuth) ───────────────────
+// Backend base URL. Same-origin by default; override by setting
+// window.GB_API_BASE = "https://api.adam.dev" before this script loads.
+const GB_API = (typeof window !== 'undefined' && window.GB_API_BASE) || '';
 
-function gbLoad() {
-  try { return JSON.parse(localStorage.getItem(GB_KEY)) || []; }
-  catch { return []; }
+const gbState = { me: null, entries: [], loaded: false, poll: null };
+
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
-function gbSave(entries) {
-  localStorage.setItem(GB_KEY, JSON.stringify(entries));
+
+async function gbApi(path, opts = {}) {
+  const res = await fetch(GB_API + path, {
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json', ...(opts.headers || {}) },
+    ...opts,
+  });
+  let data = null;
+  try { data = await res.json(); } catch {}
+  return { ok: res.ok, status: res.status, data };
 }
+
+async function gbRefresh() {
+  const { ok, data } = await gbApi('/api/guestbook?limit=200');
+  if (!ok || !data) { gbRenderError(); return; }
+  gbState.entries = data.entries || [];
+  gbState.me = data.me || null;
+  gbState.loaded = true;
+  gbRenderAuth();
+  gbRenderEntries();
+}
+
+function gbRenderAuth() {
+  const bar = document.getElementById('gbAuth');
+  if (!bar) return;
+  const me = gbState.me;
+  if (me) {
+    const name = escHtml(me.global_name || me.username);
+    bar.innerHTML = `
+      <div class="gb-me">
+        <img class="gb-me-avatar" src="${escHtml(me.avatar_url || '')}" alt="" loading="lazy">
+        <div class="gb-me-info">
+          <span class="gb-me-name">${name}${me.is_admin ? ' <span class="gb-badge">admin</span>' : ''}</span>
+          <span class="gb-me-sub">signed in via Discord</span>
+        </div>
+      </div>
+      <button class="gb-logout" type="button" onclick="gbLogout()">
+        <i data-lucide="log-out"></i> sign out
+      </button>`;
+    document.getElementById('gbMsg')?.removeAttribute('disabled');
+    const sub = document.getElementById('gbSubmit');
+    if (sub) sub.disabled = false;
+  } else {
+    bar.innerHTML = `
+      <div class="gb-signin-prompt">
+        <i data-lucide="lock"></i>
+        <span>sign in with Discord to leave a message</span>
+      </div>
+      <a class="gb-discord-btn" href="${GB_API}/api/auth/discord/login">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.369a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.249a18.27 18.27 0 0 0-5.487 0 12.6 12.6 0 0 0-.617-1.25.077.077 0 0 0-.079-.036A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.891.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 0 0-.031-.028ZM8.02 15.331c-1.182 0-2.157-1.086-2.157-2.419 0-1.333.956-2.42 2.157-2.42 1.21 0 2.176 1.097 2.157 2.42 0 1.333-.956 2.419-2.157 2.419Zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.42 2.157-2.42 1.21 0 2.176 1.097 2.157 2.42 0 1.333-.946 2.419-2.157 2.419Z"/></svg>
+        Login with Discord
+      </a>`;
+    document.getElementById('gbMsg')?.setAttribute('disabled', 'true');
+    const sub = document.getElementById('gbSubmit');
+    if (sub) sub.disabled = true;
+  }
+  if (window.lucide) lucide.createIcons();
+}
+
 function gbRenderEntries() {
   const container = document.getElementById('gbEntries');
   if (!container) return;
-  const entries = gbLoad();
+  const entries = gbState.entries;
   if (!entries.length) {
-    container.innerHTML = '<div class="gb-empty">no entries yet — be the first ✦</div>';
+    container.innerHTML = '<div class="gb-empty"><i data-lucide="sparkles"></i><span>no entries yet — be the first to leave a mark ✦</span></div>';
+    if (window.lucide) lucide.createIcons();
     return;
   }
-  container.innerHTML = entries.slice().reverse().map(e => `
-    <div class="gb-entry">
-      <div class="gb-entry-head">
-        <span class="gb-entry-name">${escHtml(e.name)}</span>
-        <span class="gb-entry-time">${relativeTime(e.ts)}</span>
+  const canDelete = !!(gbState.me && gbState.me.is_admin);
+  container.innerHTML = entries.map(e => `
+    <article class="gb-entry">
+      <img class="gb-entry-avatar" src="${escHtml(e.avatar_url || '')}" alt="" loading="lazy"
+           onerror="this.style.visibility='hidden'">
+      <div class="gb-entry-main">
+        <div class="gb-entry-head">
+          <span class="gb-entry-name">${escHtml(e.username)}</span>
+          <span class="gb-entry-time" title="${escHtml(e.created_at)}">${relativeTime(e.created_at)}</span>
+        </div>
+        <div class="gb-entry-msg">${escHtml(e.message)}</div>
       </div>
-      <div class="gb-entry-msg">${escHtml(e.msg)}</div>
-    </div>
-  `).join('');
+      ${canDelete ? `<button class="gb-del" type="button" title="delete entry"
+           aria-label="delete entry" onclick="gbDelete(${e.id})"><i data-lucide="trash-2"></i></button>` : ''}
+    </article>`).join('');
+  if (window.lucide) lucide.createIcons();
 }
-function escHtml(s) {
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+function gbRenderError() {
+  const c = document.getElementById('gbEntries');
+  if (c) c.innerHTML = '<div class="gb-empty gb-error"><i data-lucide="wifi-off"></i><span>couldn\'t reach the guestbook server — try again shortly</span></div>';
+  if (window.lucide) lucide.createIcons();
 }
-function submitGuestbook() {
-  const nameEl = document.getElementById('gbName');
-  const msgEl  = document.getElementById('gbMsg');
-  const name   = (nameEl?.value || '').trim();
-  const msg    = (msgEl?.value  || '').trim();
-  if (!name) { toast('add your name first'); nameEl?.focus(); return; }
-  if (!msg)  { toast('message can\'t be empty'); msgEl?.focus(); return; }
-  const entries = gbLoad();
-  entries.push({ name, msg, ts: new Date().toISOString() });
-  gbSave(entries);
-  nameEl.value = '';
-  msgEl.value  = '';
-  document.getElementById('gbMsgLen').textContent = '0';
-  gbRenderEntries();
+
+async function submitGuestbook() {
+  const msgEl = document.getElementById('gbMsg');
+  const msg = (msgEl?.value || '').trim();
+  if (!gbState.me) { toast('sign in with Discord first'); return; }
+  if (!msg) { toast("message can't be empty"); msgEl?.focus(); return; }
+  if (msg.length > 280) { toast('message too long (max 280)'); return; }
+  const btn = document.getElementById('gbSubmit');
+  if (btn) btn.disabled = true;
+  const { ok, status, data } = await gbApi('/api/guestbook', {
+    method: 'POST', body: JSON.stringify({ message: msg }),
+  });
+  if (btn) btn.disabled = false;
+  if (status === 401) { toast('session expired — sign in again'); gbState.me = null; gbRenderAuth(); return; }
+  if (status === 429) { toast(data?.error || 'slow down a moment'); return; }
+  if (!ok) { toast(data?.error || 'failed to post'); return; }
+  msgEl.value = '';
+  const len = document.getElementById('gbMsgLen'); if (len) len.textContent = '0';
+  await gbRefresh();
   toast('entry posted ✦');
 }
 
+async function gbDelete(id) {
+  if (!gbState.me?.is_admin) return;
+  const { ok, status, data } = await gbApi('/api/guestbook/' + id, { method: 'DELETE' });
+  if (status === 403) { toast('admin only'); return; }
+  if (!ok) { toast(data?.error || 'delete failed'); return; }
+  gbState.entries = gbState.entries.filter(e => e.id !== id);
+  gbRenderEntries();
+  toast('entry removed');
+}
+
+async function gbLogout() {
+  await gbApi('/api/auth/logout', { method: 'POST' });
+  gbState.me = null;
+  gbRenderAuth();
+  toast('signed out');
+}
+
+function gbStartPolling() {
+  gbStopPolling();
+  gbState.poll = setInterval(() => {
+    if (document.getElementById('guestbook')?.classList.contains('active') && !document.hidden) {
+      gbRefresh();
+    }
+  }, 15000);
+}
+function gbStopPolling() { if (gbState.poll) { clearInterval(gbState.poll); gbState.poll = null; } }
+
 document.getElementById('gbMsg')?.addEventListener('input', (e) => {
-  document.getElementById('gbMsgLen').textContent = e.target.value.length;
+  const len = document.getElementById('gbMsgLen');
+  if (len) len.textContent = e.target.value.length;
 });
+document.getElementById('gbMsg')?.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); submitGuestbook(); }
+});
+
+// surface OAuth result from ?auth=ok|error
+(function gbHandleAuthRedirect(){
+  try {
+    const p = new URLSearchParams(location.search);
+    const a = p.get('auth');
+    if (a) {
+      setTimeout(() => toast(a === 'ok' ? 'signed in ✦' : 'sign-in failed'), 400);
+      p.delete('auth');
+      const q = p.toString();
+      history.replaceState(null, '', location.pathname + (q ? '?' + q : '') + location.hash);
+    }
+  } catch {}
+})();
 
 const _origSwitchTab2 = window.switchTab;
 window.switchTab = function(id) {
   _origSwitchTab2(id);
-  if (id === 'guestbook') setTimeout(gbRenderEntries, 50);
+  if (id === 'guestbook') { gbRefresh(); gbStartPolling(); }
+  else gbStopPolling();
 };
+
+// initial load if the guestbook is already the active tab on first paint
+if (document.getElementById('guestbook')?.classList.contains('active')) {
+  gbRefresh(); gbStartPolling();
+}
 
 PALETTE_ITEMS.push(
   { id: 'tab-uses',      label: 'Uses',        sub: 'go to uses / my setup', icon: 'cpu',       tag: 'tab',     action: () => switchTab('uses') },
