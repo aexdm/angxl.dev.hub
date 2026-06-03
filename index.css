@@ -1237,7 +1237,6 @@ body::before {
   .projects-grid--v2 { grid-template-columns: 1fr; }
 }
 
-/* ── Image zoom overlay ──────────────────────────────────── */
 #imgZoomOverlay {
   display: none;
   position: fixed;
@@ -1258,7 +1257,6 @@ body::before {
 }
 #pModalImgMain { cursor: zoom-in; }
 
-/* ── Now dashboard ──────────────────────────────────────── */
 .now-dash {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1286,21 +1284,18 @@ body::before {
 }
 .now-card .card-label svg { width: 12px; height: 12px; color: var(--amber); }
 
-/* focus */
 .now-focus-body { display: flex; align-items: center; gap: 14px; }
 .now-focus-icon { width: 40px; height: 40px; border-radius: 8px; background: rgba(212,184,255,0.08); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .now-focus-icon svg { width: 22px; height: 22px; color: var(--amber); }
 .now-focus-title { font-family: var(--ui); font-size: 15px; font-weight: 600; color: var(--text); }
 .now-focus-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
 
-/* status */
 .now-status-body { display: flex; flex-direction: column; gap: 8px; }
 .now-status-row { display: flex; align-items: center; justify-content: space-between; font-size: 12px; font-family: var(--mono); }
 .now-status-key { color: var(--muted); }
 .now-status-val { color: var(--text); }
 .live { color: #5dba7e; }
 
-/* activity log */
 .now-activity-body { display: flex; flex-direction: column; gap: 6px; }
 .now-loading { font-size: 12px; color: var(--muted); font-family: var(--mono); padding: 8px 0; }
 .now-git-row { display: flex; align-items: center; gap: 10px; padding: 8px 10px; background: rgba(255,255,255,0.02); border-radius: 6px; font-size: 12px; font-family: var(--mono); }
@@ -1308,14 +1303,12 @@ body::before {
 .now-git-msg { color: var(--text); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .now-git-time { color: var(--muted); font-size: 10px; flex-shrink: 0; }
 
-/* music */
 .now-music-body { display: flex; align-items: center; gap: 12px; }
 .np-art { width: 44px; height: 44px; border-radius: 6px; object-fit: cover; flex-shrink: 0; }
 .now-music-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .np-track { font-size: 13px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .np-artist { font-size: 11px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-/* meta */
 .now-meta-body { display: flex; flex-direction: column; gap: 6px; }
 .now-meta-row { display: flex; align-items: center; justify-content: space-between; font-size: 12px; font-family: var(--mono); }
 .now-meta-key { color: var(--muted); }
@@ -1326,7 +1319,6 @@ body::before {
   .now-dash { grid-template-columns: 1fr; }
 }
 
-/* ── Uses tab ─────────────────────────────────────────────── */
 #uses { display: none; }
 #uses.active { display: block; }
 #guestbook { display: none; }
@@ -1358,7 +1350,6 @@ body::before {
 .uses-name { color: var(--muted); flex-shrink: 0; }
 .uses-val { color: var(--text); text-align: right; }
 
-/* ── Guestbook ────────────────────────────────────────────── */
 .gb-sub {
   font-family: var(--mono);
   font-size: 12px;
@@ -1478,9 +1469,6 @@ body::before {
   letter-spacing: -0.02em;
 }
 
-/* ════════════════════════════════════════════════════════════════
-   GUESTBOOK v2 — Discord auth + avatars + admin moderation
-   ════════════════════════════════════════════════════════════════ */
 .gb-auth {
   display: flex; align-items: center; justify-content: space-between;
   gap: 14px; flex-wrap: wrap;
@@ -1527,7 +1515,6 @@ body::before {
 .gb-logout:hover { color: var(--text); border-color: var(--amber-dim2); }
 .gb-logout svg, .gb-discord-btn svg { width: 14px; height: 14px; }
 
-/* message textarea (replaces old inputs) */
 .gb-fields textarea {
   width: 100%; resize: vertical; min-height: 46px;
   background: var(--bg2); border: 1px solid var(--border);
@@ -1541,7 +1528,6 @@ body::before {
 .gb-fields textarea:disabled { opacity: 0.45; cursor: not-allowed; }
 .gb-submit:disabled { opacity: 0.4; cursor: not-allowed; }
 
-/* entry redesigned as avatar + body + admin delete */
 .gb-entry {
   flex-direction: row !important; align-items: flex-start; gap: 12px !important;
   position: relative;
@@ -1561,7 +1547,6 @@ body::before {
 .gb-del:hover { opacity: 1 !important; color: #e05c5c; border-color: rgba(224,92,92,0.3); background: rgba(224,92,92,0.08); }
 .gb-del svg { width: 15px; height: 15px; display: block; }
 
-/* empty + error states */
 .gb-empty {
   display: flex; align-items: center; gap: 9px; opacity: 0.6;
 }
@@ -1575,9 +1560,6 @@ body::before {
 }
 
 
-/* ════════════════════════════════════════════════════════════════
-   USES v2 — categorized cards + placeholders
-   ════════════════════════════════════════════════════════════════ */
 .uses-intro, .now-intro {
   font-family: var(--mono); font-size: 12.5px; line-height: 1.7;
   color: var(--muted); max-width: 620px; margin-bottom: 26px;
@@ -1620,9 +1602,6 @@ body::before {
 }
 .uses-updated svg { width: 13px; height: 13px; }
 
-/* ════════════════════════════════════════════════════════════════
-   NOW v2 — digital journal
-   ════════════════════════════════════════════════════════════════ */
 .now-last-updated { display: inline-flex; align-items: center; gap: 6px; color: var(--amber); opacity: 0.85; white-space: nowrap; }
 .now-last-updated svg { width: 13px; height: 13px; }
 .now-journal-head { margin: 34px 0 16px; }
@@ -1657,9 +1636,6 @@ body::before {
 }
 .now-jsoon { display: flex; align-items: center; gap: 6px; }
 
-/* ════════════════════════════════════════════════════════════════
-   PROJECTS — featured card
-   ════════════════════════════════════════════════════════════════ */
 .proj--featured { outline: 1px solid var(--amber-dim2); box-shadow: 0 0 0 4px rgba(212,184,255,0.04); }
 .proj-featured-badge {
   position: absolute; top: 12px; left: 12px; z-index: 3;
@@ -1690,7 +1666,6 @@ body::before {
 }
 
 
-/* Accessibility: skip-to-content link (visible on keyboard focus) */
 .skip-link {
   position: fixed; top: -60px; left: 12px; z-index: 9999;
   background: var(--amber); color: #0e0c12;
@@ -1701,7 +1676,6 @@ body::before {
 .skip-link:focus { top: 12px; outline: 2px solid #fff; outline-offset: 2px; }
 #main:focus { outline: none; }
 
-/* Visible focus ring for keyboard users across interactive elements */
 a:focus-visible, button:focus-visible, textarea:focus-visible,
 input:focus-visible, [role="button"]:focus-visible, [tabindex]:focus-visible {
   outline: 2px solid var(--amber);
@@ -1709,7 +1683,6 @@ input:focus-visible, [role="button"]:focus-visible, [tabindex]:focus-visible {
   border-radius: 6px;
 }
 
-/* Respect reduced-motion preferences */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;

@@ -1,5 +1,3 @@
-/* Shared bilingual (FR/EN) language switcher for the perso + pro sites.
-   Language preference is shared across pages via localStorage and ?lang= URL param. */
 (function () {
   var STORAGE_KEY = 'siteLang';
 
@@ -31,7 +29,6 @@
       if (entry && entry[lang] != null) el.innerHTML = entry[lang];
     });
     document.querySelectorAll('[data-i18n-attr]').forEach(function (el) {
-      // format: "placeholder:key|title:key2"
       el.getAttribute('data-i18n-attr').split('|').forEach(function (pair) {
         var p = pair.split(':');
         if (p.length !== 2) return;
@@ -64,7 +61,6 @@
     window.setLang(lang);
   }
 
-  // Helper used by links to carry the chosen language across pages
   window.langHref = function (base) {
     var l = (function () { try { return localStorage.getItem(STORAGE_KEY); } catch (e) { return null; } })() || getDefaultLang();
     return base + (base.indexOf('?') >= 0 ? '&' : '?') + 'lang=' + l;

@@ -1,6 +1,3 @@
-// functions/api/guestbook/[id].js
-// Admin-only deletion endpoint for guestbook entries.
-
 export async function onRequestDelete(context) {
   const { env, params, data } = context;
   const idStr = params.id;
@@ -13,7 +10,6 @@ export async function onRequestDelete(context) {
     });
   }
   
-  // Enforce admin privileges
   const user = data.user;
   if (!user) {
     return new Response(JSON.stringify({ error: "authentication required" }), {
@@ -38,7 +34,6 @@ export async function onRequestDelete(context) {
   }
   
   try {
-    // Check if the entry exists
     const entry = await d1.prepare('SELECT id FROM guestbook WHERE id = ?').bind(id).first();
     if (!entry) {
       return new Response(JSON.stringify({ error: "not found" }), {
@@ -47,7 +42,6 @@ export async function onRequestDelete(context) {
       });
     }
     
-    // Delete the entry
     await d1.prepare('DELETE FROM guestbook WHERE id = ?').bind(id).run();
     
     return new Response(JSON.stringify({ ok: true, id }), {

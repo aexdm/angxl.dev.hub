@@ -1,6 +1,3 @@
-// functions/api/auth/discord/callback.js
-// Handles the Discord OAuth2 authorization redirect.
-
 function generateRandomHex(len = 16) {
   const arr = new Uint8Array(len);
   crypto.getRandomValues(arr);
@@ -61,7 +58,6 @@ export async function onRequestGet(context) {
       throw new Error("Missing Discord configuration");
     }
     
-    // 1. exchange the code for an access token
     const tokenRes = await fetch("https://discord.com/api/v10/oauth2/token", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -77,7 +73,6 @@ export async function onRequestGet(context) {
     if (!tokenRes.ok) throw new Error(`Token exchange failed: ${tokenRes.status}`);
     const tokenData = await tokenRes.json();
     
-    // 2. fetch the Discord profile
     const userRes = await fetch("https://discord.com/api/v10/users/@me", {
       headers: { Authorization: `Bearer ${tokenData.access_token}` },
     });
@@ -85,7 +80,6 @@ export async function onRequestGet(context) {
     if (!userRes.ok) throw new Error(`Profile fetch failed: ${userRes.status}`);
     const dUser = await userRes.json();
     
-    // 3. persist user in D1
     const d1 = env.DB;
     if (!d1) throw new Error("D1 binding DB is not found");
     
@@ -112,7 +106,6 @@ export async function onRequestGet(context) {
       nowIso
     ).run();
     
-    // 4. create an opaque session
     const sid = generateRandomHex(32);
     const ttlMs = 1000 * 60 * 60 * 24 * 30; // 30 days
     const expiresIso = new Date(Date.now() + ttlMs).toISOString();
@@ -122,7 +115,6 @@ export async function onRequestGet(context) {
       VALUES (?, ?, ?, ?)
     `).bind(sid, dUser.id, nowIso, expiresIso).run();
     
-    // Set the session cookie (30 days)
     const sessionCookieHeader = `adam_sid=${sid}; Path=/; HttpOnly; SameSite=Lax; Max-Age=2592000${isSecure ? "; Secure" : ""}`;
     
     const successRedirectUrl = `${siteUrl}?auth=ok#guestbook`;

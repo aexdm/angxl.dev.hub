@@ -1,7 +1,3 @@
-// functions/api/guestbook.js
-// Guestbook: anyone can post as a GUEST (name + message), or as a logged-in
-// Discord user. Admin can delete any entry. Guests are rate-limited by IP hash.
-
 function json(obj, status = 200) {
   return new Response(JSON.stringify(obj), {
     status, headers: { "Content-Type": "application/json" }
@@ -58,7 +54,6 @@ export async function onRequestPost(context) {
 
   try {
     if (user) {
-      // ---- logged-in Discord user: 5 posts / 5 min ----
       const row = await d1.prepare(
         "SELECT COUNT(*) AS c FROM guestbook WHERE user_id = ? AND created_at > ?"
       ).bind(user.id, since).first();
@@ -73,7 +68,6 @@ export async function onRequestPost(context) {
       ).bind(info.meta.last_row_id).first();
       return json({ entry }, 201);
     } else {
-      // ---- guest: name + message, 3 posts / 5 min per IP ----
       let name = (body?.name ?? "").toString().replace(/[\u0000-\u001F]/g, "").replace(/\s+/g, " ").trim();
       if (name.length < 1) return json({ error: "name required" }, 400);
       if (name.length > 32) name = name.slice(0, 32);

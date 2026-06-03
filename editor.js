@@ -1,5 +1,3 @@
-// editor.js — admin-only inline page editor backed by D1 (/api/content).
-// Visitors automatically see your saved edits. Only the admin sees the edit UI.
 (function () {
   'use strict';
   var API = window.GB_API_BASE || '';
@@ -7,7 +5,6 @@
   var editing = false;
   var overrides = {};
 
-  // ---------- build a stable key for an element ----------
   function elKey(el) {
     if (el.dataset && el.dataset.editKey) return 'k:' + el.dataset.editKey;
     var parts = [];
@@ -35,7 +32,6 @@
     return null;
   }
 
-  // ---------- apply saved edits on load (for everyone) ----------
   function applyOverrides() {
     return fetch(API + '/api/content', { credentials: 'include' })
       .then(function (r) { return r.json(); })
@@ -50,7 +46,6 @@
       .catch(function () {});
   }
 
-  // ---------- am I the admin? ----------
   function checkAdmin() {
     return fetch(API + '/api/me', { credentials: 'include' })
       .then(function (r) { return r.json(); })
@@ -61,7 +56,7 @@
   var EDITABLE = { H1:1,H2:1,H3:1,H4:1,H5:1,H6:1,P:1,SPAN:1,A:1,LI:1,BUTTON:1,STRONG:1,EM:1,SMALL:1,BLOCKQUOTE:1,FIGCAPTION:1,LABEL:1,TD:1,TH:1,DIV:1 };
   function isLeafText(el) {
     if (!EDITABLE[el.tagName]) return false;
-    if (el.children.length > 0) return false;       // only plain-text leaves
+    if (el.children.length > 0) return false;
     return (el.textContent || '').trim().length > 0;
   }
 
@@ -132,7 +127,6 @@
     }
     function onBlur() { finish(true); }
     function onKey(ev) {
-      ev.stopPropagation(); // stop site easter-egg shortcuts while typing
       if (ev.key === 'Enter' && !ev.shiftKey) { ev.preventDefault(); target.blur(); }
       else if (ev.key === 'Escape') { ev.preventDefault(); finish(false); }
     }

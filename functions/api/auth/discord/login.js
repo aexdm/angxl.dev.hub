@@ -1,6 +1,3 @@
-// functions/api/auth/discord/login.js
-// Initiates the Discord OAuth2 authorization code flow.
-
 function generateRandomHex(len = 16) {
   const arr = new Uint8Array(len);
   crypto.getRandomValues(arr);

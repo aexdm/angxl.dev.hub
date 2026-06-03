@@ -1,6 +1,3 @@
-// functions/api/auth/logout.js
-// Logs the user out by deleting their session and clearing their session cookie.
-
 function parseCookies(header) {
   const out = {};
   if (!header) return out;

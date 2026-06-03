@@ -505,7 +505,7 @@ window.addEventListener("load", () => {
 
 
 const ADAM_BIRTHDATE = "2008-09-22"; 
-const ADAM_EMAIL     = "hello@example.dev";
+const ADAM_EMAIL     = "adamchettouh63@gmail.com";
 const ADAM_GITHUB    = "https://github.com/aexdm";
 const ADAM_DISCORD_INVITE = ""; 
 
@@ -884,14 +884,12 @@ $('palette')?.addEventListener('click', (e) => {
   loop();
 })();
 
-// ── Image zoom ──────────────────────────────────────────────
 document.getElementById('pModalImgMain').addEventListener('click', () => {
   const src = document.getElementById('pModalImgMain').src;
   document.getElementById('imgZoomTarget').src = src;
   document.getElementById('imgZoomOverlay').classList.add('open');
 });
 
-// ── Konami code ──────────────────────────────────────────────
 (function(){
   const code = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
   let i = 0;
@@ -1074,7 +1072,6 @@ window.switchTab = function (id) {
   if (id === 'projects') setTimeout(() => { bindTilt(); bindProjectFilters(); }, 50);
 };
 
-// ── Precise age counter (live ticker) ──────────────────────
 (function () {
   const BIRTH = new Date(ADAM_BIRTHDATE).getTime();
   const el = document.getElementById('ctrAge');
@@ -1103,7 +1100,6 @@ window.switchTab = function (id) {
   }
 })();
 
-// ── BSOD easter egg ─────────────────────────────────────────
 function triggerBsod() {
   const overlay = document.getElementById('bsodOverlay');
   if (!overlay) return;
@@ -1124,7 +1120,6 @@ function closeBsod() {
   overlay.setAttribute('aria-hidden', 'true');
 }
 
-// ── Matrix rain easter egg ──────────────────────────────────
 let matrixActive = false;
 let matrixCanvas, matrixCtx, matrixRaf;
 
@@ -1166,16 +1161,12 @@ function closeMatrix() {
   if (matrixCanvas) { matrixCanvas.remove(); matrixCanvas = null; }
 }
 
-// ── Extra keyboard shortcuts for easter eggs ────────────────
 window.addEventListener('keydown', (e) => {
   if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
   if (e.key === 'b' && !e.metaKey && !e.ctrlKey) triggerBsod();
   if (e.key === 'm' && !e.metaKey && !e.ctrlKey) triggerMatrix();
 });
 
-// ── Guestbook (API-backed: SQLite + Discord OAuth) ───────────────────
-// Backend base URL. Same-origin by default; override by setting
-// window.GB_API_BASE = "https://api.adam.dev" before this script loads.
 const GB_API = (typeof window !== 'undefined' && window.GB_API_BASE) || '';
 
 const gbState = { me: null, entries: [], loaded: false, poll: null };
@@ -1337,7 +1328,6 @@ document.getElementById('gbMsg')?.addEventListener('keydown', (e) => {
   if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); submitGuestbook(); }
 });
 
-// surface OAuth result from ?auth=ok|error
 (function gbHandleAuthRedirect(){
   try {
     const p = new URLSearchParams(location.search);
@@ -1358,7 +1348,6 @@ window.switchTab = function(id) {
   else gbStopPolling();
 };
 
-// initial load if the guestbook is already the active tab on first paint
 if (document.getElementById('guestbook')?.classList.contains('active')) {
   gbRefresh(); gbStartPolling();
 }

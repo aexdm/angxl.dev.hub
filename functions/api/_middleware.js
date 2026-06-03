@@ -1,26 +1,10 @@
-// functions/api/_middleware.js
-// Cloudflare Pages middleware to parse cookies, attach current session user,
-// and append security headers to all /api/ responses.
-
-function parseCookies(header) {
-  const out = {};
-  if (!header) return out;
-  header.split(';').forEach((p) => {
-    const i = p.indexOf('=');
-    if (i > -1) out[p.slice(0, i).trim()] = decodeURIComponent(p.slice(i + 1).trim());
-  });
-  return out;
-}
-
 export async function onRequest(context) {
   const { request, env } = context;
   
-  // 1. Parse cookies
   const cookies = parseCookies(request.headers.get("Cookie") || "");
   context.data.cookies = cookies;
   context.data.user = null;
   
-  // 2. Attach user from session
   const sid = cookies["adam_sid"];
   if (sid && env.DB) {
     const nowIso = new Date().toISOString();
@@ -46,7 +30,6 @@ export async function onRequest(context) {
     }
   }
   
-  // 3. Process request
   let response;
   try {
     response = await context.next();
@@ -58,7 +41,6 @@ export async function onRequest(context) {
     });
   }
   
-  // 4. Inject global security headers (ensure mutable Response)
   response = new Response(response.body, response);
   response.headers.set("X-Content-Type-Options", "nosniff");
   response.headers.set("X-Frame-Options", "DENY");

@@ -1,4 +1,3 @@
-/* Highly-visible FR/EN flag language switcher (shared by gate + perso + pro). */
 .lang-bar{
   position:fixed; top:16px; right:16px; z-index:99999;
   display:flex; gap:8px; align-items:center;

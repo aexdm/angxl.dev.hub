@@ -1,7 +1,3 @@
-// functions/api/content.js
-// Live editable content overrides stored in D1.
-// GET is public (so visitors see your edits). POST/DELETE are admin-only.
-
 function json(obj, status = 200) {
   return new Response(JSON.stringify(obj), {
     status, headers: { "Content-Type": "application/json" }
