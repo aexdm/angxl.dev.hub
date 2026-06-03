@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0e0c12; --bg2:#161320; --amber:#faa61a; --amber-dim:rgba(250,166,26,.14);
+  --txt:#ece8f5; --muted:#a59fb8; --line:rgba(255,255,255,.10);
+}
+html,body{height:100%}
+body{
+  background:radial-gradient(1200px 700px at 50% -10%, #1d1830 0%, var(--bg) 60%);
+  color:var(--txt); font-family:'Syne',system-ui,sans-serif;
+  min-height:100dvh; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; padding:28px 18px; overflow:hidden;
+}
+#gateStars{position:fixed; inset:0; z-index:0; pointer-events:none}
+.gate-wrap{position:relative; z-index:1; width:100%; max-width:880px; text-align:center}
+.gate-eyebrow{
+  font-family:'DM Mono',monospace; font-size:13px; letter-spacing:.22em;
+  text-transform:uppercase; color:var(--amber); opacity:.9; margin-bottom:14px;
+}
+.gate-title{font-size:clamp(38px,8vw,68px); font-weight:800; line-height:1; letter-spacing:-.02em}
+.gate-title span{color:var(--amber)}
+.gate-sub{color:var(--muted); margin-top:12px; font-size:clamp(14px,2.4vw,17px); font-family:'DM Mono',monospace}
+.gate-prompt{margin-top:34px; margin-bottom:18px; font-size:15px; color:var(--muted); font-family:'DM Mono',monospace}
+.gate-cards{display:grid; grid-template-columns:1fr; gap:18px}
+@media(min-width:680px){.gate-cards{grid-template-columns:1fr 1fr}}
+.gate-card{
+  position:relative; text-align:left; text-decoration:none; color:inherit;
+  background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
+  border:1px solid var(--line); border-radius:20px; padding:26px 24px;
+  display:flex; flex-direction:column; gap:12px; min-height:230px;
+  transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.gate-card:hover{transform:translateY(-4px); border-color:rgba(250,166,26,.5); box-shadow:0 18px 50px rgba(0,0,0,.45)}
+.gate-card--pro{background:linear-gradient(180deg, rgba(250,166,26,.10), rgba(250,166,26,.02))}
+.gate-badge{
+  align-self:flex-start; font-family:'DM Mono',monospace; font-size:11px; letter-spacing:.12em;
+  text-transform:uppercase; padding:5px 11px; border-radius:999px;
+  background:var(--amber-dim); border:1px solid rgba(250,166,26,.32); color:var(--amber);
+}
+.gate-card--perso .gate-badge{background:rgba(255,255,255,.06); border-color:var(--line); color:var(--muted)}
+.gate-card-icon{width:30px; height:30px; color:var(--amber)}
+.gate-card-icon svg{width:30px; height:30px; stroke-width:1.75}
+.gate-card--perso .gate-card-icon{color:var(--txt)}
+.gate-card-title{font-size:24px; font-weight:700; letter-spacing:-.01em}
+.gate-card-desc{color:var(--muted); font-size:14.5px; line-height:1.55; flex:1}
+.gate-cta{
+  display:inline-flex; align-items:center; gap:8px; margin-top:6px;
+  font-family:'DM Mono',monospace; font-size:14px; font-weight:500; color:var(--amber);
+}
+.gate-card--perso .gate-cta{color:var(--txt)}
+.gate-foot{margin-top:30px; color:var(--muted); font-size:12.5px; font-family:'DM Mono',monospace; opacity:.7}

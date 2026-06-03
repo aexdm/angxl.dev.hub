@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" data-default-lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adam · Developer student · BTS SIO apprenticeship 2026</title>
+  <meta name="description" content="Adam, developer student, looking for a BTS SIO (SLAM track) work-study apprenticeship for September 2026. Skills, projects and contact.">
+  <meta name="theme-color" content="#0e0c12">
+  <link rel="stylesheet" href="pro.css">
+  <link rel="stylesheet" href="lang.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <div class="lang-bar" role="group" aria-label="Language / Langue">
+    <button class="lang-flag" data-lang="en" onclick="setLang('en')" aria-pressed="false" title="English"><svg class="flag" viewBox="0 0 60 30" preserveAspectRatio="none" aria-hidden="true"><rect width="60" height="30" fill="#012169"/><path d="M0,0 60,30 M60,0 0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 60,30 M60,0 0,30" stroke="#C8102E" stroke-width="3"/><rect x="25" width="10" height="30" fill="#fff"/><rect y="10" width="60" height="10" fill="#fff"/><rect x="27" width="6" height="30" fill="#C8102E"/><rect y="12" width="60" height="6" fill="#C8102E"/></svg><span class="lang-code">EN</span></button>
+    <button class="lang-flag" data-lang="fr" onclick="setLang('fr')" aria-pressed="false" title="Français"><svg class="flag" viewBox="0 0 3 2" preserveAspectRatio="none" aria-hidden="true"><rect width="3" height="2" fill="#fff"/><rect width="1" height="2" fill="#0055A4"/><rect x="2" width="1" height="2" fill="#EF4135"/></svg><span class="lang-code">FR</span></button>
+  </div>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Adam<span>.</span></a>
+      <nav class="nav-links">
+        <a href="#profil"      data-i18n="nav.about">About</a>
+        <a href="#objectif"    data-i18n="nav.goal">Apprenticeship</a>
+        <a href="#competences" data-i18n="nav.skills">Skills</a>
+        <a href="#projets"     data-i18n="nav.projects">Projects</a>
+        <a href="#contact"     data-i18n="nav.contact">Contact</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn-ghost" id="persoLink" href="perso.html" data-i18n="nav.perso">Personal site</a>
+        <a class="btn btn-primary" href="#contact" data-i18n="nav.hire">Get in touch</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" style="border-top:none">
+    <div class="wrap">
+      <span class="status-pill"><i data-lucide="badge-check"></i><span data-i18n="hero.available">Available for a work-study apprenticeship, September 2026</span></span>
+      <h1><span data-i18n="hero.hello">Hi, I'm</span> <span>Adam</span>.</h1>
+      <div class="hero-role" data-i18n="hero.role">Full-stack developer student</div>
+      <p class="hero-lead" data-i18n-html="hero.lead">I'm looking for a <strong>BTS SIO work-study apprenticeship</strong> (IT Services for Organisations), <strong>SLAM</strong> software-development track, starting in <strong>September 2026</strong>. Passionate about code and design, I build things, then rebuild them better.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contact" data-i18n="hero.cta1">Get in touch</a>
+        <a class="btn btn-ghost" href="#projets" data-i18n="hero.cta2">See my projects</a>
+        <a class="btn btn-ghost" href="https://github.com/aexdm" target="_blank" rel="noopener">GitHub</a>
+      </div>
+
+      <div class="hero-facts">
+        <div class="fact"><div class="fact-k" data-i18n="fact.formation.k">Target diploma</div><div class="fact-v">BTS SIO</div></div>
+        <div class="fact"><div class="fact-k" data-i18n="fact.option.k">Track</div><div class="fact-v">SLAM (dev)</div></div>
+        <div class="fact"><div class="fact-k" data-i18n="fact.start.k">Start</div><div class="fact-v" data-i18n="fact.start.v">Sept. 2026</div></div>
+        <div class="fact"><div class="fact-k" data-i18n="fact.rhythm.k">Format</div><div class="fact-v" data-i18n="fact.rhythm.v">Work-study</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="profil">
+    <div class="wrap">
+      <div class="sec-eyebrow" data-i18n="profil.eyebrow">Profile</div>
+      <h2 class="sec-title" data-i18n="profil.title">About me</h2>
+      <p class="lead-text" data-i18n-html="profil.body">A self-taught developer for several years, I learned by building: websites, bots, games and small tools. I like understanding how things work, breaking the problem into pieces, then shipping something clean and functional.<br><br>Now I want to structure these skills in a professional setting through a <strong>work-study BTS SIO</strong>: putting what I know to work for a company while growing in software development, databases and teamwork.</p>
+    </div>
+  </section>
+
+  <section id="objectif">
+    <div class="wrap">
+      <div class="sec-eyebrow" data-i18n="obj.eyebrow">Goal</div>
+      <h2 class="sec-title" data-i18n="obj.title">My apprenticeship plan</h2>
+      <div class="obj-grid">
+        <div class="obj-card">
+          <h3><span class="ic"><i data-lucide="graduation-cap"></i></span><span data-i18n="obj.c1.t">The programme</span></h3>
+          <p data-i18n="obj.c1.d">BTS SIO (IT Services for Organisations), SLAM track (Software Solutions & Business Applications), focused on development.</p>
+        </div>
+        <div class="obj-card">
+          <h3><span class="ic"><i data-lucide="calendar-days"></i></span><span data-i18n="obj.c2.t">The timeline</span></h3>
+          <p data-i18n="obj.c2.d">Looking for a host company for a work-study contract starting in September 2026, for the two years of the BTS.</p>
+        </div>
+        <div class="obj-card">
+          <h3><span class="ic"><i data-lucide="handshake"></i></span><span data-i18n="obj.c3.t">What I bring</span></h3>
+          <p data-i18n="obj.c3.d">An already solid technical base, autonomy, and the drive to learn fast and get involved in real projects within your team.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="competences">
+    <div class="wrap">
+      <div class="sec-eyebrow" data-i18n="skills.eyebrow">Skills</div>
+      <h2 class="sec-title" data-i18n="skills.title">Technical skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3 data-i18n="skills.lang">Languages</h3>
+          <div class="chips"><span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">PHP</span><span class="chip">Lua</span><span class="chip">SQL</span><span class="chip">TypeScript <em data-i18n="skills.learning">(learning)</em></span></div>
+        </div>
+        <div class="skill-card">
+          <h3 data-i18n="skills.web">Web & back-end</h3>
+          <div class="chips"><span class="chip">HTML / CSS</span><span class="chip">Node · Express</span><span class="chip">SQLite</span><span class="chip">REST API</span><span class="chip">OAuth / Auth</span></div>
+        </div>
+        <div class="skill-card">
+          <h3 data-i18n="skills.tools">Tools</h3>
+          <div class="chips"><span class="chip">Git · GitHub</span><span class="chip">VS Code</span><span class="chip">Linux / WSL</span><span class="chip">Terminal</span></div>
+        </div>
+        <div class="skill-card">
+          <h3 data-i18n="skills.design">Design & more</h3>
+          <div class="chips"><span class="chip">Figma</span><span class="chip">Krita</span><span class="chip" data-i18n="skills.ui">UI / UX</span><span class="chip" data-i18n="skills.team">Teamwork</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projets">
+    <div class="wrap">
+      <div class="sec-eyebrow" data-i18n="proj.eyebrow">Projects</div>
+      <h2 class="sec-title" data-i18n="proj.title">What I've built</h2>
+      <div class="proj-grid">
+
+        <a class="proj-card" href="https://github.com/aexdm" target="_blank" rel="noopener">
+          <div class="proj-top"><span class="proj-tag">web · full-stack</span><span class="proj-state proj-state--live" data-i18n="proj.live">live</span></div>
+          <h3 data-i18n="proj.p1.t">adam.dev portfolio</h3>
+          <p data-i18n="proj.p1.d">Hand-built portfolio with a live dashboard, command palette and a real back-end: SQLite guestbook, Discord authentication (OAuth) and admin moderation.</p>
+          <div class="proj-stack"><span>HTML/CSS/JS</span><span>Node · Express</span><span>SQLite</span><span>OAuth</span></div>
+        </a>
+
+        <a class="proj-card" href="https://github.com/aexdm/client-portfolio" target="_blank" rel="noopener">
+          <div class="proj-top"><span class="proj-tag">web · php</span><span class="proj-state proj-state--live" data-i18n="proj.live">live</span></div>
+          <h3 data-i18n="proj.p2.t">Client Portfolio</h3>
+          <p data-i18n="proj.p2.d">Portfolio showcase with a custom CMS, a project gallery and an admin panel.</p>
+          <div class="proj-stack"><span>PHP</span><span>CMS</span><span>MySQL</span></div>
+        </a>
+
+        <a class="proj-card" href="https://github.com/aexdm/nigbot" target="_blank" rel="noopener">
+          <div class="proj-top"><span class="proj-tag">automation</span><span class="proj-state proj-state--live" data-i18n="proj.live">live</span></div>
+          <h3 data-i18n="proj.p3.t">Utility Bot</h3>
+          <p data-i18n="proj.p3.d">Automation bot: scheduled maintenance, moderation helpers and small config-driven workflows.</p>
+          <div class="proj-stack"><span>Python</span><span>API</span><span>Cron</span></div>
+        </a>
+
+        <a class="proj-card" href="https://www.roblox.com/games/132429881613824/ABYSS-WORLD-HOTU" target="_blank" rel="noopener">
+          <div class="proj-top"><span class="proj-tag">game · lua</span><span class="proj-state proj-state--wip" data-i18n="proj.wip">in progress</span></div>
+          <h3 data-i18n="proj.p4.t">Heart of the Unreturned</h3>
+          <p data-i18n="proj.p4.d">A parkour game built with a team: momentum systems, hand-tuned movement and multi-zone maps.</p>
+          <div class="proj-stack"><span>Lua</span><span>Roblox</span><span data-i18n="proj.teamwork">Teamwork</span></div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="sec-eyebrow" data-i18n="contact.eyebrow">Contact</div>
+      <h2 class="sec-title" data-i18n="contact.title">Let's work together</h2>
+      <p class="lead-text" data-i18n="contact.lead">A BTS SIO apprenticeship opportunity? I'd be glad to talk. The easiest way to reach me is below.</p>
+      <div class="contact-grid">
+        <a class="contact-card" id="emailCard" href="mailto:adam@exemple.com">
+          <span class="contact-ic"><i data-lucide="mail"></i></span>
+          <span><span class="contact-k" data-i18n="contact.email">Email</span><br><span class="contact-v">adam@exemple.com</span></span>
+        </a>
+        <a class="contact-card" href="https://github.com/aexdm" target="_blank" rel="noopener">
+          <span class="contact-ic"><i data-lucide="github"></i></span>
+          <span><span class="contact-k">GitHub</span><br><span class="contact-v">aexdm</span></span>
+        </a>
+        <a class="contact-card" href="https://discord.com/users/853310319002517524" target="_blank" rel="noopener">
+          <span class="contact-ic"><i data-lucide="message-circle"></i></span>
+          <span><span class="contact-k">Discord</span><br><span class="contact-v">@aexdm</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="wrap">
+      <p data-i18n="foot.line">BTS SIO · Work-study · September 2026</p>
+      <p style="margin-top:8px"><a href="index.html" data-i18n="foot.back">Back to home</a> · <a id="footPerso" href="perso.html" data-i18n="foot.perso">View the personal site</a></p>
+    </div>
+  </footer>
+
+  <script>
+  window.I18N = {
+    "nav.about":    { en:"About", fr:"Profil" },
+    "nav.goal":     { en:"Apprenticeship", fr:"Alternance" },
+    "nav.skills":   { en:"Skills", fr:"Compétences" },
+    "nav.projects": { en:"Projects", fr:"Projets" },
+    "nav.contact":  { en:"Contact", fr:"Contact" },
+    "nav.perso":    { en:"Personal site", fr:"Site perso" },
+    "nav.hire":     { en:"Get in touch", fr:"Me contacter" },
+
+    "hero.available": { en:"Available for a work-study apprenticeship, September 2026", fr:"Disponible pour une alternance, rentrée septembre 2026" },
+    "hero.hello":     { en:"Hi, I'm", fr:"Bonjour, je suis" },
+    "hero.role":      { en:"Full-stack developer student", fr:"Étudiant développeur full-stack" },
+    "hero.lead":      { en:"I'm looking for a <strong>BTS SIO work-study apprenticeship</strong> (IT Services for Organisations), <strong>SLAM</strong> software-development track, starting in <strong>September 2026</strong>. Passionate about code and design, I build things, then rebuild them better.",
+                        fr:"Je recherche une <strong>alternance en BTS SIO</strong> (Services Informatiques aux Organisations), option <strong>SLAM</strong> développement, pour la <strong>rentrée de septembre 2026</strong>. Passionné de code et de design, je construis des choses, puis je les reconstruis en mieux." },
+    "hero.cta1":      { en:"Get in touch", fr:"Me contacter" },
+    "hero.cta2":      { en:"See my projects", fr:"Voir mes projets" },
+
+    "fact.formation.k": { en:"Target diploma", fr:"Formation visée" },
+    "fact.option.k":    { en:"Track", fr:"Option" },
+    "fact.start.k":     { en:"Start", fr:"Début" },
+    "fact.start.v":     { en:"Sept. 2026", fr:"Sept. 2026" },
+    "fact.rhythm.k":    { en:"Format", fr:"Rythme" },
+    "fact.rhythm.v":    { en:"Work-study", fr:"Alternance" },
+
+    "profil.eyebrow": { en:"Profile", fr:"Profil" },
+    "profil.title":   { en:"About me", fr:"À propos de moi" },
+    "profil.body":    { en:"A self-taught developer for several years, I learned by building: websites, bots, games and small tools. I like understanding how things work, breaking the problem into pieces, then shipping something clean and functional.<br><br>Now I want to structure these skills in a professional setting through a <strong>work-study BTS SIO</strong>: putting what I know to work for a company while growing in software development, databases and teamwork.",
+                        fr:"Développeur autodidacte depuis plusieurs années, j'ai appris en construisant : sites web, bots, jeux et petits outils. J'aime comprendre comment les choses fonctionnent, découper le problème en morceaux, puis livrer quelque chose de propre et fonctionnel.<br><br>Aujourd'hui, je veux structurer ces compétences dans un cadre professionnel via un <strong>BTS SIO en alternance</strong> : mettre mes acquis au service d'une entreprise tout en montant en compétences sur le développement, les bases de données et le travail en équipe." },
+
+    "obj.eyebrow": { en:"Goal", fr:"Objectif" },
+    "obj.title":   { en:"My apprenticeship plan", fr:"Mon projet d'alternance" },
+    "obj.c1.t":    { en:"The programme", fr:"La formation" },
+    "obj.c1.d":    { en:"BTS SIO (IT Services for Organisations), SLAM track (Software Solutions & Business Applications), focused on development.",
+                     fr:"BTS SIO (Services Informatiques aux Organisations), option SLAM (Solutions Logicielles et Applications Métiers), orientée développement." },
+    "obj.c2.t":    { en:"The timeline", fr:"Le calendrier" },
+    "obj.c2.d":    { en:"Looking for a host company for a work-study contract starting in September 2026, for the two years of the BTS.",
+                     fr:"Recherche d'une entreprise d'accueil pour un contrat d'alternance débutant à la rentrée de septembre 2026, pour les deux années du BTS." },
+    "obj.c3.t":    { en:"What I bring", fr:"Ce que j'apporte" },
+    "obj.c3.d":    { en:"An already solid technical base, autonomy, and the drive to learn fast and get involved in real projects within your team.",
+                     fr:"Une base technique déjà solide, de l'autonomie, l'envie d'apprendre vite et de m'investir dans des projets concrets au sein de votre équipe." },
+
+    "skills.eyebrow":  { en:"Skills", fr:"Compétences" },
+    "skills.title":    { en:"Technical skills", fr:"Compétences techniques" },
+    "skills.lang":     { en:"Languages", fr:"Langages" },
+    "skills.learning": { en:"(learning)", fr:"(en cours)" },
+    "skills.web":      { en:"Web & back-end", fr:"Web & back-end" },
+    "skills.tools":    { en:"Tools", fr:"Outils" },
+    "skills.design":   { en:"Design & more", fr:"Design & autres" },
+    "skills.ui":       { en:"UI / UX", fr:"UI / UX" },
+    "skills.team":     { en:"Teamwork", fr:"Travail en équipe" },
+
+    "proj.eyebrow":  { en:"Projects", fr:"Projets" },
+    "proj.title":    { en:"What I've built", fr:"Ce que j'ai construit" },
+    "proj.live":     { en:"live", fr:"en ligne" },
+    "proj.wip":      { en:"in progress", fr:"en cours" },
+    "proj.teamwork": { en:"Teamwork", fr:"Travail d'équipe" },
+    "proj.p1.t":     { en:"adam.dev portfolio", fr:"Portfolio adam.dev" },
+    "proj.p1.d":     { en:"Hand-built portfolio with a live dashboard, command palette and a real back-end: SQLite guestbook, Discord authentication (OAuth) and admin moderation.",
+                       fr:"Portfolio fait main avec dashboard en temps réel, palette de commandes et un vrai back-end : livre d'or SQLite, authentification Discord (OAuth) et modération admin." },
+    "proj.p2.t":     { en:"Client Portfolio", fr:"Client Portfolio" },
+    "proj.p2.d":     { en:"Portfolio showcase with a custom CMS, a project gallery and an admin panel.",
+                       fr:"Vitrine de portfolio avec un CMS sur-mesure, une galerie de projets et un panneau d'administration." },
+    "proj.p3.t":     { en:"Utility Bot", fr:"Utility Bot" },
+    "proj.p3.d":     { en:"Automation bot: scheduled maintenance, moderation helpers and small config-driven workflows.",
+                       fr:"Bot d'automatisation : maintenance planifiée, aides à la modération et petits workflows pilotés par configuration." },
+    "proj.p4.t":     { en:"Heart of the Unreturned", fr:"Heart of the Unreturned" },
+    "proj.p4.d":     { en:"A parkour game built with a team: momentum systems, hand-tuned movement and multi-zone maps.",
+                       fr:"Jeu de parkour développé en équipe : systèmes de momentum, mouvement réglé à la main et cartes multi-zones." },
+
+    "contact.eyebrow": { en:"Contact", fr:"Contact" },
+    "contact.title":   { en:"Let's work together", fr:"Travaillons ensemble" },
+    "contact.lead":    { en:"A BTS SIO apprenticeship opportunity? I'd be glad to talk. The easiest way to reach me is below.",
+                         fr:"Une opportunité d'alternance en BTS SIO ? Je serais ravi d'échanger. Le moyen le plus simple de me joindre est ci-dessous." },
+    "contact.email":   { en:"Email", fr:"E-mail" },
+
+    "foot.line":  { en:"BTS SIO · Work-study · September 2026", fr:"BTS SIO · Alternance · Rentrée septembre 2026" },
+    "foot.back":  { en:"Back to home", fr:"Retour à l'accueil" },
+    "foot.perso": { en:"View the personal site", fr:"Voir le site perso" }
+  };
+  </script>
+  <script src="lang.js"></script>
+  <script>
+  lucide.createIcons();
+  document.addEventListener('langchange', function(){ if (window.lucide) lucide.createIcons(); });
+  ['persoLink','footPerso'].forEach(function(id){
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('click', function(e){ e.currentTarget.href = window.langHref('perso.html'); });
+  });
+
+  /* Theme = dominant color of the Discord profile picture (same source as the personal site) */
+  (function(){
+    var DISCORD_ID = "853310319002517524";
+    function applyPfp(src){
+      var img = new Image(); img.crossOrigin = "anonymous";
+      img.onload = function(){
+        try{
+          var cv = document.createElement("canvas"), s = 64;
+          cv.width = s; cv.height = s;
+          var ctx = cv.getContext("2d"); ctx.drawImage(img,0,0,s,s);
+          var d = ctx.getImageData(0,0,s,s).data, r=0,g=0,b=0,n=0;
+          for (var i=0;i<d.length;i+=4){ if (d[i+3]<128) continue; r+=d[i]; g+=d[i+1]; b+=d[i+2]; n++; }
+          if (!n) return;
+          r=Math.round(r/n); g=Math.round(g/n); b=Math.round(b/n);
+          var accent = "rgb("+Math.min(255,r+40)+","+Math.min(255,g+40)+","+Math.min(255,b+40)+")";
+          var dk = function(v,f){ return Math.max(0, Math.round(v*f)); };
+          var rs = document.documentElement.style;
+          rs.setProperty("--amber", accent);
+          rs.setProperty("--amber-soft",   "rgba("+r+","+g+","+b+",0.16)");
+          rs.setProperty("--amber-border", "rgba("+r+","+g+","+b+",0.5)");
+          rs.setProperty("--bg",    "rgb("+dk(r,0.10)+","+dk(g,0.10)+","+dk(b,0.10)+")");
+          rs.setProperty("--panel", "rgb("+dk(r,0.16)+","+dk(g,0.16)+","+dk(b,0.16)+")");
+          rs.setProperty("--glow",  "rgba("+r+","+g+","+b+",0.40)");
+          rs.setProperty("--line",  "rgba("+r+","+g+","+b+",0.18)");
+          rs.setProperty("--lang-active-bg",     "rgba("+r+","+g+","+b+",0.22)");
+          rs.setProperty("--lang-active-border", accent);
+        } catch(e){}
+      };
+      img.src = src;
+    }
+    fetch("https://api.lanyard.rest/v1/users/"+DISCORD_ID)
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        if (!j || !j.success || !j.data || !j.data.discord_user) return;
+        var u = j.data.discord_user, hash = u.avatar;
+        if (!hash) return;
+        var ext = hash.indexOf("a_")===0 ? "gif" : "png";
+        applyPfp("https://cdn.discordapp.com/avatars/"+u.id+"/"+hash+"."+ext+"?size=256");
+      })
+      .catch(function(){});
+  })();
+  </script>
+</body>
+</html>

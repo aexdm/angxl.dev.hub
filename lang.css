@@ -1,0 +1,35 @@
+/* Highly-visible FR/EN flag language switcher (shared by gate + perso + pro). */
+.lang-bar{
+  position:fixed; top:16px; right:16px; z-index:99999;
+  display:flex; gap:8px; align-items:center;
+  padding:6px; border-radius:14px;
+  background:rgba(18,16,24,.85);
+  border:1px solid rgba(255,255,255,.18);
+  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  box-shadow:0 10px 30px rgba(0,0,0,.5);
+}
+.lang-flag{
+  display:inline-flex; align-items:center; gap:8px;
+  border:1.5px solid transparent; background:transparent;
+  color:#fff; font:inherit; font-size:14px; font-weight:700;
+  padding:8px 13px; border-radius:10px; cursor:pointer; line-height:1;
+  transition:background .15s ease, border-color .15s ease, opacity .15s ease, transform .15s ease;
+  opacity:.68;
+}
+.lang-flag .flag{
+  width:26px; height:18px; border-radius:3px; display:block; flex-shrink:0;
+  box-shadow:0 0 0 1px rgba(0,0,0,.3) inset, 0 1px 2px rgba(0,0,0,.3);
+}
+.lang-flag .lang-code{ letter-spacing:.04em; }
+.lang-flag:hover{ opacity:1; background:rgba(255,255,255,.09); }
+.lang-flag.active{
+  opacity:1; transform:translateY(-1px);
+  background:var(--lang-active-bg, rgba(250,166,26,.22));
+  border-color:var(--lang-active-border, rgba(250,166,26,.65));
+  box-shadow:0 2px 12px var(--lang-active-glow, rgba(250,166,26,.25));
+}
+@media(max-width:640px){
+  .lang-bar{ top:12px; right:12px; padding:5px; gap:6px; }
+  .lang-flag{ padding:7px 10px; font-size:13px; }
+  .lang-flag .flag{ width:23px; height:15px; }
+}
