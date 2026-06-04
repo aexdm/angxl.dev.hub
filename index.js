@@ -231,10 +231,10 @@ document.getElementById("settingsModal").addEventListener("click", e => {
 const CLIENT_STUDIO_GITHUB = "https://github.com/aidenhub/evren";
 
 const projectData = {
-  "adam.dev — this site": {
+  "adam.dev   this site": {
     lang: "// html · css · js · node",
-    intro: "The portfolio you're looking at — designed, built, and deployed by me.",
-    description: "A hand-coded personal site with no page framework, focused on personality and performance. It pairs a static, animated frontend (boot sequence, command palette, live Discord status, easter eggs) with a real Node/Express + SQLite backend powering a persistent guestbook. Visitors sign in with Discord (OAuth2) to post; messages are stored permanently in a database and moderated through an admin-only API where authorization is enforced server-side — never in the browser.",
+    intro: "The portfolio you're looking at   designed, built, and deployed by me.",
+    description: "A hand-coded personal site with no page framework, focused on personality and performance. It pairs a static, animated frontend (boot sequence, command palette, live Discord status, easter eggs) with a real Node/Express + SQLite backend powering a persistent guestbook. Visitors sign in with Discord (OAuth2) to post; messages are stored permanently in a database and moderated through an admin-only API where authorization is enforced server-side   never in the browser.",
     images: ["images/showcase-1.png", "images/showcase-2.png"],
     action: { href: "https://github.com/aexdm", label: "View on GitHub" },
     roadmap: [
@@ -263,7 +263,7 @@ const projectData = {
   "AW : Heart Of The Unreturned": {
     lang: "// lua",
     intro: "A Roblox fan game based on Abyss World. Built with a team.",
-    description: "Heart Of The Unreturned is a Parkour Roblox fan game inspired by Abyss World. Currently in active development — I mostly did bug fixes",
+    description: "Heart Of The Unreturned is a Parkour Roblox fan game inspired by Abyss World. Currently in active development   I mostly did bug fixes",
     images: [
       "images/hotu1.png",
       "images/hotu2.png",
@@ -291,7 +291,7 @@ const projectData = {
   "seraph": {
     lang: "// python · windows · desktop",
     intro: "A Windows panic button / profile switcher with voice control.",
-    description: "Windows panic button that swaps between work/chill/focus/sleep profiles at a hotkey — closes apps, opens URLs, launches programs, voice-controlled.",
+    description: "Windows panic button that swaps between work/chill/focus/sleep profiles at a hotkey   closes apps, opens URLs, launches programs, voice-controlled.",
     images: [
       "images/panic-1.png",
     ],
@@ -306,7 +306,7 @@ const projectData = {
   "showcase": {
   lang: "// php · css · js",
   intro: "An anonymous portfolio website for one of my client to showcase their work and passion.",
-  description: "Built a complete portfolio site with a custom CMS from scratch in PHP. Includes a secure authenticated admin panel with brute-force lockout, atomic JSON content saving, project gallery with image and video support, Cloudinary integration for cloud media hosting, and full theme customisation — all without touching a line of code on the client side.",
+  description: "Built a complete portfolio site with a custom CMS from scratch in PHP. Includes a secure authenticated admin panel with brute-force lockout, atomic JSON content saving, project gallery with image and video support, Cloudinary integration for cloud media hosting, and full theme customisation   all without touching a line of code on the client side.",
   images: [
     "images/showcase-1.png",
     "images/showcase-2.png",
@@ -616,7 +616,7 @@ async function runHomeTerminal() {
     ['user',     '<span class="accent">adam</span> <span class="dim">(he/him)</span>'],
     ['role',     '17 y/o dev · roblox + js + python'],
     ['location', 'the chair, somewhere'],
-    ['uptime',   `<span class="live" id="liveUptime">—</span>`],
+    ['uptime',   `<span class="live" id="liveUptime"> </span>`],
     ['shipped',  '<span class="accent">3</span> projects · <span class="dim">4 cooking</span>'],
     ['now',      'building <span class="accent">HOTU</span> · sleeping less than i should'],
     ['status',   '<span class="live">● online</span>'],
@@ -1026,8 +1026,8 @@ async function renderNowGitLog() {
 
 function populateSiteStats() {
   const files = document.querySelectorAll('link[rel="stylesheet"], script[src], img[src], source[src]');
-  const cssSize = document.querySelector('link[rel="stylesheet"][href*="index.css"]') ? '43kb' : '—';
-  const jsSize = document.querySelector('script[src*="index.js"]') ? '44kb' : '—';
+  const cssSize = document.querySelector('link[rel="stylesheet"][href*="index.css"]') ? '43kb' : ' ';
+  const jsSize = document.querySelector('script[src*="index.js"]') ? '44kb' : ' ';
   const count = document.querySelectorAll('.proj').length;
   const fEl = document.getElementById('nsFiles'); if (fEl) fEl.textContent = files.length + ' assets';
   const cEl = document.getElementById('nsCss'); if (cEl) cEl.textContent = cssSize;
@@ -1141,7 +1141,7 @@ function triggerMatrix() {
     matrixRaf = requestAnimationFrame(draw);
   }
   draw();
-  toast('🟢 matrix mode — press M again to exit');
+  toast('🟢 matrix mode   press M again to exit');
   setTimeout(closeMatrix, 8000);
 }
 function closeMatrix() {
@@ -1227,7 +1227,7 @@ function gbRenderEntries() {
   if (!container) return;
   const entries = gbState.entries;
   if (!entries.length) {
-    container.innerHTML = '<div class="gb-empty"><i data-lucide="sparkles"></i><span>no entries yet — be the first to leave a mark ✦</span></div>';
+    container.innerHTML = '<div class="gb-empty"><i data-lucide="sparkles"></i><span>no entries yet   be the first to leave a mark ✦</span></div>';
     if (window.lucide) lucide.createIcons();
     return;
   }
@@ -1251,7 +1251,7 @@ function gbRenderEntries() {
 
 function gbRenderError() {
   const c = document.getElementById('gbEntries');
-  if (c) c.innerHTML = '<div class="gb-empty gb-error"><i data-lucide="wifi-off"></i><span>couldn\'t reach the guestbook server — try again shortly</span></div>';
+  if (c) c.innerHTML = '<div class="gb-empty gb-error"><i data-lucide="wifi-off"></i><span>couldn\'t reach the guestbook server   try again shortly</span></div>';
   if (window.lucide) lucide.createIcons();
 }
 
@@ -1273,7 +1273,7 @@ async function submitGuestbook() {
     method: 'POST', body: JSON.stringify(payload),
   });
   if (btn) btn.disabled = false;
-  if (status === 401) { toast('session expired — sign in again'); gbState.me = null; gbRenderAuth(); return; }
+  if (status === 401) { toast('session expired   sign in again'); gbState.me = null; gbRenderAuth(); return; }
   if (status === 429) { toast(data?.error || 'slow down a moment'); return; }
   if (!ok) { toast(data?.error || 'failed to post'); return; }
   msgEl.value = '';
