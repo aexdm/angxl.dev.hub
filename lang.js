@@ -2,6 +2,11 @@
   var STORAGE_KEY = 'siteLang';
 
   function getDefaultLang() {
+    try {
+      var h = (window.location.hostname || '').toLowerCase();
+      if (h.indexOf('adamchettouh.fr') !== -1) return 'fr';   // new domain -> French
+      if (h.indexOf('angxl.pages.dev') !== -1) return 'en';   // perso -> English
+    } catch (e) {}
     var d = document.documentElement.getAttribute('data-default-lang');
     return (d === 'fr' || d === 'en') ? d : 'en';
   }
