@@ -1080,15 +1080,12 @@ window.switchTab = function (id) {
 (async function () {
   const el = document.getElementById('ctrVisitors');
   if (!el) return;
-  const TOKEN = 'ut_8MVX9wlgEFUk7SjjnKziP7xdHEucRkAHQGpGA51K';
   try {
-    const res = await fetch('https://api.counterapi.dev/v2/aidens-team/site-visitors/up', {
-      headers: { 'Authorization': `Bearer ${TOKEN}` }
-    });
+    const res = await fetch('/api/visitor');
     const data = await res.json();
-    el.textContent = (103 + data.value).toLocaleString();
+    el.textContent = data.count.toLocaleString();
   } catch {
-    el.textContent = '104';
+    el.textContent = '0';
   }
 })();
 
