@@ -451,13 +451,6 @@ const themes = {
     "--amber": "#fb7185", "--amber-dim": "rgba(251,113,133,0.12)", "--amber-dim2": "rgba(251,113,133,0.22)",
     "--green": "#f472b6", "--green-dim": "rgba(244,114,182,0.12)",
   },
-  nujabes: {
-    "--bg": "#0f0d1a", "--bg2": "#1a1628", "--card": "#221e32", "--card-hover": "#2a2540",
-    "--border": "rgba(212,168,83,0.1)", "--border2": "rgba(212,168,83,0.2)",
-    "--text": "#f0e8d8", "--muted": "rgba(200,185,160,0.45)",
-    "--amber": "#d4a853", "--amber-dim": "rgba(212,168,83,0.12)", "--amber-dim2": "rgba(212,168,83,0.22)",
-    "--green": "#5dba7e", "--green-dim": "rgba(93,186,126,0.12)",
-  },
 };
 
 function setTheme(name) {
@@ -661,7 +654,6 @@ const PALETTE_ITEMS = [
   { id: 'theme-midnight',label: 'Theme: midnight',      sub: 'deep blue',            icon: 'moon',       tag: 'theme', action: () => setThemeAndPersist('midnight') },
   { id: 'theme-orange',  label: 'Theme: orange',        sub: 'warm amber',           icon: 'sun',        tag: 'theme', action: () => setThemeAndPersist('orange') },
   { id: 'theme-rose',    label: 'Theme: rose',          sub: 'soft pink',            icon: 'flower',     tag: 'theme', action: () => setThemeAndPersist('rose') },
-  { id: 'theme-nujabes', label: 'Theme: nujabes',       sub: 'luv (sic) vibes',       icon: 'music',      tag: 'theme', action: () => setThemeAndPersist('nujabes') },
   { id: 'theme-red',     label: 'Theme: red',           sub: '',                     icon: 'circle',     tag: 'theme', action: () => setThemeAndPersist('red') },
   { id: 'theme-blue',    label: 'Theme: blue',          sub: '',                     icon: 'circle',     tag: 'theme', action: () => setThemeAndPersist('blue') },
   { id: 'theme-green',   label: 'Theme: green',         sub: '',                     icon: 'circle',     tag: 'theme', action: () => setThemeAndPersist('green') },
@@ -765,7 +757,7 @@ function toggleShortcuts(force) {
 
 const TAB_BY_KEY = { '1': 'home', '2': 'projects', '3': 'about', '4': 'friends' };
 const VIM_TAB    = { 'h': 'home', 'a': 'about', 'p': 'projects', 'f': 'friends' };
-const THEME_CYCLE = ['pfp','midnight','orange','red','blue','green','purple','pink','cyan','rose','nujabes'];
+const THEME_CYCLE = ['pfp','midnight','orange','red','blue','green','purple','pink','cyan','rose'];
 
 let vimPending = false, vimTimer = null;
 window.addEventListener('keydown', (e) => {
