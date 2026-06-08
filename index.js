@@ -233,10 +233,10 @@ const CLIENT_STUDIO_GITHUB = "https://github.com/aidenhub/evren";
 const projectData = {
   "adam.dev   this site": {
     lang: "// html · css · js · node",
-    intro: "The portfolio you're looking at   designed, built, and deployed by me.",
+    intro: "The portfolio you're looking at, designed, built, and deployed by me.",
     description: "A hand-coded personal site with no page framework, focused on personality and performance. It pairs a static, animated frontend (boot sequence, command palette, live Discord status, easter eggs) with a real Node/Express + SQLite backend powering a persistent guestbook. Visitors sign in with Discord (OAuth2) to post; messages are stored permanently in a database and moderated through an admin-only API where authorization is enforced server-side   never in the browser.",
-    images: ["images/showcase-1.png", "images/showcase-2.png"],
-    action: { href: "https://github.com/aexdm", label: "View on GitHub" },
+    images: ["images/showcase-perso1.png", "images/showcase-perso2.png"],
+    action: { href: "https://github.com/aexdm/angxl.dev.hub", label: "View on GitHub" },
     roadmap: [
       { cat: "Purpose",    title: "Why it exists",        desc: "A living portfolio to impress employers, devs, and visitors.", items: ["Show range: design + frontend + backend", "A personal, memorable web presence", "A playground for ideas & micro-interactions"], status: "done" },
       { cat: "Tech Stack", title: "What it's built with",  desc: "Vanilla frontend, lightweight Node backend.",               items: ["HTML / CSS / vanilla JS (no framework)", "Node.js + Express REST API", "SQLite (better-sqlite3) for persistence", "Discord OAuth2 + httpOnly session cookies"], status: "done" },
@@ -529,7 +529,7 @@ function relativeTime(iso) {
 const BOOT_LINES = [
   ['dim',    '[    0.000000] booting adam.dev kernel v3.17 ...',                240],
   ['',       '[    0.0123] checking memory ........... <span class="ok">OK</span> 16gb',                170],
-  ['',       '[    0.0211] verifying display ........... <span class="ok">2560×1440 @ 144hz</span>', 170],
+  ['',       '[    0.0211] verifying display ........... <span class="ok">1920×1080 @ 240hz</span>', 170],
   ['',       '[    0.0341] mounting /home/adam ....... <span class="ok">OK</span>',                 85],
   ['',       '[    0.0428] mounting /dev/projects ...... <span class="ok">OK</span>',                85],
   ['',       '[    0.0512] loading caffeine module .... <span class="ok">OK</span> <span class="dim">(cold coffee detected)</span>', 100],
