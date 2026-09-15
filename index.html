@@ -1,84 +1,101 @@
 <!DOCTYPE html>
-<html lang="en" data-default-lang="en">
+<html lang="en" data-default-lang="en" data-layout="portfolio-v2">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adam</title>
-  <meta name="description" content="Adam's portfolio. Developer and designer. Personal projects, live dashboard, and more.">
-  <meta name="theme-color" content="#0e0c12">
-  <link rel="stylesheet" href="gate.css">
-  <link rel="stylesheet" href="lang.css">
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Adam — websites, games & little tools</title>
+  <meta name="description" content="I'm Adam, a developer who learns by building. Explore my websites, games, desktop tools, and the work behind them.">
+  <meta name="theme-color" content="#161518">
+  <link rel="stylesheet" href="site.css">
+  <script src="site.js" defer></script>
 </head>
-<body>
-
-  <div class="lang-bar" role="group" aria-label="Language / Langue">
-    <button class="lang-flag" data-lang="en" onclick="setLang('en')" aria-pressed="false" title="English"><svg class="flag" viewBox="0 0 60 30" preserveAspectRatio="none" aria-hidden="true"><rect width="60" height="30" fill="#012169"/><path d="M0,0 60,30 M60,0 0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 60,30 M60,0 0,30" stroke="#C8102E" stroke-width="3"/><rect x="25" width="10" height="30" fill="#fff"/><rect y="10" width="60" height="10" fill="#fff"/><rect x="27" width="6" height="30" fill="#C8102E"/><rect y="12" width="60" height="6" fill="#C8102E"/></svg><span class="lang-code">EN</span></button>
-    <button class="lang-flag" data-lang="fr" onclick="setLang('fr')" aria-pressed="false" title="Français"><svg class="flag" viewBox="0 0 3 2" preserveAspectRatio="none" aria-hidden="true"><rect width="3" height="2" fill="#fff"/><rect width="1" height="2" fill="#0055A4"/><rect x="2" width="1" height="2" fill="#EF4135"/></svg><span class="lang-code">FR</span></button>
-  </div>
-
-  <canvas id="gateStars"></canvas>
-
-  <main class="gate-wrap">
-    <div class="gate-eyebrow" data-i18n="gate.eyebrow">Welcome</div>
-    <h1 class="gate-title">Adam<span>.</span></h1>
-    <p class="gate-sub" data-i18n="gate.sub">Developer &amp; designer.</p>
-    <p class="gate-prompt" data-i18n="gate.prompt">Choose your space</p>
-
-    <div class="gate-cards">
-      <a class="gate-card gate-card--pro" href="https://adamchettouh.fr/pro.html" id="cardPro">
-        <span class="gate-card-icon"><i data-lucide="briefcase"></i></span>
-        <span class="gate-badge" data-i18n="gate.pro.badge">For recruiters</span>
-        <span class="gate-card-title" data-i18n="gate.pro.title">Recruiters' Space</span>
-        <span class="gate-card-desc" data-i18n="gate.pro.desc">Professional profile: CV, skills and projects.</span>
-        <span class="gate-cta" data-i18n="gate.pro.cta">View the pro profile</span>
-      </a>
-
-      <a class="gate-card gate-card--perso" href="https://angxl.pages.dev/perso.html" id="cardPerso">
-        <span class="gate-card-icon"><i data-lucide="sparkles"></i></span>
-        <span class="gate-badge" data-i18n="gate.perso.badge">Personal version</span>
-        <span class="gate-card-title" data-i18n="gate.perso.title">Personal Site</span>
-        <span class="gate-card-desc" data-i18n="gate.perso.desc">My creative portfolio: personal projects, a live dashboard and experiments. The original version of the site.</span>
-        <span class="gate-cta" data-i18n="gate.perso.cta">Enter</span>
-      </a>
+<body data-page="home">
+  <a class="skip-link" href="#main" data-en="Skip to content" data-fr="Aller au contenu">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="wordmark" href="index.html" aria-label="Aidenhub home">aidenhub<span>.dev</span></a>
+      <nav class="primary-nav" aria-label="Main navigation">
+        <a href="#work" aria-current="page" data-en="Work" data-fr="Projets">Work</a>
+        <a href="perso.html" data-en="About" data-fr="À propos">About</a>
+        <a href="perso.html#guestbook" data-en="Guestbook" data-fr="Livre d’or">Guestbook</a>
+        <a href="pro.html" class="mobile-profile" data-en="Profile ↗" data-fr="Profil ↗">Profile ↗</a>
+      </nav>
+      <div class="header-tools">
+        <div class="language-switch" role="group" aria-label="Language / Langue">
+          <button type="button" data-lang="en" aria-pressed="true" aria-label="English">EN</button>
+          <button type="button" data-lang="fr" aria-pressed="false" aria-label="Français">FR</button>
+        </div>
+      </div>
     </div>
-
-
+  </header>
+  <main id="main" class="wrap">
+    <section class="intro" aria-labelledby="intro-title">
+      <div>
+        <h1 id="intro-title" data-en="Hey, I’m Adam." data-fr="Salut, moi c’est Adam.">Hey, I’m Adam.</h1>
+        <p class="intro-heading" data-en="I build websites, games & useful little tools." data-fr="Je crée des sites, des jeux et des petits outils utiles.">I build websites, games &amp; useful little tools.</p>
+      </div>
+      <div class="intro-bio">
+        <p data-en="Mostly self-taught. I learn by making things, getting stuck, and figuring it out. This is a collection of what I’ve been working on." data-fr="J’apprends surtout en faisant : je construis, je bloque, puis je trouve une solution. Voici quelques projets sur lesquels je travaille.">Mostly self-taught. I learn by making things, getting stuck, and figuring it out. This is a collection of what I’ve been working on.</p>
+        <a href="perso.html" class="inline-link"><span data-en="A little more about me" data-fr="Un peu plus sur moi">A little more about me</span><span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+    <section id="work" aria-labelledby="work-title">
+      <div class="section-heading">
+        <h2 id="work-title" data-en="Selected work" data-fr="Quelques projets">Selected work</h2>
+        <div class="filters" role="group" aria-label="Filter projects" hidden>
+          <button type="button" data-filter="all" aria-pressed="true" data-en="All" data-fr="Tout">All</button>
+          <button type="button" data-filter="web" aria-pressed="false">Web</button>
+          <button type="button" data-filter="games" aria-pressed="false" data-en="Games" data-fr="Jeux">Games</button>
+          <button type="button" data-filter="tools" aria-pressed="false" data-en="Tools" data-fr="Outils">Tools</button>
+        </div>
+      </div>
+      <p id="filter-status" class="sr-only" aria-live="polite"></p>
+      <div class="projects">
+        <article class="project" data-category="games">
+          <a class="project-link" href="https://www.roblox.com/games/132429881613824/ABYSS-WORLD-HOTU" data-project="hotu">
+            <img class="project-image" src="images/hotu1.png" alt="Pink stone towers and platforms in Heart of the Unreturned" data-alt-en="Pink stone towers and platforms in Heart of the Unreturned" data-alt-fr="Tours et plateformes de pierre rose dans Heart of the Unreturned" width="1309" height="770" fetchpriority="high">
+            <div class="project-heading"><span class="project-number">01</span><h3>Heart of the Unreturned</h3><span class="project-arrow" aria-hidden="true">↗</span></div>
+            <p class="project-description" data-en="A parkour world made with a small team. Lots of jumping. Lots of bug fixing." data-fr="Un jeu de parkour créé en petite équipe. Beaucoup de sauts. Et de bugs à corriger.">A parkour world made with a small team. Lots of jumping. Lots of bug fixing.</p>
+          </a>
+          <p class="project-meta"><span>Lua · Roblox</span><span data-en="In progress" data-fr="En cours">In progress</span></p>
+        </article>
+        <article class="project" data-category="web">
+          <a class="project-link" href="https://github.com/aexdm/client-portfolio" data-project="client">
+            <img class="project-image project-image--screen" src="images/showcase-1.png" alt="The client portfolio homepage, with identifying details redacted" data-alt-en="The client portfolio homepage, with identifying details redacted" data-alt-fr="Accueil du portfolio client, avec les informations personnelles masquées" width="1361" height="590" fetchpriority="high">
+            <div class="project-heading"><span class="project-number">02</span><h3>Client Portfolio</h3><span class="project-arrow" aria-hidden="true">↗</span></div>
+            <p class="project-description" data-en="A creative’s portfolio, with a custom CMS so they can make it their own." data-fr="Le portfolio d’un créatif, avec un CMS sur mesure pour le gérer en autonomie.">A creative’s portfolio, with a custom CMS so they can make it their own.</p>
+          </a>
+          <p class="project-meta"><span>PHP · JavaScript · Cloudinary</span><span data-en="Client work" data-fr="Projet client">Client work</span></p>
+        </article>
+        <article class="project" data-category="web">
+          <a class="project-link" href="https://github.com/aexdm/angxl.dev.hub" data-project="site">
+            <img class="project-image project-image--screen" src="images/showcase-perso1.png" alt="An earlier version of Adam’s personal website" data-alt-en="An earlier version of Adam’s personal website" data-alt-fr="Une ancienne version du site personnel d’Adam" width="1919" height="1020" loading="lazy">
+            <div class="project-heading"><span class="project-number">03</span><h3 data-en="This corner of the internet" data-fr="Mon coin d’internet">This corner of the internet</h3><span class="project-arrow" aria-hidden="true">↗</span></div>
+            <p class="project-description" data-en="My ongoing experiment. A portfolio, a guestbook, and a place to try things." data-fr="Mon terrain d’expérimentation : un portfolio, un livre d’or et des idées à tester.">My ongoing experiment. A portfolio, a guestbook, and a place to try things.</p>
+          </a>
+          <p class="project-meta"><span>HTML · CSS · JavaScript · SQLite</span><span data-en="Earlier version pictured" data-fr="Ancienne version à l’image">Earlier version pictured</span></p>
+        </article>
+        <article class="project" data-category="tools">
+          <a class="project-link" href="images/panic-1.png" data-project="seraph">
+            <img class="project-image" src="images/panic-1.png" alt="Red and white illustrated cover artwork used for Seraph" data-alt-en="Red and white illustrated cover artwork used for Seraph" data-alt-fr="Illustration de couverture rouge et blanche du projet Seraph" width="1672" height="941" loading="lazy">
+            <div class="project-heading"><span class="project-number">04</span><h3>Seraph</h3><span class="project-arrow" aria-hidden="true">↗</span></div>
+            <p class="project-description" data-en="A hotkey to switch gears. Desktop profiles for work, focus, and everything else." data-fr="Un raccourci pour changer de rythme. Des profils Windows pour travailler ou déconnecter.">A hotkey to switch gears. Desktop profiles for work, focus, and everything else.</p>
+          </a>
+          <p class="project-meta"><span>Python · Flask · Windows</span><span data-en="Personal tool" data-fr="Outil personnel">Personal tool</span></p>
+        </article>
+        <article class="project project--text" data-category="tools">
+          <a class="project-link" href="https://github.com/aexdm/nigbot" data-project="bot">
+            <div class="project-heading"><span class="project-number">05</span><h3>Utility Bot</h3><span class="project-arrow" aria-hidden="true">↗</span></div>
+            <p class="project-description" data-en="Small Python automations for the things I don’t want to do by hand." data-fr="De petites automatisations Python pour les tâches que je préfère ne pas faire à la main.">Small Python automations for the things I don’t want to do by hand.</p>
+          </a>
+        </article>
+      </div>
+    </section>
+    <section class="contact-strip" aria-labelledby="contact-title">
+      <div><h2 id="contact-title" data-en="Say hello." data-fr="On discute ?">Say hello.</h2><p data-en="A project, a question, or just something cool you found." data-fr="Un projet, une question ou juste un truc sympa à partager.">A project, a question, or just something cool you found.</p></div>
+      <div class="contact-links"><a class="inline-link" href="mailto:adamchettouh63@gmail.com">Email ↗</a><a class="inline-link" href="https://github.com/aexdm" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a class="inline-link" href="https://discord.com/users/853310319002517524" target="_blank" rel="noopener noreferrer">Discord ↗</a></div>
+    </section>
   </main>
-
-  <script>
-  window.I18N = {
-    "gate.eyebrow":     { en: "Welcome", fr: "Bienvenue" },
-    "gate.prompt":      { en: "Choose your space", fr: "Choisissez votre espace" },
-    "gate.sub":         { en: "Developer & designer pick where to go.", fr: "Développeur & designer choisissez votre espace." },
-    "gate.pro.badge":   { en: "For recruiters", fr: "Pour les recruteurs" },
-    "gate.pro.title":   { en: "Recruiters' Space", fr: "Espace Recruteurs" },
-    "gate.pro.desc":    { en: "Professional profile: CV, skills and projects.", fr: "Profil professionnel : CV, compétences et projets." },
-    "gate.pro.cta":     { en: "View the pro profile", fr: "Voir le profil pro" },
-    "gate.perso.badge": { en: "Personal version", fr: "Version perso" },
-    "gate.perso.title": { en: "Personal Site", fr: "Site Personnel" },
-    "gate.perso.desc":  { en: "My creative portfolio: personal projects, a live dashboard and experiments. The original version of the site.", fr: "Mon portfolio créatif : projets persos, dashboard live et expérimentations. La version originale du site." },
-    "gate.perso.cta":   { en: "Enter", fr: "Entrer" }
-  };
-  </script>
-  <script src="lang.js"></script>
-  <script>
-  lucide.createIcons();
-  document.addEventListener('langchange', function(){ if (window.lucide) lucide.createIcons(); });
-
-  (function(){
-    var c = document.getElementById('gateStars'), x = c.getContext('2d'), stars = [];
-    function resize(){ c.width = innerWidth; c.height = innerHeight; }
-    resize(); addEventListener('resize', resize);
-    for (var i=0;i<70;i++) stars.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.6+0.3,a:Math.random(),s:Math.random()*0.02+0.004});
-    function tick(){
-      x.clearRect(0,0,c.width,c.height);
-      for (var i=0;i<stars.length;i++){ var st=stars[i]; st.a+=st.s; var o=0.3+0.5*Math.abs(Math.sin(st.a));
-        x.beginPath(); x.arc(st.x,st.y,st.r,0,7); x.fillStyle='rgba(216,196,255,'+o+')'; x.fill(); }
-      requestAnimationFrame(tick);
-    }
-    tick();
-  })();
-  </script>
+  <footer class="site-footer"><div class="wrap footer-inner"><p data-en="Adam, also known as Aiden." data-fr="Adam, aussi connu sous le nom d’Aiden.">Adam, also known as Aiden.</p><div class="footer-actions"><a href="pro.html" data-en="For recruiters ↗" data-fr="Pour les recruteurs ↗">For recruiters ↗</a><button type="button" data-command-open hidden><span data-en="Go to" data-fr="Aller à">Go to</span> <kbd>Ctrl K</kbd></button><button type="button" data-theme-toggle hidden>Light theme</button></div></div></footer>
 </body>
 </html>

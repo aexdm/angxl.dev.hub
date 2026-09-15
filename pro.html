@@ -1,241 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" data-default-lang="en">
+<html lang="en" data-default-lang="en" data-layout="portfolio-v2">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adam</title>
-  <meta name="description" content="Adam, full-stack developer. Skills, projects and contact.">
-  <meta name="theme-color" content="#0e0c12">
-  <link rel="stylesheet" href="pro.css">
-  <link rel="stylesheet" href="lang.css">
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Adam — developer profile</title>
+  <meta name="description" content="Adam's developer profile: web development, Python tools, Lua game projects, technical skills, and contact details.">
+  <meta name="theme-color" content="#161518">
+  <link rel="stylesheet" href="site.css">
+  <script src="site.js" defer></script>
 </head>
-<body>
-
-  <div class="lang-bar" role="group" aria-label="Language / Langue">
-    <button class="lang-flag" data-lang="en" onclick="setLang('en')" aria-pressed="false" title="English"><svg class="flag" viewBox="0 0 60 30" preserveAspectRatio="none" aria-hidden="true"><rect width="60" height="30" fill="#012169"/><path d="M0,0 60,30 M60,0 0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 60,30 M60,0 0,30" stroke="#C8102E" stroke-width="3"/><rect x="25" width="10" height="30" fill="#fff"/><rect y="10" width="60" height="10" fill="#fff"/><rect x="27" width="6" height="30" fill="#C8102E"/><rect y="12" width="60" height="6" fill="#C8102E"/></svg><span class="lang-code">EN</span></button>
-    <button class="lang-flag" data-lang="fr" onclick="setLang('fr')" aria-pressed="false" title="Français"><svg class="flag" viewBox="0 0 3 2" preserveAspectRatio="none" aria-hidden="true"><rect width="3" height="2" fill="#fff"/><rect width="1" height="2" fill="#0055A4"/><rect x="2" width="1" height="2" fill="#EF4135"/></svg><span class="lang-code">FR</span></button>
-  </div>
-
-  <header class="nav">
-    <div class="nav-inner">
-      <a href="index.html" class="nav-logo">Adam<span>.</span></a>
-      <nav class="nav-links">
-        <a href="#profil"      data-i18n="nav.about">About</a>
-        <a href="#competences" data-i18n="nav.skills">Skills</a>
-        <a href="#projets"     data-i18n="nav.projects">Projects</a>
-        <a href="#contact"     data-i18n="nav.contact">Contact</a>
-      </nav>
-      <div class="nav-cta">
-        <a class="btn btn-ghost" id="persoLink" href="perso.html" data-i18n="nav.perso">Personal site</a>
-        <a class="btn btn-primary" href="#contact" data-i18n="nav.hire">Get in touch</a>
-      </div>
-    </div>
-  </header>
-
-  <section class="hero" style="border-top:none">
-    <div class="wrap">
-      <h1><span data-i18n="hero.hello">Hi, I'm</span> <span>Adam</span>.</h1>
-      <div class="hero-role" data-i18n="hero.role">Full-stack developer student</div>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#contact" data-i18n="hero.cta1">Get in touch</a>
-        <a class="btn btn-ghost" href="#projets" data-i18n="hero.cta2">See my projects</a>
-        <a class="btn btn-ghost" href="https://github.com/aexdm" target="_blank" rel="noopener">GitHub</a>
-      </div>
-
-    </div>
-  </section>
-
-  <section id="competences">
-    <div class="wrap">
-      <div class="sec-eyebrow" data-i18n="skills.eyebrow">Skills</div>
-      <h2 class="sec-title" data-i18n="skills.title">Technical skills</h2>
-      <div class="skills-grid">
-        <div class="skill-card">
-          <h3 data-i18n="skills.lang">Languages</h3>
-          <div class="chips"><span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">PHP</span><span class="chip">Lua</span><span class="chip">SQL</span><span class="chip">TypeScript <em data-i18n="skills.learning">(learning)</em></span></div>
-        </div>
-        <div class="skill-card">
-          <h3 data-i18n="skills.web">Web & back-end</h3>
-          <div class="chips"><span class="chip">HTML / CSS</span><span class="chip">Node · Express</span><span class="chip">SQLite</span><span class="chip">REST API</span><span class="chip">OAuth / Auth</span></div>
-        </div>
-        <div class="skill-card">
-          <h3 data-i18n="skills.tools">Tools</h3>
-          <div class="chips"><span class="chip">Git · GitHub</span><span class="chip">VS Code</span><span class="chip">Linux / WSL</span><span class="chip">Terminal</span></div>
-        </div>
-        <div class="skill-card">
-          <h3 data-i18n="skills.design">Design & more</h3>
-          <div class="chips"><span class="chip">Figma</span><span class="chip">Krita</span><span class="chip" data-i18n="skills.ui">UI / UX</span><span class="chip" data-i18n="skills.team">Teamwork</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="projets">
-    <div class="wrap">
-      <div class="sec-eyebrow" data-i18n="proj.eyebrow">Projects</div>
-      <h2 class="sec-title" data-i18n="proj.title">What I've built</h2>
-      <div class="proj-grid">
-
-        <a class="proj-card" href="https://github.com/aexdm" target="_blank" rel="noopener">
-          <div class="proj-top"><span class="proj-tag">web · full-stack</span><span class="proj-state proj-state--live" data-i18n="proj.live">live</span></div>
-          <h3 data-i18n="proj.p1.t">adam.dev portfolio</h3>
-          <p data-i18n="proj.p1.d">Hand-built portfolio with a live dashboard, command palette and a real back-end: SQLite guestbook, Discord authentication (OAuth) and admin moderation.</p>
-          <div class="proj-stack"><span>HTML/CSS/JS</span><span>Node · Express</span><span>SQLite</span><span>OAuth</span></div>
-        </a>
-
-        <a class="proj-card" href="https://github.com/aexdm/client-portfolio" target="_blank" rel="noopener">
-          <div class="proj-top"><span class="proj-tag">web · php</span><span class="proj-state proj-state--live" data-i18n="proj.live">live</span></div>
-          <h3 data-i18n="proj.p2.t">Client Portfolio</h3>
-          <p data-i18n="proj.p2.d">Portfolio showcase with a custom CMS, a project gallery and an admin panel.</p>
-          <div class="proj-stack"><span>PHP</span><span>CMS</span><span>MySQL</span></div>
-        </a>
-
-        <a class="proj-card" href="https://github.com/aexdm/nigbot" target="_blank" rel="noopener">
-          <div class="proj-top"><span class="proj-tag">automation</span><span class="proj-state proj-state--live" data-i18n="proj.live">live</span></div>
-          <h3 data-i18n="proj.p3.t">Utility Bot</h3>
-          <p data-i18n="proj.p3.d">Automation bot: scheduled maintenance, moderation helpers and small config-driven workflows.</p>
-          <div class="proj-stack"><span>Python</span><span>API</span><span>Cron</span></div>
-        </a>
-
-        <a class="proj-card" href="https://www.roblox.com/games/132429881613824/ABYSS-WORLD-HOTU" target="_blank" rel="noopener">
-          <div class="proj-top"><span class="proj-tag">game · lua</span><span class="proj-state proj-state--wip" data-i18n="proj.wip">in progress</span></div>
-          <h3 data-i18n="proj.p4.t">Heart of the Unreturned</h3>
-          <p data-i18n="proj.p4.d">A parkour game built with a team: momentum systems, hand-tuned movement and multi-zone maps.</p>
-          <div class="proj-stack"><span>Lua</span><span>Roblox</span><span data-i18n="proj.teamwork">Teamwork</span></div>
-        </a>
-
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="wrap">
-      <div class="sec-eyebrow" data-i18n="contact.eyebrow">Contact</div>
-      <h2 class="sec-title" data-i18n="contact.title">Let's work together</h2>
-
-      <div class="contact-grid">
-        <a class="contact-card" id="emailCard" href="mailto:adamchettouh63@gmail.com">
-          <span class="contact-ic"><i data-lucide="mail"></i></span>
-          <span><span class="contact-k" data-i18n="contact.email">Email</span><br><span class="contact-v">adamchettouh63@gmail.com</span></span>
-        </a>
-        <a class="contact-card" href="https://github.com/aexdm" target="_blank" rel="noopener">
-          <span class="contact-ic"><i data-lucide="github"></i></span>
-          <span><span class="contact-k">GitHub</span><br><span class="contact-v">aexdm</span></span>
-        </a>
-        <a class="contact-card" href="https://discord.com/users/853310319002517524" target="_blank" rel="noopener">
-          <span class="contact-ic"><i data-lucide="message-circle"></i></span>
-          <span><span class="contact-k">Discord</span><br><span class="contact-v">@aexdm</span></span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <footer class="foot">
-    <div class="wrap">
-      <p><a href="index.html" data-i18n="foot.back">Back to home</a> · <a id="footPerso" href="perso.html" data-i18n="foot.perso">View the personal site</a></p>
-    </div>
-  </footer>
-
-  <script>
-  window.I18N = {
-    "nav.about":    { en:"About", fr:"Profil" },
-    "nav.skills":   { en:"Skills", fr:"Compétences" },
-    "nav.projects": { en:"Projects", fr:"Projets" },
-    "nav.contact":  { en:"Contact", fr:"Contact" },
-    "nav.perso":    { en:"Personal site", fr:"Site perso" },
-    "nav.hire":     { en:"Get in touch", fr:"Me contacter" },
-
-    "hero.hello":     { en:"Hi, I'm", fr:"Bonjour, je suis" },
-    "hero.role":      { en:"Full-stack developer student", fr:"Étudiant développeur full-stack" },
-    "hero.cta1":      { en:"Get in touch", fr:"Me contacter" },
-    "hero.cta2":      { en:"See my projects", fr:"Voir mes projets" },
-
-    "skills.eyebrow":  { en:"Skills", fr:"Compétences" },
-    "skills.title":    { en:"Technical skills", fr:"Compétences techniques" },
-    "skills.lang":     { en:"Languages", fr:"Langages" },
-    "skills.learning": { en:"(learning)", fr:"(en cours)" },
-    "skills.web":      { en:"Web & back-end", fr:"Web & back-end" },
-    "skills.tools":    { en:"Tools", fr:"Outils" },
-    "skills.design":   { en:"Design & more", fr:"Design & autres" },
-    "skills.ui":       { en:"UI / UX", fr:"UI / UX" },
-    "skills.team":     { en:"Teamwork", fr:"Travail en équipe" },
-
-    "proj.eyebrow":  { en:"Projects", fr:"Projets" },
-    "proj.title":    { en:"What I've built", fr:"Ce que j'ai construit" },
-    "proj.live":     { en:"live", fr:"en ligne" },
-    "proj.wip":      { en:"in progress", fr:"en cours" },
-    "proj.teamwork": { en:"Teamwork", fr:"Travail d'équipe" },
-    "proj.p1.t":     { en:"adam.dev portfolio", fr:"Portfolio adam.dev" },
-    "proj.p1.d":     { en:"Hand-built portfolio with a live dashboard, command palette and a real back-end: SQLite guestbook, Discord authentication (OAuth) and admin moderation.",
-                       fr:"Portfolio fait main avec dashboard en temps réel, palette de commandes et un vrai back-end : livre d'or SQLite, authentification Discord (OAuth) et modération admin." },
-    "proj.p2.t":     { en:"Client Portfolio", fr:"Client Portfolio" },
-    "proj.p2.d":     { en:"Portfolio showcase with a custom CMS, a project gallery and an admin panel.",
-                       fr:"Vitrine de portfolio avec un CMS sur-mesure, une galerie de projets et un panneau d'administration." },
-    "proj.p3.t":     { en:"Utility Bot", fr:"Utility Bot" },
-    "proj.p3.d":     { en:"Automation bot: scheduled maintenance, moderation helpers and small config-driven workflows.",
-                       fr:"Bot d'automatisation : maintenance planifiée, aides à la modération et petits workflows pilotés par configuration." },
-    "proj.p4.t":     { en:"Heart of the Unreturned", fr:"Heart of the Unreturned" },
-    "proj.p4.d":     { en:"A parkour game built with a team: momentum systems, hand-tuned movement and multi-zone maps.",
-                       fr:"Jeu de parkour développé en équipe : systèmes de momentum, mouvement réglé à la main et cartes multi-zones." },
-
-    "contact.eyebrow": { en:"Contact", fr:"Contact" },
-    "contact.title":   { en:"Let's work together", fr:"Travaillons ensemble" },
-    "contact.email":   { en:"Email", fr:"E-mail" },
-
-    "foot.back":  { en:"Back to home", fr:"Retour à l'accueil" },
-    "foot.perso": { en:"View the personal site", fr:"Voir le site perso" }
-  };
-  </script>
-  <script src="lang.js"></script>
-  <script>
-  lucide.createIcons();
-  document.addEventListener('langchange', function(){ if (window.lucide) lucide.createIcons(); });
-  ['persoLink','footPerso'].forEach(function(id){
-    var el = document.getElementById(id);
-    if (el) el.addEventListener('click', function(e){ e.currentTarget.href = window.langHref('perso.html'); });
-  });
-
-  (function(){
-    var DISCORD_ID = "853310319002517524";
-    function applyPfp(src){
-      var img = new Image(); img.crossOrigin = "anonymous";
-      img.onload = function(){
-        try{
-          var cv = document.createElement("canvas"), s = 64;
-          cv.width = s; cv.height = s;
-          var ctx = cv.getContext("2d"); ctx.drawImage(img,0,0,s,s);
-          var d = ctx.getImageData(0,0,s,s).data, r=0,g=0,b=0,n=0;
-          for (var i=0;i<d.length;i+=4){ if (d[i+3]<128) continue; r+=d[i]; g+=d[i+1]; b+=d[i+2]; n++; }
-          if (!n) return;
-          r=Math.round(r/n); g=Math.round(g/n); b=Math.round(b/n);
-          var accent = "rgb("+Math.min(255,r+40)+","+Math.min(255,g+40)+","+Math.min(255,b+40)+")";
-          var dk = function(v,f){ return Math.max(0, Math.round(v*f)); };
-          var rs = document.documentElement.style;
-          rs.setProperty("--amber", accent);
-          rs.setProperty("--amber-soft",   "rgba("+r+","+g+","+b+",0.16)");
-          rs.setProperty("--amber-border", "rgba("+r+","+g+","+b+",0.5)");
-          rs.setProperty("--bg",    "rgb("+dk(r,0.10)+","+dk(g,0.10)+","+dk(b,0.10)+")");
-          rs.setProperty("--panel", "rgb("+dk(r,0.16)+","+dk(g,0.16)+","+dk(b,0.16)+")");
-          rs.setProperty("--glow",  "rgba("+r+","+g+","+b+",0.40)");
-          rs.setProperty("--line",  "rgba("+r+","+g+","+b+",0.18)");
-          rs.setProperty("--lang-active-bg",     "rgba("+r+","+g+","+b+",0.22)");
-          rs.setProperty("--lang-active-border", accent);
-        } catch(e){}
-      };
-      img.src = src;
-    }
-    fetch("https://api.lanyard.rest/v1/users/"+DISCORD_ID)
-      .then(function(r){ return r.json(); })
-      .then(function(j){
-        if (!j || !j.success || !j.data || !j.data.discord_user) return;
-        var u = j.data.discord_user, hash = u.avatar;
-        if (!hash) return;
-        var ext = hash.indexOf("a_")===0 ? "gif" : "png";
-        applyPfp("https://cdn.discordapp.com/avatars/"+u.id+"/"+hash+"."+ext+"?size=256");
-      })
-      .catch(function(){});
-  })();
-  </script>
+<body data-page="profile">
+  <a class="skip-link" href="#main" data-en="Skip to content" data-fr="Aller au contenu">Skip to content</a>
+  <header class="site-header"><div class="wrap header-inner">
+    <a class="wordmark" href="index.html" aria-label="Aidenhub home">aidenhub<span>.dev</span></a>
+    <nav class="primary-nav" aria-label="Main navigation"><a href="index.html#work" data-en="Work" data-fr="Projets">Work</a><a href="perso.html" data-en="About" data-fr="À propos">About</a><a href="perso.html#guestbook" data-en="Guestbook" data-fr="Livre d’or">Guestbook</a><a href="pro.html" aria-current="page" data-en="Profile ↗" data-fr="Profil ↗">Profile ↗</a></nav>
+    <div class="header-tools"><div class="language-switch" role="group" aria-label="Language / Langue"><button type="button" data-lang="en" aria-pressed="true" aria-label="English">EN</button><button type="button" data-lang="fr" aria-pressed="false" aria-label="Français">FR</button></div></div>
+  </div></header>
+  <main class="wrap profile-bottom" id="main">
+    <div class="page-top"><a href="index.html" data-en="← Back to the work" data-fr="← Retour aux projets">← Back to the work</a></div>
+    <section class="profile-intro" aria-labelledby="profile-title"><div><h1 class="page-title" id="profile-title">Adam</h1><p class="page-lead" data-en="Full-stack development student" data-fr="Étudiant développeur full-stack">Full-stack development student</p></div><div class="profile-actions"><a class="button button--primary" href="mailto:adamchettouh63@gmail.com" data-en="Get in touch ↗" data-fr="Me contacter ↗">Get in touch ↗</a><button class="button" type="button" data-print hidden data-en="Print profile" data-fr="Imprimer le profil">Print profile</button></div></section>
+    <section class="profile-section" id="profil" aria-labelledby="summary-title"><h2 id="summary-title" data-en="A short introduction" data-fr="En quelques mots">A short introduction</h2><div class="profile-summary"><p data-en="I build web applications, small automation tools, and game systems. My work covers the interface and the parts behind it: authentication, content management, APIs, and persistent data." data-fr="Je développe des applications web, des outils d’automatisation et des systèmes de jeu. Je travaille sur les interfaces comme sur le back-end : authentification, gestion de contenu, API et stockage de données.">I build web applications, small automation tools, and game systems. My work covers the interface and the parts behind it: authentication, content management, APIs, and persistent data.</p><p data-en="I learn through hands-on projects, work with other developers, and care about making software understandable and useful. I’m open to discussing projects and collaborations." data-fr="J’apprends grâce à des projets concrets, je travaille avec d’autres développeurs et je cherche à créer des logiciels compréhensibles et utiles. Je suis ouvert aux projets et aux collaborations.">I learn through hands-on projects, work with other developers, and care about making software understandable and useful. I’m open to discussing projects and collaborations.</p></div></section>
+    <section class="profile-section" id="competences" aria-labelledby="skills-title"><h2 id="skills-title" data-en="Technical skills" data-fr="Compétences techniques">Technical skills</h2><div class="skills-list"><div><h3 data-en="Languages" data-fr="Langages">Languages</h3><p>JavaScript · Python<br>PHP · Lua · SQL<br><span data-en="Learning TypeScript & C#" data-fr="Apprentissage de TypeScript et C#">Learning TypeScript &amp; C#</span></p></div><div><h3>Web &amp; back-end</h3><p>HTML · CSS<br>Node.js · Express · SQLite<br>REST APIs · OAuth</p></div><div><h3 data-en="Tools & collaboration" data-fr="Outils et collaboration">Tools &amp; collaboration</h3><p>Git · GitHub · VS Code<br>Linux · WSL<br>Figma · Krita</p></div></div></section>
+    <section class="profile-section" id="projets" aria-labelledby="projects-title"><h2 id="projects-title" data-en="Project experience" data-fr="Expérience par les projets">Project experience</h2><div class="work-list">
+      <article class="work-item"><a href="https://github.com/aexdm/client-portfolio" data-project="client" aria-label="Client Portfolio details"><img src="images/showcase-1.png" alt="Client Portfolio homepage" width="100" height="77" loading="lazy"></a><div><h3><a href="https://github.com/aexdm/client-portfolio" data-project="client">Client Portfolio ↗</a></h3><p data-en="Built a portfolio and custom CMS for a creative client. Includes an authenticated admin panel, project and media management, and Cloudinary integration." data-fr="Création d’un portfolio et d’un CMS sur mesure pour un client créatif. Administration authentifiée, gestion des projets et des médias, intégration Cloudinary.">Built a portfolio and custom CMS for a creative client. Includes an authenticated admin panel, project and media management, and Cloudinary integration.</p><p class="work-tech">PHP · JavaScript · Cloudinary</p></div></article>
+      <article class="work-item"><a href="https://github.com/aexdm/angxl.dev.hub" data-project="site" aria-label="Personal website details"><img src="images/showcase-perso1.png" alt="Earlier personal website design" width="100" height="77" loading="lazy"></a><div><h3><a href="https://github.com/aexdm/angxl.dev.hub" data-project="site" data-en="Personal website ↗" data-fr="Site personnel ↗">Personal website ↗</a></h3><p data-en="Designed and developed this portfolio, with a persistent guestbook, Discord sign-in, admin moderation, and live activity. The current repository uses Cloudflare Pages Functions with a SQLite-compatible D1 database." data-fr="Conception et développement de ce portfolio : livre d’or persistant, connexion Discord, modération et activité en direct. Le dépôt actuel utilise Cloudflare Pages Functions et une base D1 compatible SQLite.">Designed and developed this portfolio, with a persistent guestbook, Discord sign-in, admin moderation, and live activity. The current repository uses Cloudflare Pages Functions with a SQLite-compatible D1 database.</p><p class="work-tech">HTML · CSS · JavaScript · Cloudflare D1 · Discord OAuth</p></div></article>
+      <article class="work-item"><a href="https://www.roblox.com/games/132429881613824/ABYSS-WORLD-HOTU" data-project="hotu" aria-label="Heart of the Unreturned details"><img src="images/hotu1.png" alt="Heart of the Unreturned game world" width="100" height="77" loading="lazy"></a><div><h3><a href="https://www.roblox.com/games/132429881613824/ABYSS-WORLD-HOTU" data-project="hotu">Heart of the Unreturned ↗</a></h3><p data-en="Contributed to a team-built Roblox parkour game inspired by Abyss World. My contribution focused mainly on bug fixes. The game includes momentum-based movement and multi-zone maps." data-fr="Participation à un jeu de parkour Roblox en équipe, inspiré d’Abyss World. Ma contribution porte surtout sur la correction de bugs. Le jeu propose un système d’élan et plusieurs zones.">Contributed to a team-built Roblox parkour game inspired by Abyss World. My contribution focused mainly on bug fixes. The game includes momentum-based movement and multi-zone maps.</p><p class="work-tech">Lua · Roblox · <span data-en="Team project, in progress" data-fr="Projet en équipe, en cours">Team project, in progress</span></p></div></article>
+      <article class="work-item work-item--text"><div><h3><a href="images/panic-1.png" data-project="seraph">Seraph ↗</a></h3><p data-en="A Windows utility for switching between work, focus, and personal desktop profiles using hotkeys or voice commands." data-fr="Un outil Windows pour passer entre des profils de travail, de concentration et de détente avec des raccourcis ou la voix.">A Windows utility for switching between work, focus, and personal desktop profiles using hotkeys or voice commands.</p><p class="work-tech">Python · Flask · Windows</p></div></article>
+      <article class="work-item work-item--text"><div><h3><a href="https://github.com/aexdm/nigbot" data-project="bot">Utility Bot ↗</a></h3><p data-en="Config-driven Python automations for scheduled maintenance and moderation tasks." data-fr="Automatisations Python configurables pour la maintenance planifiée et les tâches de modération.">Config-driven Python automations for scheduled maintenance and moderation tasks.</p><p class="work-tech">Python · APIs · <span data-en="Scheduled tasks" data-fr="Tâches planifiées">Scheduled tasks</span></p></div></article>
+    </div></section>
+    <section class="profile-section" id="contact" aria-labelledby="profile-contact-title"><h2 id="profile-contact-title">Contact</h2><dl class="contact-details"><div><dt>Email</dt><dd><a href="mailto:adamchettouh63@gmail.com">adamchettouh63@gmail.com ↗</a></dd></div><div><dt>GitHub</dt><dd><a href="https://github.com/aexdm" target="_blank" rel="noopener noreferrer">github.com/aexdm ↗</a></dd></div><div><dt>Discord</dt><dd><a href="https://discord.com/users/853310319002517524" target="_blank" rel="noopener noreferrer">@aexdm ↗</a></dd></div></dl></section>
+  </main>
+  <footer class="site-footer"><div class="wrap footer-inner"><p data-en="Adam, also known as Aiden." data-fr="Adam, aussi connu sous le nom d’Aiden.">Adam, also known as Aiden.</p><div class="footer-actions"><a href="perso.html" data-en="The personal side ↗" data-fr="Le côté personnel ↗">The personal side ↗</a><button type="button" data-command-open hidden><span data-en="Go to" data-fr="Aller à">Go to</span> <kbd>Ctrl K</kbd></button><button type="button" data-theme-toggle hidden>Light theme</button></div></div></footer>
 </body>
 </html>

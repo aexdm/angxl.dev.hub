@@ -6,6 +6,9 @@
   var overrides = {};
 
   function elKey(el) {
+    if (document.documentElement.dataset.layout === 'portfolio-v2') {
+      return el.dataset.editKey ? 'k:' + el.dataset.editKey + ':' + document.documentElement.lang : null;
+    }
     if (el.dataset && el.dataset.editKey) return 'k:' + el.dataset.editKey;
     var parts = [];
     var node = el;
@@ -21,6 +24,13 @@
   }
 
   function findByKey(key) {
+    // Positional overrides from the old layout must never land on unrelated new content.
+    if (document.documentElement.dataset.layout === 'portfolio-v2') {
+      var suffix = ':' + document.documentElement.lang;
+      if (key.indexOf('k:v2-') !== 0 || !key.endsWith(suffix)) return null;
+      try { return document.querySelector('[data-edit-key="' + CSS.escape(key.slice(2, -suffix.length)) + '"]'); }
+      catch (e) { return null; }
+    }
     if (key.indexOf('k:') === 0) {
       try { return document.querySelector('[data-edit-key="' + CSS.escape(key.slice(2)) + '"]'); }
       catch (e) { return null; }
@@ -55,6 +65,7 @@
 
   var EDITABLE = { H1:1,H2:1,H3:1,H4:1,H5:1,H6:1,P:1,SPAN:1,A:1,LI:1,BUTTON:1,STRONG:1,EM:1,SMALL:1,BLOCKQUOTE:1,FIGCAPTION:1,LABEL:1,TD:1,TH:1,DIV:1 };
   function isLeafText(el) {
+    if (document.documentElement.dataset.layout === 'portfolio-v2' && !el.dataset.editKey) return false;
     if (!EDITABLE[el.tagName]) return false;
     if (el.children.length > 0) return false;
     return (el.textContent || '').trim().length > 0;
@@ -75,6 +86,7 @@
 
   function saveEl(el) {
     var key = elKey(el);
+    if (!key) return;
     var value = el.textContent;
     overrides[key] = value;
     fetch(API + '/api/content', {
@@ -164,4 +176,16 @@
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
+  document.addEventListener('langchange', function () {
+    Object.keys(overrides).forEach(function (key) {
+      var target = findByKey(key);
+      if (target) target.textContent = overrides[key];
+    });
+  });
+  document.addEventListener('portfolio:signout', function () {
+    isAdmin = false;
+    setEditing(false);
+    var button = document.getElementById('__ed_btn');
+    if (button) button.remove();
+  });
 })();
