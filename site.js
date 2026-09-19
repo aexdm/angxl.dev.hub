@@ -26,8 +26,8 @@
     location.replace(destination);
     return;
   }
-  if (page === 'home' && ['about', 'now', 'uses', 'friends', 'guestbook'].includes(location.hash.slice(1))) {
-    location.replace(`perso.html?lang=${language}${location.hash}`);
+  if (page === 'home' && ['about', 'now', 'uses', 'friends', 'guestbook', 'work', 'projects'].includes(location.hash.slice(1))) {
+    location.replace(`perso.html?lang=${language}${location.hash === "#work" ? "#projects" : location.hash}`);
     return;
   }
   let activeProject = null;
@@ -147,7 +147,7 @@
       }
     });
     const titles = {
-      home: ['Adam — websites, games & little tools', 'Adam — sites, jeux et petits outils'],
+      home: ['Adam — choose your space', 'Adam — choisis ton espace'],
       personal: ['A little more about Adam — aidenhub.dev', 'Un peu plus sur Adam — aidenhub.dev'],
       profile: ['Adam — developer profile', 'Adam — profil développeur']
     };
@@ -282,13 +282,9 @@
 
   function showPersonalSection(focus = false) {
     if (page !== 'personal') return;
-    const names = ['about', 'now', 'uses', 'friends', 'guestbook'];
+    const names = ['home', 'about', 'projects', 'now', 'uses', 'friends', 'guestbook'];
     const hash = location.hash.slice(1);
-    if (hash === 'projects' || hash === 'home') {
-      location.replace(`index.html?lang=${language}${hash === 'projects' ? '#work' : ''}`);
-      return;
-    }
-    const section = names.includes(hash) ? hash : 'about';
+    const section = names.includes(hash) ? hash : 'home';
     $$('.personal-panel').forEach(panel => { panel.hidden = panel.id !== section; });
     $$('.personal-nav a').forEach(link => {
       if (link.hash === `#${section}`) link.setAttribute('aria-current', 'page');
@@ -567,7 +563,7 @@
 
   function commandItems() {
     return [
-      { label: tr('Selected work', 'Les projets'), key: 'W', run: () => { location.href = `index.html?lang=${language}#work`; } },
+      { label: tr('Selected work', 'Les projets'), key: 'W', run: () => { location.href = `perso.html?lang=${language}#projects`; } },
       { label: tr('About me', 'À propos'), key: 'A', run: () => navigatePersonal('about') },
       { label: tr('What I’m doing now', 'En ce moment'), key: 'N', run: () => navigatePersonal('now') },
       { label: tr('My setup', 'Mon matériel'), key: 'U', run: () => navigatePersonal('uses') },
@@ -711,7 +707,7 @@
       return;
     }
     if (editable || event.ctrlKey || event.metaKey || event.altKey || $('dialog[open]')) return;
-    const actions = { a: () => navigatePersonal('about'), n: () => navigatePersonal('now'), u: () => navigatePersonal('uses'), f: () => navigatePersonal('friends'), g: () => navigatePersonal('guestbook'), w: () => { location.href = `index.html?lang=${language}#work`; }, h: () => { location.href = `index.html?lang=${language}`; }, '?': openShortcuts };
+    const actions = { a: () => navigatePersonal('about'), n: () => navigatePersonal('now'), u: () => navigatePersonal('uses'), f: () => navigatePersonal('friends'), g: () => navigatePersonal('guestbook'), w: () => { location.href = `perso.html?lang=${language}#projects`; }, h: () => { location.href = `index.html?lang=${language}`; }, '?': openShortcuts };
     if (actions[event.key.toLowerCase()]) { event.preventDefault(); actions[event.key.toLowerCase()](); }
   });
 })();

@@ -7,21 +7,99 @@
   <meta name="description" content="The person behind the projects. What I'm working on, the tools I use, and a guestbook to say hello.">
   <meta name="theme-color" content="#161518">
   <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="personal.css">
   <script src="site.js" defer></script>
   <script src="editor.js" defer></script>
 </head>
 <body data-page="personal">
   <a class="skip-link" href="#main" data-en="Skip to content" data-fr="Aller au contenu">Skip to content</a>
-  <header class="site-header"><div class="wrap header-inner">
-    <a class="wordmark" href="index.html" aria-label="Aidenhub home">aidenhub<span>.dev</span></a>
-    <nav class="primary-nav" aria-label="Main navigation"><a href="index.html#work" data-en="Work" data-fr="Projets">Work</a><a href="perso.html" aria-current="page" data-en="About" data-fr="À propos">About</a><a href="#guestbook" data-en="Guestbook" data-fr="Livre d’or">Guestbook</a><a href="pro.html" data-en="Profile ↗" data-fr="Profil ↗">Profile ↗</a></nav>
-    <div class="header-tools"><div class="language-switch" role="group" aria-label="Language / Langue"><button type="button" data-lang="en" aria-pressed="true" aria-label="English">EN</button><button type="button" data-lang="fr" aria-pressed="false" aria-label="Français">FR</button></div></div>
-  </div></header>
-  <main id="main" class="wrap">
-    <div class="page-top"><a href="index.html" data-en="← Back to the work" data-fr="← Retour aux projets">← Back to the work</a></div>
-    <nav class="personal-nav" aria-label="Personal pages"><a href="#about" aria-current="page" data-en="About me" data-fr="À propos">About me</a><a href="#now" data-en="Now" data-fr="En ce moment">Now</a><a href="#uses" data-en="Setup" data-fr="Matériel">Setup</a><a href="#friends" data-en="Friends" data-fr="Amis">Friends</a><a href="#guestbook" data-en="Guestbook" data-fr="Livre d’or">Guestbook</a></nav>
+  <aside class="personal-sidebar">
+    <a class="personal-logo" href="index.html">adam.dev</a>
+    <p class="sidebar-note" data-en="// my corner of the internet" data-fr="// mon coin d’internet">// my corner of the internet</p>
+    <nav class="personal-nav" aria-label="Personal pages">
+      <a href="#home" data-en="home" data-fr="accueil">home</a>
+      <a href="#about" data-en="about" data-fr="à propos">about</a>
+      <a href="#projects" data-en="projects" data-fr="projets">projects</a>
+      <a href="#now" data-en="now" data-fr="en ce moment">now</a>
+      <a href="#friends" data-en="friends" data-fr="amis">friends</a>
+      <a href="#uses" data-en="setup" data-fr="matériel">setup</a>
+      <a href="#guestbook" data-en="guestbook" data-fr="livre d’or">guestbook</a>
+    </nav>
+    <div class="sidebar-bottom">
+      <a href="index.html" data-en="← Back to the lobby" data-fr="← Retour au lobby">← Back to the lobby</a>
+      <a href="pro.html" data-en="Professional profile ↗" data-fr="Profil professionnel ↗">Professional profile ↗</a>
+      <div class="language-switch" role="group" aria-label="Language / Langue"><button type="button" data-lang="en" aria-label="English">EN</button><button type="button" data-lang="fr" aria-label="Français">FR</button></div>
+    </div>
+  </aside>
+  <main id="main" class="wrap personal-main">
+    <section class="personal-panel personal-home" id="home" aria-labelledby="home-title" tabindex="-1">
+      <div class="welcome-terminal">
+        <p class="terminal-bar">adam@portfolio: ~</p>
+        <div class="terminal-content">
+          <p><span class="terminal-prompt">adam@portfolio ~ $</span> ./welcome.sh</p>
+          <dl><div><dt>user</dt><dd>adam <span>(he/him)</span></dd></div><div><dt>code</dt><dd>roblox · js · python</dd></div><div><dt data-en="location" data-fr="lieu">location</dt><dd data-en="the chair, somewhere" data-fr="sur une chaise, quelque part">the chair, somewhere</dd></div><div><dt>status</dt><dd data-presence>Discord status unavailable</dd></div></dl>
+        </div>
+      </div>
+      <h1 id="home-title" class="personal-greeting"><span data-en="Hey," data-fr="Salut,">Hey,</span><br><span data-en="I’m Adam." data-fr="moi c’est Adam.">I’m Adam.</span></h1>
+      <p class="home-note" data-en="I break things, then rebuild them better." data-fr="Je casse des trucs, puis je les reconstruis en mieux.">I break things, then rebuild them better.</p>
+      <div class="home-actions"><a class="button button--primary" href="#projects" data-en="View work →" data-fr="Voir les projets →">View work →</a><a class="inline-link" href="#about" data-en="about me" data-fr="à propos de moi">about me</a></div>
+      <p class="home-postscript" data-en="Games, code, music. Make yourself at home." data-fr="Des jeux, du code, de la musique. Fais comme chez toi.">Games, code, music. Make yourself at home.</p>
+    </section>
+    <section class="personal-panel" id="projects" aria-labelledby="work-title" tabindex="-1">
+      <div class="section-heading">
+        <h2 id="work-title" data-en="Selected work" data-fr="Quelques projets">Selected work</h2>
+        <div class="filters" role="group" aria-label="Filter projects" hidden>
+          <button type="button" data-filter="all" aria-pressed="true" data-en="All" data-fr="Tout">All</button>
+          <button type="button" data-filter="web" aria-pressed="false">Web</button>
+          <button type="button" data-filter="games" aria-pressed="false" data-en="Games" data-fr="Jeux">Games</button>
+          <button type="button" data-filter="tools" aria-pressed="false" data-en="Tools" data-fr="Outils">Tools</button>
+        </div>
+      </div>
+      <p id="filter-status" class="sr-only" aria-live="polite"></p>
+      <div class="projects">
+        <article class="project" data-category="games">
+          <a class="project-link" href="https://www.roblox.com/games/132429881613824/ABYSS-WORLD-HOTU" data-project="hotu">
+            <img class="project-image" src="images/hotu1.png" alt="Pink stone towers and platforms in Heart of the Unreturned" data-alt-en="Pink stone towers and platforms in Heart of the Unreturned" data-alt-fr="Tours et plateformes de pierre rose dans Heart of the Unreturned" width="1309" height="770" fetchpriority="high">
+            <div class="project-heading"><span class="project-number">01</span><h3>Heart of the Unreturned</h3><span class="project-arrow" aria-hidden="true">↗</span></div>
+            <p class="project-description" data-en="A parkour world made with a small team. Lots of jumping. Lots of bug fixing." data-fr="Un jeu de parkour créé en petite équipe. Beaucoup de sauts. Et de bugs à corriger.">A parkour world made with a small team. Lots of jumping. Lots of bug fixing.</p>
+          </a>
+          <p class="project-meta"><span>Lua · Roblox</span><span data-en="In progress" data-fr="En cours">In progress</span></p>
+        </article>
+        <article class="project" data-category="web">
+          <a class="project-link" href="https://github.com/aexdm/client-portfolio" data-project="client">
+            <img class="project-image project-image--screen" src="images/showcase-1.png" alt="The client portfolio homepage, with identifying details redacted" data-alt-en="The client portfolio homepage, with identifying details redacted" data-alt-fr="Accueil du portfolio client, avec les informations personnelles masquées" width="1361" height="590" fetchpriority="high">
+            <div class="project-heading"><span class="project-number">02</span><h3>Client Portfolio</h3><span class="project-arrow" aria-hidden="true">↗</span></div>
+            <p class="project-description" data-en="A creative’s portfolio, with a custom CMS so they can make it their own." data-fr="Le portfolio d’un créatif, avec un CMS sur mesure pour le gérer en autonomie.">A creative’s portfolio, with a custom CMS so they can make it their own.</p>
+          </a>
+          <p class="project-meta"><span>PHP · JavaScript · Cloudinary</span><span data-en="Client work" data-fr="Projet client">Client work</span></p>
+        </article>
+        <article class="project" data-category="web">
+          <a class="project-link" href="https://github.com/aexdm/angxl.dev.hub" data-project="site">
+            <img class="project-image project-image--screen" src="images/showcase-perso1.png" alt="An earlier version of Adam’s personal website" data-alt-en="An earlier version of Adam’s personal website" data-alt-fr="Une ancienne version du site personnel d’Adam" width="1919" height="1020" loading="lazy">
+            <div class="project-heading"><span class="project-number">03</span><h3 data-en="This corner of the internet" data-fr="Mon coin d’internet">This corner of the internet</h3><span class="project-arrow" aria-hidden="true">↗</span></div>
+            <p class="project-description" data-en="My ongoing experiment. A portfolio, a guestbook, and a place to try things." data-fr="Mon terrain d’expérimentation : un portfolio, un livre d’or et des idées à tester.">My ongoing experiment. A portfolio, a guestbook, and a place to try things.</p>
+          </a>
+          <p class="project-meta"><span>HTML · CSS · JavaScript · SQLite</span><span data-en="Earlier version pictured" data-fr="Ancienne version à l’image">Earlier version pictured</span></p>
+        </article>
+        <article class="project" data-category="tools">
+          <a class="project-link" href="images/panic-1.png" data-project="seraph">
+            <img class="project-image" src="images/panic-1.png" alt="Red and white illustrated cover artwork used for Seraph" data-alt-en="Red and white illustrated cover artwork used for Seraph" data-alt-fr="Illustration de couverture rouge et blanche du projet Seraph" width="1672" height="941" loading="lazy">
+            <div class="project-heading"><span class="project-number">04</span><h3>Seraph</h3><span class="project-arrow" aria-hidden="true">↗</span></div>
+            <p class="project-description" data-en="A hotkey to switch gears. Desktop profiles for work, focus, and everything else." data-fr="Un raccourci pour changer de rythme. Des profils Windows pour travailler ou déconnecter.">A hotkey to switch gears. Desktop profiles for work, focus, and everything else.</p>
+          </a>
+          <p class="project-meta"><span>Python · Flask · Windows</span><span data-en="Personal tool" data-fr="Outil personnel">Personal tool</span></p>
+        </article>
+        <article class="project project--text" data-category="tools">
+          <a class="project-link" href="https://github.com/aexdm/nigbot" data-project="bot">
+            <div class="project-heading"><span class="project-number">05</span><h3>Utility Bot</h3><span class="project-arrow" aria-hidden="true">↗</span></div>
+            <p class="project-description" data-en="Small Python automations for the things I don’t want to do by hand." data-fr="De petites automatisations Python pour les tâches que je préfère ne pas faire à la main.">Small Python automations for the things I don’t want to do by hand.</p>
+          </a>
+        </article>
+      </div>
+    </section>
+
     <section class="personal-panel" id="about" aria-labelledby="about-title" tabindex="-1">
-      <h1 id="about-title" class="page-title" data-en="A bit more about me." data-fr="Un peu plus sur moi." data-edit-key="v2-about-title">A bit more about me.</h1>
+      <h1 id="about-title" class="page-title" data-en="Behind the screen." data-fr="Derrière l’écran." data-edit-key="v2-about-title">Behind the screen.</h1>
       <div class="about-layout">
         <div class="prose">
           <p data-en="I’m Adam. You might also know me as Aiden or aexdm. I like figuring out how things work, then making my own version." data-fr="Moi, c’est Adam. Vous me connaissez peut-être sous le nom d’Aiden ou aexdm. J’aime comprendre comment les choses fonctionnent, puis créer ma propre version." data-edit-key="v2-about-intro">I’m Adam. You might also know me as Aiden or aexdm. I like figuring out how things work, then making my own version.</p>
