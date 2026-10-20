@@ -235,7 +235,7 @@ const projectData = {
     lang: "// html · css · js · node",
     intro: "The portfolio you're looking at, designed, built, and deployed by me.",
     description: "A hand-coded personal site with no page framework, focused on personality and performance. It pairs a static, animated frontend (boot sequence, command palette, live Discord status, easter eggs) with a real Node/Express + SQLite backend powering a persistent guestbook. Visitors sign in with Discord (OAuth2) to post; messages are stored permanently in a database and moderated through an admin-only API where authorization is enforced server-side   never in the browser.",
-    images: ["images/showcase-perso1.png", "images/showcase-perso2.png"],
+    images: ["images/showcase-perso1.png"],
     action: { href: "https://github.com/aexdm/angxl.dev.hub", label: "View on GitHub" },
     roadmap: [
       { cat: "Purpose",    title: "Why it exists",        desc: "A living portfolio to impress employers, devs, and visitors.", items: ["Show range: design + frontend + backend", "A personal, memorable web presence", "A playground for ideas & micro-interactions"], status: "done" },

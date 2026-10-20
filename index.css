@@ -3,7 +3,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html, body {
-  cursor: url('Star Normal.cur'), auto !important;
+  cursor: url('cursors/Star Normal.cur'), auto !important;
 }
 a, button, [onclick],
 a:hover, a:active, a:focus,
@@ -14,10 +14,10 @@ button:hover, button:active, button:focus,
 .social-item, .social-item:hover,
 .activity-nav, .settings-btn, .mobile-settings-btn,
 [role="button"], label {
-  cursor: url('Star Link.cur'), pointer !important;
+  cursor: url('cursors/Star Link.cur'), pointer !important;
 }
 input, textarea, [contenteditable] {
-  cursor: url('Star Text.cur'), text !important;
+  cursor: url('cursors/Star Text.cur'), text !important;
 }
 
 :root {
