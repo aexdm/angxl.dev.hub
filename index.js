@@ -231,7 +231,7 @@ document.getElementById("settingsModal").addEventListener("click", e => {
 const CLIENT_STUDIO_GITHUB = "https://github.com/aidenhub/evren";
 
 const projectData = {
-  "Lumen": { lang: "// personal project", intro: "my main project right now.", description: "a personal tooling project for Deepwoken Playground.", images: [], roadmap: [] },
+  "Lumen": { lang: "// personal project", intro: "my main project right now.", description: "a tooling project in Luau.", images: [], roadmap: [] },
   "small Luau games": { lang: "// luau", intro: "small games and experiments.", description: "small Luau games i work on alongside Lumen.", images: [], roadmap: [] },
   "adam.dev   this site": {
     lang: "// html · css · js · node",
@@ -275,31 +275,6 @@ const projectData = {
     action: { label: "Play on Roblox", href: "https://www.roblox.com/games/132429881613824/ABYSS-WORLD-HOTU" },
     roadmap: [],
   },
-  "utility bot": {
-    lang: "// python · automation",
-    intro: "A small automation bot built around scheduled maintenance tasks.",
-    description: "A lightweight Python bot for scheduled channel housekeeping, moderation helpers, and config-driven automation. Reworked here as a neutral case study with safer copy and no public repository link.",
-    images: [
-      "https://placehold.co/930x480/111111/d4b8ff?text=Utility+Bot",
-    ],
-    action: { label: "View GitHub", href: "https://github.com/aexdm/nigbot" },
-    roadmap: [],
-  },
-  "seraph": {
-    lang: "// python · windows · desktop",
-    intro: "A Windows panic button / profile switcher with voice control.",
-    description: "Windows panic button that swaps between work/chill/focus/sleep profiles at a hotkey   closes apps, opens URLs, launches programs, voice-controlled.",
-    images: [
-      "images/panic-1.png",
-    ],
-    action: { label: "Private project", href: "#" },
-    roadmap: [
-      { cat: "Profiles",  title: "Profile Engine",  desc: "Multi-profile system for context switching.", items: ["Work/Chill/Focus/Sleep presets", "Per-profile URL lists, apps, hotkeys", "Session save/restore per profile"], status: "done" },
-      { cat: "Panic",     title: "Panic Button",     desc: "Emergency killswitch that closes everything.", items: ["Closes all non-system processes", "Opens YouTube as a safe distraction", "Protected system processes list"], status: "done" },
-      { cat: "Voice",     title: "Voice Assistant",  desc: "Speech recognition for hands-free triggering.",  items: ["French + English language support", "Trigger phrases per profile", "Continuous listening mode"], status: "done" },
-      { cat: "UI",        title: "Desktop UI",       desc: "Webview dashboard built with Flask.",            items: ["Profile management panel", "Activity log + live status", "System tray with quick actions"], status: "done" },
-    ],
-  },
   "showcase": {
   lang: "// php · css · js",
   intro: "An anonymous portfolio website for one of my client to showcase their work and passion.",
@@ -320,7 +295,7 @@ const projectData = {
 
 function openProjectModal(projectName) {
   const translations = {
-    "Lumen": { lang: "// projet personnel", intro: "mon projet principal en ce moment.", description: "des outils personnels pour Deepwoken Playground." },
+    "Lumen": { lang: "// projet personnel", intro: "mon projet principal en ce moment.", description: "un projet d’outils en Luau." },
     "small Luau games": { intro: "des petits jeux et expérimentations.", description: "des petits jeux Luau sur lesquels je travaille en parallèle de Lumen." }
   };
   const data = { ...(projectData[projectName] || {}), ...(document.documentElement.lang === "fr" ? translations[projectName] : {}) };
@@ -650,7 +625,6 @@ const PALETTE_ITEMS = [
   { id: 'tab-about',    label: 'About',                 sub: 'go to about',        icon: 'user-circle', tag: 'tab',   action: () => switchTab('about') },
   { id: 'tab-projects', label: 'Projects',              sub: 'go to projects',     icon: 'layers',      tag: 'tab',   action: () => switchTab('projects') },
   { id: 'open-hotu',    label: 'Open HOTU',             sub: 'roblox parkour fan game', icon: 'gamepad-2', tag: 'project', action: () => { switchTab('projects'); setTimeout(() => openProjectModal('AW : Heart Of The Unreturned'), 320); } },
-  { id: 'open-utility', label: 'Open utility bot',      sub: 'automation bot',      icon: 'bot',         tag: 'project', action: () => { switchTab('projects'); setTimeout(() => openProjectModal('utility bot'), 320); } },
   { id: 'github',       label: 'GitHub',                sub: ADAM_GITHUB,            icon: 'github',     tag: 'link',  action: () => window.open(ADAM_GITHUB, '_blank') },
   { id: 'copy-email',   label: 'Copy email',            sub: ADAM_EMAIL,             icon: 'mail',       tag: 'copy',  action: () => copyText(ADAM_EMAIL, 'email copied') },
   { id: 'theme-pfp',     label: 'Theme: pfp (auto)',    sub: 'derive from avatar',   icon: 'paintbrush', tag: 'theme', action: () => setThemeAndPersist('pfp') },

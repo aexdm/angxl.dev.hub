@@ -74,28 +74,6 @@
       stack: 'HTML · CSS · JavaScript · Cloudflare D1',
       href: 'https://github.com/aexdm/angxl.dev.hub',
       link: ['View on GitHub ↗', 'Voir sur GitHub ↗']
-    },
-    seraph: {
-      title: ['Seraph', 'Seraph'],
-      type: ['Windows / personal tool', 'Windows / outil personnel'],
-      description: ['A desktop profile switcher for moving between work, focus, and downtime. Each profile can open its own apps and URLs, and can be triggered with a hotkey or a voice command. This is a private project.', 'Un outil pour passer entre des profils de travail, de concentration et de détente. Chaque profil peut ouvrir ses applications et ses liens, avec un raccourci clavier ou une commande vocale. C’est un projet privé.'],
-      details: [['Work, chill, focus, and sleep profiles', 'Profils travail, détente, concentration et sommeil'], ['Configurable apps, URLs, and keyboard shortcuts', 'Applications, liens et raccourcis configurables'], ['French and English voice commands', 'Commandes vocales en français et en anglais']],
-      images: ['images/panic-1.png'],
-      imageLabel: ['Seraph cover artwork', 'Illustration de couverture de Seraph'],
-      stack: 'Python · Flask · Windows',
-      href: null,
-      link: ['Private project', 'Projet privé']
-    },
-    bot: {
-      title: ['Utility Bot', 'Utility Bot'],
-      type: ['Python / automation', 'Python / automatisation'],
-      description: ['A small Python bot for scheduled maintenance, channel housekeeping, and moderation helpers. Config-driven workflows take care of repetitive tasks.', 'Un petit bot Python pour la maintenance planifiée, le nettoyage de canaux et l’aide à la modération. Des tâches configurables prennent en charge les actions répétitives.'],
-      details: [['Scheduled maintenance tasks', 'Tâches de maintenance planifiées'], ['API integrations and configurable workflows', 'Intégrations API et tâches configurables']],
-      images: [],
-      imageLabel: ['', ''],
-      stack: 'Python · APIs',
-      href: 'https://github.com/aexdm/nigbot',
-      link: ['View on GitHub ↗', 'Voir sur GitHub ↗']
     }
   };
   const translated = (pair) => pair[language === 'fr' ? 1 : 0];
@@ -147,9 +125,9 @@
       }
     });
     const titles = {
-      home: ['Adam — choose your space', 'Adam — choisis ton espace'],
-      personal: ['A little more about Adam — aidenhub.dev', 'Un peu plus sur Adam — aidenhub.dev'],
-      profile: ['Adam — developer profile', 'Adam — profil développeur']
+      home: ['Adam : choose your space', 'Adam : choisis ton espace'],
+      personal: ['A little more about Adam : aidenhub.dev', 'Un peu plus sur Adam : aidenhub.dev'],
+      profile: ['Adam : developer profile', 'Adam : profil développeur']
     };
     document.title = translated(titles[page] || titles.home);
     setTheme(theme);
