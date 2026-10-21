@@ -1,12 +1,7 @@
 (function () {
-  var STORAGE_KEY = 'siteLang';
+  var STORAGE_KEY = 'siteLang:personal';
 
   function getDefaultLang() {
-    try {
-      var h = (window.location.hostname || '').toLowerCase();
-      if (h.indexOf('adamchettouh.fr') !== -1) return 'fr';   // new domain -> French
-      if (h.indexOf('angxl.pages.dev') !== -1) return 'en';   // perso -> English
-    } catch (e) {}
     var d = document.documentElement.getAttribute('data-default-lang');
     return (d === 'fr' || d === 'en') ? d : 'en';
   }
@@ -22,6 +17,7 @@
   }
 
   function applyTranslations(lang) {
+    document.querySelectorAll('[data-en][data-fr]').forEach(function(el) { el.textContent = el.getAttribute('data-' + lang); });
     var dict = window.I18N || {};
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
       var key = el.getAttribute('data-i18n');
@@ -58,6 +54,8 @@
     applyTranslations(lang);
     syncFlagButtons(lang);
     window.currentLang = lang;
+    var url = new URL(location.href); url.searchParams.set('lang', lang); history.replaceState(null, '', url);
+    document.querySelectorAll('a[href]').forEach(function(link) { var raw = link.getAttribute('href'); if (!raw || raw.startsWith('#')) return; var target = new URL(raw, location.href); if (target.origin === location.origin && target.pathname.endsWith('/perso.html')) { target.searchParams.set('lang', lang); link.href = target.pathname + target.search + target.hash; } });
     document.dispatchEvent(new CustomEvent('langchange', { detail: { lang: lang } }));
   };
 
@@ -68,7 +66,10 @@
 
   window.langHref = function (base) {
     var l = (function () { try { return localStorage.getItem(STORAGE_KEY); } catch (e) { return null; } })() || getDefaultLang();
-    return base + (base.indexOf('?') >= 0 ? '&' : '?') + 'lang=' + l;
+    var target = new URL(base, location.href);
+    if (target.pathname.endsWith('/pro.html')) return target.pathname + target.search + target.hash;
+    target.searchParams.set('lang', l);
+    return target.pathname + target.search + target.hash;
   };
 
   if (document.readyState === 'loading') {

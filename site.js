@@ -10,8 +10,8 @@
     set(key, value) { try { localStorage.setItem(key, value); } catch { /* Storage is optional. */ } }
   };
   const params = new URLSearchParams(location.search);
-  const preferredLanguage = params.get('lang') || storage.get('siteLang');
-  let language = ['en', 'fr'].includes(preferredLanguage) ? preferredLanguage : (location.hostname.endsWith('adamchettouh.fr') ? 'fr' : 'en');
+  const preferredLanguage = params.get('lang') || storage.get('siteLang:profile');
+  let language = ['en', 'fr'].includes(preferredLanguage) ? preferredLanguage : (root.dataset.defaultLang || 'fr');
   let theme = storage.get('portfolioTheme') === 'light' ? 'light' : 'dark';
   const tr = (en, fr) => language === 'fr' ? fr : en;
   const email = 'adamchettouh63@gmail.com';
@@ -22,12 +22,12 @@
     const destination = new URL('perso.html', location.href);
     destination.searchParams.set('lang', language);
     destination.searchParams.set('auth', params.get('auth') === 'ok' ? 'ok' : 'error');
-    destination.hash = 'guestbook';
+    destination.hash = 'home';
     location.replace(destination);
     return;
   }
   if (page === 'home' && ['about', 'now', 'uses', 'friends', 'guestbook', 'work', 'projects'].includes(location.hash.slice(1))) {
-    location.replace(`perso.html?lang=${language}${location.hash === "#work" ? "#projects" : location.hash}`);
+    location.replace(`perso.html?lang=${language}${location.hash === '#guestbook' ? '#home' : location.hash === '#work' ? '#projects' : location.hash}`);
     return;
   }
   let activeProject = null;
@@ -44,9 +44,9 @@
   const projects = {
     hotu: {
       title: ['Heart of the Unreturned', 'Heart of the Unreturned'],
-      type: ['Game / team project', 'Jeu / projet en équipe'],
+      type: ['Past team project', 'Ancien projet en équipe'],
       description: ['A Roblox parkour fan game inspired by Abyss World. Built with a small team, with momentum-based movement and different zones to explore. My contribution has mainly been finding and fixing bugs.', 'Un jeu de parkour Roblox inspiré d’Abyss World. Créé en petite équipe, avec un système d’élan et plusieurs zones à explorer. Ma contribution porte surtout sur la recherche et la correction de bugs.'],
-      details: [['Momentum and checkpoint systems', 'Systèmes d’élan et de checkpoints'], ['Multiple environments and terrain themes', 'Plusieurs environnements et types de terrain'], ['Still in development', 'Toujours en développement']],
+      details: [['Momentum and checkpoint systems', 'Systèmes d’élan et de checkpoints'], ['Multiple environments and terrain themes', 'Plusieurs environnements et types de terrain'], ['I no longer work on this project', 'Je ne travaille plus sur ce projet']],
       images: ['images/hotu1.png', 'images/hotu2.png', 'images/hotu3.png', 'images/hotu4.png'],
       imageLabel: ['Game screenshot', 'Capture du jeu'],
       stack: 'Lua · Roblox',
@@ -67,8 +67,8 @@
     site: {
       title: ['This corner of the internet', 'Mon coin d’internet'],
       type: ['Web / personal project', 'Web / projet personnel'],
-      description: ['The site you’re on. A place to collect my work and experiment with design and code. It uses plain HTML, CSS, and JavaScript, with Cloudflare Pages Functions for the guestbook and Discord authentication. This screenshot shows an earlier design.', 'Le site que vous visitez. Un endroit pour regrouper mes projets et expérimenter avec le design et le code. Il utilise HTML, CSS et JavaScript, avec Cloudflare Pages Functions pour le livre d’or et l’authentification Discord. La capture montre une ancienne version.'],
-      details: [['Persistent guestbook with guest posting and optional Discord sign-in', 'Livre d’or persistant, avec connexion Discord facultative'], ['Server-side admin moderation and rate limiting', 'Modération et limitation des requêtes côté serveur'], ['Live Discord presence, GitHub activity, and keyboard navigation', 'Présence Discord, activité GitHub et navigation au clavier']],
+      description: ['The site you’re on. A place to collect my work and experiment with design and code. This screenshot shows an earlier design.', 'Le site que vous visitez. Un endroit pour regrouper mes projets et expérimenter avec le design et le code. La capture montre une ancienne version.'],
+      details: [['Live Discord presence and GitHub activity', 'Présence Discord et activité GitHub'], ['Project galleries and keyboard navigation', 'Galeries de projets et navigation au clavier']],
       images: ['images/showcase-perso1.png'],
       imageLabel: ['Earlier website design', 'Ancienne version du site'],
       stack: 'HTML · CSS · JavaScript · Cloudflare D1',
@@ -123,10 +123,10 @@
     language = value;
     root.lang = language;
     window.currentLang = language;
-    storage.set('siteLang', language);
+    storage.set('siteLang:profile', language);
     // Persist the explicit choice in this URL, even when storage is disabled.
     const currentUrl = new URL(location.href);
-    if (currentUrl.searchParams.has('lang')) {
+    {
       currentUrl.searchParams.set('lang', language);
       history.replaceState(history.state, '', currentUrl);
     }
@@ -141,7 +141,7 @@
       const raw = link.getAttribute('href');
       if (!raw || raw.startsWith('#')) return;
       const url = new URL(raw, location.href);
-      if (url.origin === location.origin && /\/(index|perso|pro)\.html$/.test(url.pathname)) {
+      if (url.origin === location.origin && /\/pro\.html$/.test(url.pathname)) {
         url.searchParams.set('lang', language);
         link.setAttribute('href', url.pathname + url.search + url.hash);
       }
@@ -155,7 +155,6 @@
     setTheme(theme);
     renderPresence();
     if (commitData) renderCommits();
-    if (guestData) { renderGuestAuth(); renderGuestEntries(); }
     if (activeProject) renderProject();
     if ($('#command-dialog')?.open) renderCommands();
     if ($('#shortcut-dialog')?.open) renderShortcuts();
@@ -282,7 +281,7 @@
 
   function showPersonalSection(focus = false) {
     if (page !== 'personal') return;
-    const names = ['home', 'about', 'projects', 'now', 'uses', 'friends', 'guestbook'];
+    const names = ['home', 'about', 'projects', 'now', 'uses', 'friends'];
     const hash = location.hash.slice(1);
     const section = names.includes(hash) ? hash : 'home';
     $$('.personal-panel').forEach(panel => { panel.hidden = panel.id !== section; });
@@ -293,9 +292,8 @@
     const active = document.getElementById(section);
     if (focus) active.focus({ preventScroll: true });
     if (section === 'now' && !commitData) loadCommits();
-    if (section === 'guestbook') loadGuestbook();
     $$('.primary-nav a').forEach(link => {
-      const current = section === 'guestbook' ? link.hash === '#guestbook' : link.pathname.endsWith('/perso.html') && !link.hash;
+      const current = link.pathname.endsWith('/perso.html') && !link.hash;
       if (current) link.setAttribute('aria-current', 'page');
       else link.removeAttribute('aria-current');
     });
@@ -423,152 +421,12 @@
     } finally { commitsLoading = false; }
   }
 
-  function enableGuestForm(enabled) {
-    guestAvailable = enabled;
-    $$('#guest-form input, #guest-form textarea, #guest-submit').forEach(control => { control.disabled = !enabled || posting; });
-  }
-
-  function renderGuestAuth() {
-    const target = $('#guest-auth');
-    if (!target || !guestData) return;
-    const me = guestData.me;
-    $('#guest-name-field').hidden = !!me;
-    $('#guest-name').required = !me;
-    if (me) {
-      const name = element('span', '', `${tr('Signed in as', 'Connecté en tant que')} ${me.global_name || me.username || ''}`);
-      const logout = element('button', '', tr('Sign out', 'Déconnexion'));
-      logout.type = 'button';
-      logout.addEventListener('click', async () => {
-        logout.disabled = true;
-        try {
-          await fetchJson(`${apiBase}/api/auth/logout`, { method: 'POST', credentials: 'include' });
-          guestData.me = null;
-          renderGuestAuth();
-          renderGuestEntries();
-          document.dispatchEvent(new CustomEvent('portfolio:signout'));
-        } catch { logout.disabled = false; toast(tr('Could not sign out. Try again.', 'Déconnexion impossible. Réessayez.')); }
-      });
-      target.replaceChildren(name, logout);
-    } else {
-      const link = element('a', '', tr('Sign in', 'Connexion'));
-      link.id = 'discord-login';
-      link.href = `${apiBase}/api/auth/discord/login`;
-      target.replaceChildren(element('span', '', tr('Or use your Discord account', 'Ou utilisez votre compte Discord')), link);
-    }
-  }
-
-  function renderGuestEntries() {
-    const target = $('#guest-entries');
-    if (!target || !guestData) return;
-    const entries = Array.isArray(guestData.entries) ? guestData.entries : [];
-    if (!entries.length) {
-      target.replaceChildren(element('p', 'empty-state', tr('No messages yet. Yours could be the first.', 'Pas encore de messages. Le vôtre pourrait être le premier.')));
-      return;
-    }
-    const fragment = document.createDocumentFragment();
-    entries.forEach(entry => {
-      const article = element('article', 'guest-entry');
-      const header = element('header');
-      const name = element('h3', '', entry.username || tr('Visitor', 'Visiteur'));
-      const time = element('time', '', formatDate(entry.created_at));
-      if (entry.created_at) time.dateTime = entry.created_at;
-      header.append(name, time);
-      article.append(header, element('p', '', entry.message || ''));
-      if (guestData.me?.is_admin && Number.isInteger(entry.id)) {
-        const button = element('button', 'guest-delete', tr('Delete message', 'Supprimer le message'));
-        button.type = 'button';
-        button.addEventListener('click', async () => {
-          if (!window.confirm(tr('Delete this guestbook message?', 'Supprimer ce message du livre d’or ?'))) return;
-          button.disabled = true;
-          try {
-            await fetchJson(`${apiBase}/api/guestbook/${entry.id}`, { method: 'DELETE', credentials: 'include' });
-            guestData.entries = guestData.entries.filter(item => item.id !== entry.id);
-            renderGuestEntries();
-          } catch { button.disabled = false; toast(tr('Could not delete the message.', 'Impossible de supprimer ce message.')); }
-        });
-        article.append(button);
-      }
-      fragment.append(article);
-    });
-    target.replaceChildren(fragment);
-  }
-
-  async function loadGuestbook() {
-    if (guestLoading || posting || !$('#guest-form')) return;
-    guestLoading = true;
-    try {
-      const data = await fetchJson(`${apiBase}/api/guestbook?limit=50`, { credentials: 'include' });
-      if (!Array.isArray(data.entries)) throw new Error('Invalid guestbook response');
-      guestData = data;
-      enableGuestForm(true);
-      renderGuestAuth();
-      renderGuestEntries();
-      if ($('#guest-message-status').dataset.error === 'true') setFormMessage('');
-    } catch {
-      enableGuestForm(false);
-      showLoadError($('#guest-entries'), ['The guestbook can’t be reached right now. Your draft stays here.', 'Le livre d’or est indisponible pour le moment. Votre brouillon reste ici.'], loadGuestbook);
-    } finally { guestLoading = false; }
-  }
-
-  function setFormMessage(message, error = false) {
-    const status = $('#guest-message-status');
-    const pair = Array.isArray(message) ? message : [message, message];
-    status.dataset.en = pair[0];
-    status.dataset.fr = pair[1];
-    status.textContent = translated(pair);
-    status.dataset.error = String(error);
-  }
-
-  async function submitGuestbook(event) {
-    event.preventDefault();
-    if (posting || !guestAvailable) return;
-    const message = $('#guest-message').value.trim();
-    const name = $('#guest-name').value.trim();
-    if (!message || message.length > 280) {
-      setFormMessage(['Write a message between 1 and 280 characters.', 'Écrivez un message entre 1 et 280 caractères.'], true);
-      $('#guest-message').focus();
-      return;
-    }
-    if (!guestData?.me && (!name || name.length > 32)) {
-      setFormMessage(['Add your name (32 characters maximum).', 'Ajoutez votre nom (32 caractères maximum).'], true);
-      $('#guest-name').focus();
-      return;
-    }
-    posting = true;
-    enableGuestForm(true);
-    setFormMessage(['Posting your message…', 'Envoi de votre message…']);
-    try {
-      const payload = { message };
-      if (!guestData?.me) payload.name = name;
-      const response = await fetchJson(`${apiBase}/api/guestbook`, { method: 'POST', credentials: 'include', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-      $('#guest-message').value = '';
-      $('#message-count').textContent = '0';
-      if (response.entry) {
-        guestData.entries = [response.entry, ...guestData.entries];
-        renderGuestEntries();
-      }
-      setFormMessage(['Your message is here. Thanks for stopping by!', 'Votre message est publié. Merci de votre passage !']);
-      posting = false;
-      await loadGuestbook();
-    } catch (error) {
-      if (error.status === 401) {
-        guestData.me = null;
-        renderGuestAuth();
-        document.dispatchEvent(new CustomEvent('portfolio:signout'));
-        setFormMessage(['Your session expired. Sign in again or add your name.', 'Votre session a expiré. Reconnectez-vous ou ajoutez votre nom.'], true);
-      } else if (error.status === 429) setFormMessage(['A few too many messages. Please wait before trying again.', 'Un peu trop de messages. Patientez avant de réessayer.'], true);
-      else setFormMessage(['Your message wasn’t posted. Please try again; your draft is still here.', 'Votre message n’a pas été publié. Réessayez : votre brouillon est toujours là.'], true);
-    } finally { posting = false; enableGuestForm(guestAvailable); }
-  }
-
   function commandItems() {
     return [
       { label: tr('Selected work', 'Les projets'), key: 'W', run: () => { location.href = `perso.html?lang=${language}#projects`; } },
       { label: tr('About me', 'À propos'), key: 'A', run: () => navigatePersonal('about') },
       { label: tr('What I’m doing now', 'En ce moment'), key: 'N', run: () => navigatePersonal('now') },
       { label: tr('My setup', 'Mon matériel'), key: 'U', run: () => navigatePersonal('uses') },
-      { label: tr('Friends', 'Amis'), key: 'F', run: () => navigatePersonal('friends') },
-      { label: tr('Guestbook', 'Livre d’or'), key: 'G', run: () => navigatePersonal('guestbook') },
       { label: tr('Professional profile', 'Profil professionnel'), key: '', run: () => { location.href = `pro.html?lang=${language}`; } },
       { label: tr('Copy email address', 'Copier l’adresse e-mail'), key: '', run: async () => { try { await navigator.clipboard.writeText(email); toast(tr('Email copied.', 'Adresse e-mail copiée.')); } catch { toast(email); } } },
       { label: theme === 'dark' ? tr('Use light theme', 'Activer le thème clair') : tr('Use dark theme', 'Activer le thème sombre'), key: '', run: () => setTheme(theme === 'dark' ? 'light' : 'dark') },
@@ -634,7 +492,7 @@
     const dialog = $('#shortcut-dialog');
     dialog.querySelector('.dialog-caption').textContent = tr('Keyboard shortcuts', 'Raccourcis clavier');
     const list = element('dl', 'shortcut-list');
-    [[tr('Go to a page or action', 'Aller à une page ou une action'), 'Ctrl / ⌘ K'], [tr('Work', 'Projets'), 'W'], [tr('About', 'À propos'), 'A'], [tr('Now', 'En ce moment'), 'N'], [tr('Setup', 'Matériel'), 'U'], [tr('Guestbook', 'Livre d’or'), 'G'], [tr('Close a dialog', 'Fermer une fenêtre'), 'Esc']].forEach(([name, key]) => {
+    [[tr('Go to a page or action', 'Aller à une page ou une action'), 'Ctrl / ⌘ K'], [tr('Work', 'Projets'), 'W'], [tr('About', 'À propos'), 'A'], [tr('Now', 'En ce moment'), 'N'], [tr('Setup', 'Matériel'), 'U'], [tr('Close a dialog', 'Fermer une fenêtre'), 'Esc']].forEach(([name, key]) => {
       const row = element('div');
       const dd = element('dd');
       dd.append(element('kbd', '', key));
@@ -681,17 +539,11 @@
     setInterval(() => {
       if (document.hidden) return;
       loadPresence();
-      if (!$('#guestbook').hidden) loadGuestbook();
     }, 30000);
     document.addEventListener('visibilitychange', () => { if (!document.hidden) loadPresence(); });
-    $('#guest-form').addEventListener('submit', submitGuestbook);
-    $('#guest-message').addEventListener('input', event => { $('#message-count').textContent = event.target.value.length; });
-    $('#guest-message').addEventListener('keydown', event => {
-      if (event.key === 'Enter' && (event.ctrlKey || event.metaKey)) { event.preventDefault(); $('#guest-form').requestSubmit(); }
-    });
     const auth = params.get('auth');
     if (auth) {
-      navigatePersonal('guestbook');
+      navigatePersonal('home');
       toast(auth === 'ok' ? tr('Signed in with Discord.', 'Connecté avec Discord.') : tr('Discord sign-in did not complete.', 'La connexion Discord n’a pas abouti.'));
       const url = new URL(location.href);
       url.searchParams.delete('auth');
@@ -707,7 +559,7 @@
       return;
     }
     if (editable || event.ctrlKey || event.metaKey || event.altKey || $('dialog[open]')) return;
-    const actions = { a: () => navigatePersonal('about'), n: () => navigatePersonal('now'), u: () => navigatePersonal('uses'), f: () => navigatePersonal('friends'), g: () => navigatePersonal('guestbook'), w: () => { location.href = `perso.html?lang=${language}#projects`; }, h: () => { location.href = `index.html?lang=${language}`; }, '?': openShortcuts };
+    const actions = { a: () => navigatePersonal('about'), n: () => navigatePersonal('now'), u: () => navigatePersonal('uses'), w: () => { location.href = `perso.html?lang=${language}#projects`; }, h: () => { location.href = `index.html?lang=${language}`; }, '?': openShortcuts };
     if (actions[event.key.toLowerCase()]) { event.preventDefault(); actions[event.key.toLowerCase()](); }
   });
 })();

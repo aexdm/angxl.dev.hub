@@ -5,28 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>adam.dev</title>
 
-  <meta name="description" content="adam.dev   17 y/o full-stack developer. Lua, Python, JavaScript & web. Building things and breaking them better. Projects, live status, and a guestbook.">
+  <meta name="description" content="adam.dev   18 y/o developer. Lua, Python, JavaScript & web. Building things and breaking them better. Projects and live status.">
   <meta name="author" content="Adam">
   <meta name="keywords" content="Adam, adam.dev, developer, portfolio, full-stack, Lua, Python, JavaScript, web developer, Roblox">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#0e0c12">
   <meta name="color-scheme" content="dark">
-  <link rel="canonical" href="https://adam.dev/">
+  <link rel="canonical" href="https://angxl.pages.dev/perso.html">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="adam.dev">
-  <meta property="og:url" content="https://adam.dev/">
-  <meta property="og:title" content="adam.dev   full-stack developer portfolio">
-  <meta property="og:description" content="17 y/o full-stack dev. Lua, Python, Web. Projects, a live dashboard, and a Discord-powered guestbook.">
-  <meta property="og:image" content="https://adam.dev/og-image.png">
-  <meta property="og:image:alt" content="adam.dev portfolio preview">
+  <meta property="og:url" content="https://angxl.pages.dev/">
+  <meta property="og:title" content="adam.dev   developer portfolio">
+  <meta property="og:description" content="18 y/o developer. Lua, Python, Web. Projects, a live dashboard, and creative experiments.">
   <meta property="og:locale" content="en_US">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="adam.dev   full-stack developer portfolio">
-  <meta name="twitter:description" content="17 y/o full-stack dev. Lua, Python, Web. Projects, a live dashboard, and a Discord-powered guestbook.">
-  <meta name="twitter:image" content="https://adam.dev/og-image.png">
-  <meta name="twitter:image:alt" content="adam.dev portfolio preview">
+  <meta name="twitter:title" content="adam.dev   developer portfolio">
+  <meta name="twitter:description" content="18 y/o developer. Lua, Python, Web. Projects, a live dashboard, and creative experiments.">
 
   <script type="application/ld+json">
   {
@@ -36,7 +32,7 @@
         "@type": "Person",
         "name": "Adam",
         "alternateName": "adam.dev",
-        "url": "https://adam.dev/",
+        "url": "https://angxl.pages.dev/",
         "jobTitle": "Full-stack Developer",
         "knowsAbout": ["Lua", "Python", "JavaScript", "PHP", "Web Development", "Roblox"],
         "sameAs": ["https://github.com/aexdm"]
@@ -44,8 +40,8 @@
       {
         "@type": "WebSite",
         "name": "adam.dev",
-        "url": "https://adam.dev/",
-        "description": "Portfolio of Adam   full-stack developer.",
+        "url": "https://angxl.pages.dev/",
+        "description": "Portfolio of Adam   developer.",
         "inLanguage": "en"
       }
     ]
@@ -61,6 +57,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="index.css">
   <link rel="stylesheet" href="perso-language.css">
+  <link rel="stylesheet" href="personal-refinements.css">
   <style>@media(max-width:768px){.lang-bar{top:auto;bottom:70px;right:12px;}}</style>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script async src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js"></script>
@@ -79,7 +76,7 @@
     <img id="mobileAvatar" class="mobile-avatar" src="" alt="">
     <div>
       <div class="mobile-header-logo">adam.dev</div>
-      <div class="mobile-header-sub">// 17 y/o dev</div>
+      <div class="mobile-header-sub">// 18 y/o dev</div>
     </div>
   </div>
   <div style="display:flex;align-items:center;gap:4px;">
@@ -110,28 +107,20 @@
       <i data-lucide="radio"></i>
       <span data-i18n="nav.now">now</span>
     </button>
-    <button class="mobile-nav-btn" id="mnav-friends" onclick="switchTab('friends')">
-      <i data-lucide="users-round"></i>
-      <span data-i18n="nav.friends">friends</span>
-    </button>
     <button class="mobile-nav-btn" id="mnav-uses" onclick="switchTab('uses')">
       <i data-lucide="cpu"></i>
       <span data-i18n="nav.uses">uses</span>
-    </button>
-    <button class="mobile-nav-btn" id="mnav-guestbook" onclick="switchTab('guestbook')">
-      <i data-lucide="book-open"></i>
-      <span data-i18n="nav.guest">guest</span>
     </button>
   </div>
 </nav>
 
 <div class="shell">
 
-  
+
   <aside class="sidebar">
     <div class="logo">
       <div class="logo-name">adam.dev</div>
-      <div class="logo-sub">// 17 y/o dev</div>
+      <div class="logo-sub">// 18 y/o dev</div>
     </div>
 
     <nav class="nav-items" aria-label="Primary navigation">
@@ -147,18 +136,12 @@
       <button onclick="switchTab('now')" class="nav-link" id="nav-now">
         <i data-lucide="radio"></i> <span data-i18n="nav.now">now</span>
       </button>
-      <button onclick="switchTab('friends')" class="nav-link" id="nav-friends">
-        <i data-lucide="users-round"></i> <span data-i18n="nav.friends">friends</span>
-      </button>
       <button onclick="switchTab('uses')" class="nav-link" id="nav-uses">
         <i data-lucide="cpu"></i> <span data-i18n="nav.uses">uses</span>
       </button>
-      <button onclick="switchTab('guestbook')" class="nav-link" id="nav-guestbook">
-        <i data-lucide="book-open"></i> <span data-i18n="nav.guestbook">guestbook</span>
-      </button>
     </nav>
 
-      
+
     <div class="sidebar-bottom">
       <a class="settings-btn" href="pro.html" id="persoToPro" style="text-decoration:none;color:var(--amber);margin-bottom:8px;">
         <i data-lucide="briefcase"></i> <span data-i18n="nav.recruiters">recruiters space</span>
@@ -169,14 +152,14 @@
     </div>
   </aside>
 
-  
+
   <main class="main" id="main" tabindex="-1">
 
-    
+
     <div id="home" class="tab">
       <div class="home-eyebrow" data-i18n="home.eyebrow">welcome</div>
 
-      
+
       <div class="term-window" aria-label="terminal welcome">
         <div class="term-bar">
           <span class="term-dot term-dot--r"></span>
@@ -214,7 +197,7 @@
           <div class="counter-label" data-i18n="home.c.days">// days alive</div>
         </div>
         <div class="counter-item">
-          <div class="counter-num" id="ctrAge" title="precise age">17</div>
+          <div class="counter-num" id="ctrAge" title="precise age">18</div>
           <div class="counter-label" data-i18n="home.c.age">// age (live)</div>
         </div>
         <div class="counter-item">
@@ -227,7 +210,7 @@
         </div>
       </div>
 
-      
+
       <div class="git-log" aria-label="recent commits">
         <div class="git-log-head">
           <i data-lucide="git-commit"></i>
@@ -238,7 +221,7 @@
       </div>
     </div>
 
-    
+
     <div id="about" class="tab active">
       <div class="section-tag" data-i18n="about.tag">// about</div>
       <h2 class="section-title" data-i18n="about.title">Who am I?</h2>
@@ -247,7 +230,7 @@
 
       <div class="about-grid">
 
-        
+
         <div class="profile-card">
           <div class="profile-banner-wrap">
             <video class="profile-banner-video" autoplay loop muted playsinline>
@@ -272,13 +255,13 @@
                   <span class="status-dot" id="statusDot"></span>
                   <span id="statusText">offline</span>
                 </span>
-                <span class="badge" data-i18n="about.badge">17 y/o dev</span>
+                <span class="badge" data-i18n="about.badge">18 y/o dev</span>
               </div>
             </div>
           </div>
         </div>
 
-        
+
         <div id="activityCard" class="activity-card hidden" style="grid-column:1/-1;">
           <button id="activityPrev" class="activity-nav" onclick="navigateActivity(-1)">
             <i data-lucide="chevron-left"></i>
@@ -300,21 +283,16 @@
           <div class="activity-counter" id="activityCounter"></div>
         </div>
 
-        
+
         <div class="about-text-card">
           <div class="card-label">readme.md</div>
           <p class="cycling-row"><span data-i18n="about.ilike">I like</span> <span id="aboutWord">things</span></p>
-          <p id="aboutSentence" data-i18n-html="about.s1">
-            Haii, I'm <strong>Adam</strong> 17 years old and love breaking things then remaking them better.<br><br>
-            Currently working on this page and whatever else keeps me busy.
-          </p>
+          <p id="aboutSentence" data-i18n-html="about.s1">hey, i'm <strong>Adam</strong>, 18. i'm in my first year of BTS SIO and planning to choose SISR.<br><br>i build websites, small Luau games, and personal tools. right now, most of my time goes into Lumen.</p>
           <br><br>
-          <p id="aboutSentence2" data-i18n-html="about.s2">but I'm always down to learn new languages and tools!<br><br>
-            I'm also super passionate about art and design, and love working on that whenever I can.
-          </p>
+          <p id="aboutSentence2" data-i18n-html="about.s2">i use Lua/Luau, JavaScript, PHP, HTML, CSS, C#, and a bit of Python. still learning C#.<br><br>i'm looking for an alternance around Nantes for rentrée 2027, in web or software development.</p>
         </div>
 
-        
+
         <div class="social-card">
           <div class="card-label" data-i18n="about.findme">find me</div>
           <div class="social-list">
@@ -347,7 +325,7 @@
       </div>
     </div>
 
-    
+
     <div id="projects" class="tab">
       <div class="section-tag" data-i18n="proj.tag">// projects</div>
       <h2 class="section-title" data-i18n="proj.title">What I've built</h2>
@@ -359,6 +337,8 @@
       </div>
 
       <div class="projects-grid projects-grid--v2">
+<article class="proj" data-project="Lumen" data-status="wip"><div class="proj-body"><h3 class="proj-title">Lumen</h3><p class="proj-desc" data-en="personal tooling for Deepwoken Playground. my main project right now." data-fr="des outils personnels pour Deepwoken Playground. mon projet principal en ce moment.">personal tooling for Deepwoken Playground. my main project right now.</p><div class="proj-cta"><span data-i18n="proj.open">open project</span><i data-lucide="arrow-right"></i></div></div></article>
+<article class="proj" data-project="small Luau games" data-status="wip"><div class="proj-body"><h3 class="proj-title">small Luau games</h3><p class="proj-desc" data-en="small games and experiments in Luau." data-fr="des petits jeux et expérimentations en Luau.">small games and experiments in Luau.</p><div class="proj-cta"><span data-i18n="proj.open">open project</span><i data-lucide="arrow-right"></i></div></div></article>
 
         <article class="proj proj--featured" data-project="adam.dev   this site" data-status="live">
           <div class="proj-cover">
@@ -381,12 +361,12 @@
               <span class="proj-eyebrow">full-stack</span>
             </div>
             <h3 class="proj-title">adam.dev   this site</h3>
-            <p class="proj-desc">The site you're on. A hand-built portfolio with a live dashboard, command palette, and a real backend: SQLite guestbook, Discord OAuth, and admin moderation.</p>
+            <p class="proj-desc">The site you're on. A hand-built portfolio with a live dashboard, command palette, and personal projects.</p>
             <div class="proj-tags">
               <span class="proj-chip">HTML/CSS/JS</span>
-              <span class="proj-chip">Node · Express</span>
+              <span class="proj-chip">Cloudflare Pages</span>
               <span class="proj-chip">SQLite</span>
-              <span class="proj-chip">Discord OAuth</span>
+              <span class="proj-chip">JavaScript</span>
             </div>
             <div class="proj-cta">
               <span data-i18n="proj.open">open project</span>
@@ -396,12 +376,12 @@
         </article>
 
 
-        <article class="proj" data-project="AW : Heart Of The Unreturned" data-status="wip">
+        <article class="proj" data-project="AW : Heart Of The Unreturned" data-status="past">
           <div class="proj-cover">
-            <img src="https://tr.rbxcdn.com/180DAY-d6495b95d4dd31b15c745e4c72610278/930/480/Image/Png/noFilter" alt="HOTU cover" loading="lazy">
+            <img src="images/hotu1.png" alt="HOTU cover" loading="lazy">
             <div class="proj-cover-grad"></div>
             <span class="proj-status proj-status--wip">
-              <span class="proj-status-dot"></span> in progress
+              <span class="proj-status-dot"></span> past project
             </span>
             <a href="https://www.roblox.com/games/132429881613824/ABYSS-WORLD-HOTU" class="proj-ext" target="_blank" rel="noopener" onclick="event.stopPropagation()" aria-label="open external">
               <i data-lucide="arrow-up-right"></i>
@@ -414,7 +394,7 @@
               <span class="proj-eyebrow">lua</span>
             </div>
             <h3 class="proj-title">Heart of the Unreturned</h3>
-            <p class="proj-desc">A parkour fan game inspired by Abyss World. Built with a small team   momentum systems, hand-tuned movement, multi-zone maps.</p>
+            <p class="proj-desc" data-en="a team project i used to work on, mainly fixing bugs. i’m no longer involved." data-fr="un ancien projet en équipe, surtout de la correction de bugs. je n’y travaille plus.">a team project i used to work on, mainly fixing bugs. i’m no longer involved.</p>
             <div class="proj-cta">
               <span data-i18n="proj.open">open project</span>
               <i data-lucide="arrow-right"></i>
@@ -579,107 +559,10 @@
       </div>
 
       <div class="now-journal">
-
-        <article class="now-jcard">
-          <div class="now-jcard-head"><span class="now-jcard-icon"><i data-lucide="hammer"></i></span><h4 data-i18n="now.j1">Currently Working On</h4></div>
-          <ul class="now-jlist">
-            <li>Rebuilding this site   backend guestbook, Discord auth, and a cleaner design system.</li>
-            <li><span class="now-tag">roblox</span> Heart of the Unreturned   tuning movement &amp; momentum.</li>
-          </ul>
-        </article>
-
-        <article class="now-jcard">
-          <div class="now-jcard-head"><span class="now-jcard-icon"><i data-lucide="book-open"></i></span><h4 data-i18n="now.j2">Learning</h4></div>
-          <ul class="now-jlist">
-            <li>TypeScript   proper typing, generics, and project structure.</li>
-            <li>Backend fundamentals: auth, sessions, and API design.</li>
-          </ul>
-        </article>
-
-        <article class="now-jcard">
-          <div class="now-jcard-head"><span class="now-jcard-icon"><i data-lucide="gamepad-2"></i></span><h4 data-i18n="now.j3">Playing</h4></div>
-          <ul class="now-jlist">
-            <li>Roblox   research &amp; inspiration for my own projects.</li>
-            <li class="now-jsoon">more soon <span class="uses-soon">placeholder</span></li>
-          </ul>
-        </article>
-
-        <article class="now-jcard">
-          <div class="now-jcard-head"><span class="now-jcard-icon"><i data-lucide="sparkles"></i></span><h4 data-i18n="now.j4">Creating</h4></div>
-          <ul class="now-jlist">
-            <li>This portfolio   design, code, and the little easter eggs.</li>
-            <li>Experiments with UI animation &amp; micro-interactions.</li>
-          </ul>
-        </article>
-
-        <article class="now-jcard">
-          <div class="now-jcard-head"><span class="now-jcard-icon"><i data-lucide="flag"></i></span><h4 data-i18n="now.j5">Goals</h4></div>
-          <ul class="now-jlist">
-            <li>Ship a production-ready portfolio I'm proud to show employers.</li>
-            <li>Go full-stack confident   frontend, backend, and deployment.</li>
-          </ul>
-        </article>
-
-        <article class="now-jcard">
-          <div class="now-jcard-head"><span class="now-jcard-icon"><i data-lucide="compass"></i></span><h4 data-i18n="now.j6">Recent Discoveries</h4></div>
-          <ul class="now-jlist">
-            <li>SQLite + WAL is a perfectly good "real database" for small apps.</li>
-            <li class="now-jsoon">always finding new things <span class="uses-soon">placeholder</span></li>
-          </ul>
-        </article>
-
-      </div>
-    </div>
-
-    <div id="friends" class="tab">
-      <div class="section-tag" data-i18n="fr.tag">// friends</div>
-      <h2 class="section-title" data-i18n="fr.title">People I know</h2>
-
-      <div class="friends-empty">
-        <div class="friends-empty-card">
-          <div class="friends-empty-orbit" aria-hidden="true">
-            <span class="orbit-star orbit-star--1"></span>
-            <span class="orbit-star orbit-star--2"></span>
-            <span class="orbit-star orbit-star--3"></span>
-            <span class="orbit-core"></span>
-          </div>
-          <div class="friends-empty-eyebrow">// directory</div>
-          <h3 class="friends-empty-title" data-i18n="fr.curate">Curating the list.</h3>
-          <p class="friends-empty-desc" data-i18n="fr.desc">A handful of people deserve a slot here. I'm taking my time picking them.</p>
-          <div class="friends-empty-meta">
-            <span><i data-lucide="users-round"></i> 0 entries</span>
-            <span class="friends-empty-sep">·</span>
-            <span><i data-lucide="clock"></i> next sync soon</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="friends-grid" style="display:none;">
-        <div class="friend-card">
-          <div class="friend-banner">
-            <img src="https://i.imgur.com/placeholder.png" alt="" onerror="this.style.display='none'">
-            <div class="friend-banner-gradient"></div>
-          </div>
-          <div class="friend-body">
-            <div class="friend-top">
-              <img class="friend-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="">
-              <div>
-                <div class="friend-name">Display Name</div>
-                <div class="friend-username">@username</div>
-              </div>
-            </div>
-            <p class="friend-desc">Place holder</p>
-            <div class="friend-links">
-              <a href="#" class="friend-btn friend-btn--discord" target="_blank">
-                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 24 24" style="stroke:none;"><path d="M19.73 4.87a18.2 18.2 0 0 0-4.6-1.44c-.21.4-.4.8-.58 1.21-1.69-.25-3.4-.25-5.1 0-.18-.41-.37-.82-.59-1.2-1.6.27-3.14.75-4.6 1.43A19.04 19.04 0 0 0 .96 17.7a18.43 18.43 0 0 0 5.63 2.87c.46-.62.86-1.28 1.2-1.98-.65-.25-1.29-.55-1.9-.92.17-.12.32-.24.47-.37 3.58 1.7 7.7 1.7 11.28 0l.46.37c-.6.36-1.25.67-1.9.92.35.7.75 1.35 1.2 1.98 2.03-.63 3.94-1.6 5.64-2.87.47-4.87-.78-9.09-3.3-12.83ZM8.3 15.12c-1.1 0-2-1.02-2-2.27 0-1.24.88-2.26 2-2.26s2.02 1.02 2 2.26c0 1.25-.89 2.27-2 2.27Zm7.4 0c-1.1 0-2-1.02-2-2.27 0-1.24.88-2.26 2-2.26s2.02 1.02 2 2.26c0 1.25-.88 2.27-2 2.27Z"/></svg>
-                Discord
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
+<article class="now-jcard"><div class="now-jcard-head"><h4 data-en="working on" data-fr="en cours">working on</h4></div><ul class="now-jlist"><li data-en="Lumen — a personal tooling project for Deepwoken Playground." data-fr="Lumen — un projet d’outils personnels pour Deepwoken Playground.">Lumen — a personal tooling project for Deepwoken Playground.</li><li data-en="small Luau games on the side." data-fr="des petits jeux Luau à côté.">small Luau games on the side.</li></ul></article>
+<article class="now-jcard"><div class="now-jcard-head"><h4 data-en="learning" data-fr="j’apprends">learning</h4></div><ul class="now-jlist"><li data-en="C#, alongside my first year of BTS SIO." data-fr="C#, en parallèle de ma première année de BTS SIO.">C#, alongside my first year of BTS SIO.</li></ul></article>
+<article class="now-jcard"><div class="now-jcard-head"><h4 data-en="next" data-fr="la suite">next</h4></div><ul class="now-jlist"><li data-en="planning to choose SISR." data-fr="je compte choisir SISR.">planning to choose SISR.</li><li data-en="looking for an alternance around Nantes for rentrée 2027." data-fr="je cherche une alternance autour de Nantes pour la rentrée 2027.">looking for an alternance around Nantes for rentrée 2027.</li></ul></article>
+</div></div>
     <div id="uses" class="tab">
       <div class="section-tag" data-i18n="uses.tag">// uses</div>
       <h2 class="section-title" data-i18n="uses.title">My Setup</h2>
@@ -693,10 +576,10 @@
             <h3 class="uses-card-title" data-i18n="uses.hardware">Hardware</h3>
           </div>
           <div class="uses-list">
-            <div class="uses-item"><span class="uses-name">Display</span><span class="uses-val">1920x1080 @ 240Hz</span></div>
-            <div class="uses-item"><span class="uses-name">Keyboard</span><span class="uses-val">Mechanical (loud)</span></div>
-            <div class="uses-item"><span class="uses-name">Mouse</span><span class="uses-val">whatever's on the desk</span></div>
-            <div class="uses-item uses-item--soon"><span class="uses-name">Headset</span><span class="uses-soon">Razer BlackShark V3</span></div>
+            <div class="uses-item"><span class="uses-name">GPU</span><span class="uses-val">RX 9060 XT · 16 GB VRAM</span></div><div class="uses-item"><span class="uses-name">CPU</span><span class="uses-val">Ryzen 5 7500X3D</span></div><div class="uses-item"><span class="uses-name">RAM</span><span class="uses-val">32 GB DDR5</span></div>
+            <div class="uses-item"><span class="uses-name">Keyboard</span><span class="uses-val">larp</span></div>
+            <div class="uses-item"><span class="uses-name">Mouse</span><span class="uses-val">Razer DeathAdder V2</span></div>
+            <div class="uses-item uses-item--soon"><span class="uses-name">Headset</span><span class="uses-soon">Razer BlackShark V2</span></div>
           </div>
         </section>
 
@@ -709,7 +592,7 @@
             <div class="uses-item"><span class="uses-name">OS</span><span class="uses-val">Windows + WSL</span></div>
             <div class="uses-item"><span class="uses-name">Browser</span><span class="uses-val">Chrome · DevTools daily</span></div>
             <div class="uses-item"><span class="uses-name">Music</span><span class="uses-val">Spotify</span></div>
-            <div class="uses-item uses-item--soon"><span class="uses-name">More</span><span class="uses-soon">coming soon</span></div>
+
           </div>
         </section>
 
@@ -722,7 +605,7 @@
             <div class="uses-item"><span class="uses-name">Editor</span><span class="uses-val">VS Code</span></div>
             <div class="uses-item"><span class="uses-name">Terminal</span><span class="uses-val">Windows Terminal + zsh</span></div>
             <div class="uses-item"><span class="uses-name">Version Control</span><span class="uses-val">Git + GitHub</span></div>
-            <div class="uses-item"><span class="uses-name">Languages</span><span class="uses-val">Lua · Python · JS · PHP</span></div>
+            <div class="uses-item"><span class="uses-name">Languages</span><span class="uses-val">Lua/Luau · Python · JS · PHP · HTML · CSS · C#</span></div>
             <div class="uses-item"><span class="uses-name">Learning</span><span class="uses-val">C#</span></div>
           </div>
         </section>
@@ -733,10 +616,10 @@
             <h3 class="uses-card-title" data-i18n="uses.art">Art &amp; Design Tools</h3>
           </div>
           <div class="uses-list">
-            <div class="uses-item"><span class="uses-name">UI / Design</span><span class="uses-val">Figma</span></div>
+            <div class="uses-item"><span class="uses-name">Video</span><span class="uses-val">Premiere Pro</span></div>
             <div class="uses-item"><span class="uses-name">Digital Art</span><span class="uses-val">Krita</span></div>
             <div class="uses-item"><span class="uses-name">Type</span><span class="uses-val">DM Mono · Syne · Cormorant</span></div>
-            <div class="uses-item uses-item--soon"><span class="uses-name">Palette refs</span><span class="uses-soon">coming soon</span></div>
+
           </div>
         </section>
 
@@ -748,53 +631,14 @@
           <div class="uses-list">
             <div class="uses-item"><span class="uses-name">Media hosting</span><span class="uses-val">Cloudinary</span></div>
             <div class="uses-item"><span class="uses-name">Presence</span><span class="uses-val">Lanyard (Discord)</span></div>
-            <div class="uses-item uses-item--soon"><span class="uses-name">Notes / tasks</span><span class="uses-soon">coming soon</span></div>
+
           </div>
         </section>
 
-      <!-- <section class="uses-card uses-card--placeholder">
-          <div class="uses-card-head">
-            <span class="uses-card-icon"><i data-lucide="armchair"></i></span>
-            <h3 class="uses-card-title" data-i18n="uses.setup">Setup &amp; Workspace</h3>
-          </div>
-          <div class="uses-placeholder-body">
-            <i data-lucide="camera"></i>
-            <p>A photo tour of the desk, lighting, and battlestation is on the way.</p>
-            <span class="uses-soon">coming soon</span>
-          </div>
-        </section>--> 
->
+
       </div>
 
       <p class="uses-updated"><i data-lucide="history"></i> setup last reviewed   kept current as things change</p>
-    </div>
-
-    <div id="guestbook" class="tab">
-      <div class="section-tag" data-i18n="gb.tag">// guestbook</div>
-      <h2 class="section-title" data-i18n="gb.title">Leave a mark.</h2>
-      <p class="gb-sub" data-i18n="gb.sub">Say hi, leave a thought, anything.</p>
-
-      <div class="gb-form-wrap">
-        <div class="gb-auth" id="gbAuth" aria-live="polite">
-          <div class="gb-signin-prompt"><i data-lucide="loader"></i><span>connecting…</span></div>
-        </div>
-        <div class="gb-form">
-          <label class="card-label" for="gbMsg" data-i18n="gb.newentry">new entry</label>
-          <div class="gb-fields">
-            <textarea id="gbMsg" rows="2" placeholder="leave a message… (Ctrl+Enter to post)" data-i18n-attr="placeholder:gb.placeholder" maxlength="280" autocomplete="off" spellcheck="true" disabled aria-label="guestbook message"></textarea>
-          </div>
-          <div class="gb-form-foot">
-            <span class="gb-char-count"><span id="gbMsgLen">0</span>/280</span>
-            <button id="gbSubmit" class="btn-amber gb-submit" type="button" onclick="submitGuestbook()" disabled>
-              <i data-lucide="send"></i> <span data-i18n="gb.post">post</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="gb-entries" id="gbEntries">
-        <div class="gb-loading">loading entries...</div>
-      </div>
     </div>
 
   </main>
@@ -1099,7 +943,7 @@
 
 
 <script>
-window.I18N = {"nav.home": {"en": "home", "fr": "accueil"}, "nav.about": {"en": "about", "fr": "à propos"}, "nav.projects": {"en": "projects", "fr": "projets"}, "nav.now": {"en": "now", "fr": "actu"}, "nav.friends": {"en": "friends", "fr": "amis"}, "nav.uses": {"en": "uses", "fr": "setup"}, "nav.guestbook": {"en": "guestbook", "fr": "livre d'or"}, "nav.guest": {"en": "guest", "fr": "livre"}, "nav.settings": {"en": "settings", "fr": "réglages"}, "nav.recruiters": {"en": "recruiters space", "fr": "espace recruteurs"}, "home.eyebrow": {"en": "welcome", "fr": "bienvenue"}, "home.title": {"en": "Hey,<br>I'm <span>Adam.</span>", "fr": "Salut,<br>moi c'est <span>Adam.</span>"}, "home.desc": {"en": "I break things,<br>then rebuild them better.", "fr": "Je casse les choses,<br>puis je les reconstruis en mieux."}, "home.viewwork": {"en": "view work", "fr": "voir mes projets"}, "home.aboutme": {"en": "about me", "fr": "à propos de moi"}, "home.c.projects": {"en": "// projects", "fr": "// projets"}, "home.c.days": {"en": "// days alive", "fr": "// jours en vie"}, "home.c.age": {"en": "// age (live)", "fr": "// âge (live)"}, "home.c.visitors": {"en": "// visitors", "fr": "// visiteurs"}, "home.c.ideas": {"en": "// ideas", "fr": "// idées"}, "home.commits": {"en": "recent commits", "fr": "commits récents"}, "about.tag": {"en": "// about", "fr": "// à propos"}, "about.title": {"en": "Who am I?", "fr": "Qui suis-je ?"}, "about.badge": {"en": "17 y/o dev", "fr": "dev de 17 ans"}, "about.ilike": {"en": "I like", "fr": "J'aime"}, "about.findme": {"en": "find me", "fr": "me trouver"}, "about.s1": {"en": "Haii, I'm <strong>Adam</strong> 17 years old and love breaking things then remaking them better.<br><br>Currently working on this page and whatever else keeps me busy.", "fr": "Coucou, moi c'est <strong>Adam</strong>, 17 ans, et j'adore casser les choses puis les refaire en mieux.<br><br>En ce moment je bosse sur cette page et sur tout ce qui m'occupe."}, "about.s2": {"en": ", but I'm always down to learn new languages and tools!<br><br>I'm also super passionate about art and design, and love working on that whenever I can.", "fr": ", mais je suis toujours partant pour apprendre de nouveaux langages et outils !<br><br>Je suis aussi passionné d'art et de design, et j'adore m'y consacrer dès que je peux."}, "proj.tag": {"en": "// projects", "fr": "// projets"}, "proj.title": {"en": "What I've built", "fr": "Ce que j'ai construit"}, "proj.f.all": {"en": "all", "fr": "tous"}, "proj.f.live": {"en": "live", "fr": "en ligne"}, "proj.f.wip": {"en": "wip", "fr": "en cours"}, "proj.open": {"en": "open project", "fr": "ouvrir le projet"}, "now.tag": {"en": "// now", "fr": "// actu"}, "now.title": {"en": "Now", "fr": "En ce moment"}, "now.journal": {"en": "What I'm into lately", "fr": "Ce qui m'occupe en ce moment"}, "now.intro": {"en": "A snapshot of what's filling my time right now   part live dashboard, part digital journal. <span class=\"now-last-updated\"><i data-lucide=\"calendar-clock\"></i> updated <time datetime=\"2026-06-02\">June 2, 2026</time></span>", "fr": "Un aperçu de ce qui occupe mon temps en ce moment   moitié dashboard live, moitié journal. <span class=\"now-last-updated\"><i data-lucide=\"calendar-clock\"></i> mis à jour le <time datetime=\"2026-06-02\">2 juin 2026</time></span>"}, "now.j1": {"en": "Currently Working On", "fr": "En cours de développement"}, "now.j2": {"en": "Learning", "fr": "Apprentissage"}, "now.j3": {"en": "Playing", "fr": "Je joue à"}, "now.j4": {"en": "Creating", "fr": "Je crée"}, "now.j5": {"en": "Goals", "fr": "Objectifs"}, "now.j6": {"en": "Recent Discoveries", "fr": "Découvertes récentes"}, "fr.tag": {"en": "// friends", "fr": "// amis"}, "fr.title": {"en": "People I know", "fr": "Les gens que je connais"}, "fr.curate": {"en": "Curating the list.", "fr": "Je peaufine la liste."}, "fr.desc": {"en": "A handful of people deserve a slot here. I'm taking my time picking them.", "fr": "Quelques personnes méritent une place ici. Je prends mon temps pour les choisir."}, "uses.tag": {"en": "// uses", "fr": "// setup"}, "uses.title": {"en": "My Setup", "fr": "Mon matériel"}, "uses.intro": {"en": "The gear, software, and tools I reach for every day. A living page   it grows as my workflow does.", "fr": "Le matériel, les logiciels et les outils que j'utilise tous les jours. Une page vivante   elle évolue avec moi."}, "uses.hardware": {"en": "Hardware", "fr": "Matériel"}, "uses.software": {"en": "Software", "fr": "Logiciels"}, "uses.development": {"en": "Development Tools", "fr": "Outils de développement"}, "uses.productivity": {"en": "Productivity", "fr": "Productivité"}, "uses.art": {"en": "Art &amp; Design Tools", "fr": "Outils d'art & design"}, "uses.setup": {"en": "Setup &amp; Workspace", "fr": "Bureau & espace de travail"}, "gb.tag": {"en": "// guestbook", "fr": "// livre d'or"}, "gb.title": {"en": "Leave a mark.", "fr": "Laisse une trace."}, "gb.sub": {"en": "Say hi, leave a thought, anything. It sticks.", "fr": "Dis bonjour, laisse une pensée, ce que tu veux. Ça reste."}, "gb.newentry": {"en": "new entry", "fr": "nouveau message"}, "gb.placeholder": {"en": "leave a message… (Ctrl+Enter to post)", "fr": "laisse un message… (Ctrl+Entrée pour publier)"}, "gb.post": {"en": "post", "fr": "publier"}, "set.title": {"en": "Settings", "fr": "Réglages"}, "set.theme": {"en": "Choose your theme", "fr": "Choisis ton thème"}, "set.close": {"en": "Close", "fr": "Fermer"}};
+window.I18N = {"nav.home":{"en":"home","fr":"accueil"},"nav.about":{"en":"about","fr":"à propos"},"nav.projects":{"en":"projects","fr":"projets"},"nav.now":{"en":"now","fr":"actu"},"nav.uses":{"en":"uses","fr":"setup"},"nav.settings":{"en":"settings","fr":"réglages"},"nav.recruiters":{"en":"recruiters space","fr":"espace recruteurs"},"home.eyebrow":{"en":"welcome","fr":"bienvenue"},"home.title":{"en":"Hey,<br>I'm <span>Adam.</span>","fr":"Salut,<br>moi c'est <span>Adam.</span>"},"home.desc":{"en":"I break things,<br>then rebuild them better.","fr":"Je casse les choses,<br>puis je les reconstruis en mieux."},"home.viewwork":{"en":"view work","fr":"voir mes projets"},"home.aboutme":{"en":"about me","fr":"à propos de moi"},"home.c.projects":{"en":"// projects","fr":"// projets"},"home.c.days":{"en":"// days alive","fr":"// jours en vie"},"home.c.age":{"en":"// age (live)","fr":"// âge (live)"},"home.c.visitors":{"en":"// visitors","fr":"// visiteurs"},"home.c.ideas":{"en":"// ideas","fr":"// idées"},"home.commits":{"en":"recent commits","fr":"commits récents"},"about.tag":{"en":"// about","fr":"// à propos"},"about.title":{"en":"Who am I?","fr":"Qui suis-je ?"},"about.badge":{"en":"18 y/o dev","fr":"dev de 18 ans"},"about.ilike":{"en":"I like","fr":"J'aime"},"about.findme":{"en":"find me","fr":"me trouver"},"about.s1":{"en":"hey, i'm <strong>Adam</strong>, 18. i'm in my first year of BTS SIO and planning to choose SISR.<br><br>i build websites, small Luau games, and personal tools. right now, most of my time goes into Lumen.","fr":"salut, moi c'est <strong>Adam</strong>, 18 ans. je suis en première année de BTS SIO et je compte choisir SISR.<br><br>je fais du web, des petits jeux Luau et des outils perso. en ce moment, je bosse surtout sur Lumen."},"about.s2":{"en":"i use Lua/Luau, JavaScript, PHP, HTML, CSS, C#, and a bit of Python. still learning C#.<br><br>i'm looking for an alternance around Nantes for rentrée 2027, in web or software development.","fr":"j'utilise Lua/Luau, JavaScript, PHP, HTML, CSS, C# et un peu de Python. je continue à apprendre C#.<br><br>je cherche une alternance autour de Nantes pour la rentrée 2027, en développement web ou logiciel."},"proj.tag":{"en":"// projects","fr":"// projets"},"proj.title":{"en":"What I've built","fr":"Ce que j'ai construit"},"proj.f.all":{"en":"all","fr":"tous"},"proj.f.live":{"en":"live","fr":"en ligne"},"proj.f.wip":{"en":"wip","fr":"en cours"},"proj.open":{"en":"open project","fr":"ouvrir le projet"},"now.tag":{"en":"// now","fr":"// actu"},"now.title":{"en":"Now","fr":"En ce moment"},"now.journal":{"en":"What I'm into lately","fr":"Ce qui m'occupe en ce moment"},"now.intro":{"en":"what i'm working on these days. updated october 2026.","fr":"ce qui m'occupe en ce moment. mis à jour en octobre 2026."},"now.j1":{"en":"Currently Working On","fr":"En cours de développement"},"now.j2":{"en":"Learning","fr":"Apprentissage"},"now.j3":{"en":"Playing","fr":"Je joue à"},"now.j4":{"en":"Creating","fr":"Je crée"},"now.j5":{"en":"Goals","fr":"Objectifs"},"now.j6":{"en":"Recent Discoveries","fr":"Découvertes récentes"},"uses.tag":{"en":"// uses","fr":"// setup"},"uses.title":{"en":"My Setup","fr":"Mon matériel"},"uses.intro":{"en":"what's on my desk and what i use.","fr":"ce qu'il y a sur mon bureau et les outils que j'utilise."},"uses.hardware":{"en":"Hardware","fr":"Matériel"},"uses.software":{"en":"Software","fr":"Logiciels"},"uses.development":{"en":"Development Tools","fr":"Outils de développement"},"uses.productivity":{"en":"Productivity","fr":"Productivité"},"uses.art":{"en":"Art &amp; Design Tools","fr":"Outils d'art & design"},"uses.setup":{"en":"Setup &amp; Workspace","fr":"Bureau & espace de travail"},"set.title":{"en":"Settings","fr":"Réglages"},"set.theme":{"en":"Choose your theme","fr":"Choisis ton thème"},"set.close":{"en":"Close","fr":"Fermer"}};
 </script>
 <script src="lang.js"></script>
 <script>
@@ -1113,8 +957,9 @@ window.I18N = {"nav.home": {"en": "home", "fr": "accueil"}, "nav.about": {"en": 
   // Preserve links from the current lobby and professional page.
   function restorePersonalRoute() {
     var tab = location.hash.slice(1);
+    if (tab === 'guestbook' || tab === 'friends') tab = 'home';
     if (tab === 'work') tab = 'projects';
-    if (['home', 'about', 'projects', 'now', 'friends', 'uses', 'guestbook'].includes(tab)) window.switchTab(tab);
+    if (['home', 'about', 'projects', 'now', 'uses'].includes(tab)) window.switchTab(tab);
   }
   window.addEventListener('hashchange', restorePersonalRoute);
   restorePersonalRoute();

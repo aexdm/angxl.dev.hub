@@ -231,17 +231,19 @@ document.getElementById("settingsModal").addEventListener("click", e => {
 const CLIENT_STUDIO_GITHUB = "https://github.com/aidenhub/evren";
 
 const projectData = {
+  "Lumen": { lang: "// personal project", intro: "my main project right now.", description: "a personal tooling project for Deepwoken Playground.", images: [], roadmap: [] },
+  "small Luau games": { lang: "// luau", intro: "small games and experiments.", description: "small Luau games i work on alongside Lumen.", images: [], roadmap: [] },
   "adam.dev   this site": {
     lang: "// html · css · js · node",
     intro: "The portfolio you're looking at, designed, built, and deployed by me.",
-    description: "A hand-coded personal site with no page framework, focused on personality and performance. It pairs a static, animated frontend (boot sequence, command palette, live Discord status, easter eggs) with a real Node/Express + SQLite backend powering a persistent guestbook. Visitors sign in with Discord (OAuth2) to post; messages are stored permanently in a database and moderated through an admin-only API where authorization is enforced server-side   never in the browser.",
+    description: "A hand-coded personal site with no page framework: boot sequence, command palette, live Discord status, project galleries, and easter eggs.",
     images: ["images/showcase-perso1.png"],
     action: { href: "https://github.com/aexdm/angxl.dev.hub", label: "View on GitHub" },
     roadmap: [
       { cat: "Purpose",    title: "Why it exists",        desc: "A living portfolio to impress employers, devs, and visitors.", items: ["Show range: design + frontend + backend", "A personal, memorable web presence", "A playground for ideas & micro-interactions"], status: "done" },
       { cat: "Tech Stack", title: "What it's built with",  desc: "Vanilla frontend, lightweight Node backend.",               items: ["HTML / CSS / vanilla JS (no framework)", "Node.js + Express REST API", "SQLite (better-sqlite3) for persistence", "Discord OAuth2 + httpOnly session cookies"], status: "done" },
-      { cat: "Features",   title: "What it does",          desc: "More than a static page.",                                 items: ["Persistent guestbook with live auto-refresh", "Login with Discord (username + avatar)", "Admin-only moderation, validated server-side", "Live Discord status, commits & now-playing", "Command palette + keyboard navigation"], status: "done" },
-      { cat: "Challenges", title: "Problems solved",       desc: "The hard parts, handled.",                                 items: ["Moved guestbook off localStorage to a real DB", "Secure auth without leaking secrets to the client", "Rate limiting + input validation against abuse", "Server-side role checks (no client-trust)"], status: "done" }
+      { cat: "Features",   title: "What it does",          desc: "More than a static page.",                                 items: ["Live Discord status, commits & now-playing", "Command palette + keyboard navigation"], status: "done" },
+      { cat: "Challenges", title: "Problems solved",       desc: "The hard parts, handled.",                                 items: ["Secure auth without leaking secrets to the client", "Rate limiting + input validation against abuse", "Server-side role checks (no client-trust)"], status: "done" }
     ],
   },
   "client studio": {
@@ -263,7 +265,7 @@ const projectData = {
   "AW : Heart Of The Unreturned": {
     lang: "// lua",
     intro: "A Roblox fan game based on Abyss World. Built with a team.",
-    description: "Heart Of The Unreturned is a Parkour Roblox fan game inspired by Abyss World. Currently in active development   I mostly did bug fixes",
+    description: "Heart Of The Unreturned is a Parkour Roblox fan game inspired by Abyss World. I used to work on this project, mainly fixing bugs. I am no longer involved.",
     images: [
       "images/hotu1.png",
       "images/hotu2.png",
@@ -271,12 +273,7 @@ const projectData = {
       "images/hotu4.png",
     ],
     action: { label: "Play on Roblox", href: "https://www.roblox.com/games/132429881613824/ABYSS-WORLD-HOTU" },
-    roadmap: [
-      { cat: "Movement",   title: "Core Gameplay", desc: "Everything related to player control and movement.",       items: ["Press and hold jumping system", "Momentum system and checkpoint system"], status: "done" },
-      { cat: "Environment", title: "Zones",  desc: "Different layers of the map.",         items: ["Multiple terrain themes", "Lighting setup and map variation"],                          status: "done" },
-      { cat: "Art",         title: "Enemy Roster",  desc: "Sculpt and rig all enemy types.",     items: ["Multiple enemy variants with rigs", "Texturing and polish work"],                       status: "wip"  },
-      { cat: "GUI",         title: "Upgrade Menu",  desc: "Card-based tower upgrade system.",    items: ["Card-based upgrade UI", "Tier 1–4 management"],                                         status: "wip"  },
-    ],
+    roadmap: [],
   },
   "utility bot": {
     lang: "// python · automation",
@@ -322,9 +319,13 @@ const projectData = {
 };
 
 function openProjectModal(projectName) {
-  const data = projectData[projectName] || {};
-  const placeholder = "https://tr.rbxcdn.com/180DAY-d6495b95d4dd31b15c745e4c72610278/930/480/Image/Png/noFilter";
-  const images = data.images?.length ? data.images : [placeholder, placeholder, placeholder, placeholder];
+  const translations = {
+    "Lumen": { lang: "// projet personnel", intro: "mon projet principal en ce moment.", description: "des outils personnels pour Deepwoken Playground." },
+    "small Luau games": { intro: "des petits jeux et expérimentations.", description: "des petits jeux Luau sur lesquels je travaille en parallèle de Lumen." }
+  };
+  const data = { ...(projectData[projectName] || {}), ...(document.documentElement.lang === "fr" ? translations[projectName] : {}) };
+  const images = data.images || [];
+  document.querySelector(".pmodal-gallery-main").parentElement.hidden = images.length === 0;
 
   document.getElementById("pModalLang").textContent        = data.lang        || "// project";
   document.getElementById("pModalTitle").textContent       = projectName;
@@ -333,9 +334,10 @@ function openProjectModal(projectName) {
 
   const mainImg = document.getElementById("pModalImgMain");
   document.getElementById("pModalAction").style.display = data.action?.href && data.action.href !== "#" ? "" : "none";
-  mainImg.src = images[0];
+  if (images.length) mainImg.src = images[0]; else mainImg.removeAttribute("src");
   document.querySelectorAll(".pmodal-thumb").forEach((thumb, i) => {
-    thumb.src           = images[i] || images[0];
+    if (images[i] || images[0]) thumb.src = images[i] || images[0];
+    else thumb.removeAttribute("src");
     thumb.style.display = images[i] ? "block" : "none";
     thumb.classList.toggle("active", i === 0);
     thumb.onclick = () => {
@@ -355,8 +357,11 @@ function openProjectModal(projectName) {
   roadmapContent.innerHTML = "";
 
   const roadmap = data.roadmap || [];
+  document.querySelector('.pmodal-roadmap-label').hidden = roadmap.length === 0;
+  document.querySelector('.pmodal-roadmap-label').previousElementSibling.hidden = roadmap.length === 0;
+  document.querySelector('.pmodal-action-wrap').hidden = !data.action?.href || data.action.href === '#';
   if (!roadmap.length) {
-    roadmapContent.innerHTML = `<p style="font-family:var(--mono);font-size:11.5px;color:var(--muted);">// no roadmap yet</p>`;
+    roadmapContent.innerHTML = "";
   } else {
     roadmap.forEach((item, i) => {
       const btn = document.createElement("button");
@@ -528,7 +533,7 @@ function relativeTime(iso) {
 
 const BOOT_LINES = [
   ['dim',    '[    0.000000] booting adam.dev kernel v3.17 ...',                240],
-  ['',       '[    0.0123] checking memory ........... <span class="ok">OK</span> 16gb',                170],
+  ['',       '[    0.0123] checking memory ........... <span class="ok">OK</span> 32gb',                170],
   ['',       '[    0.0211] verifying display ........... <span class="ok">1920×1080 @ 240hz</span>', 170],
   ['',       '[    0.0341] mounting /home/adam ....... <span class="ok">OK</span>',                 85],
   ['',       '[    0.0428] mounting /dev/projects ...... <span class="ok">OK</span>',                85],
@@ -546,7 +551,6 @@ const BOOT_LINES = [
   ['',       '[    0.2398] enabling command palette .... <span class="ok">⌘ K</span>',               85],
   ['',       '[    0.2541] mounting keyboard shortcuts . <span class="ok">OK</span> <span class="dim">(press ?)</span>', 100],
   ['',       '[    0.2703] indexing projects ........... <span class="ok">2 found</span>',          85],
-  ['',       '[    0.2848] indexing friends ............ <span class="warn">empty</span>',          100],
   ['',       '[    0.3019] hydrating ui state .......... <span class="ok">OK</span>',                85],
   ['',       '[    0.3166] running self-tests .......... <span class="ok">112/112 passed</span>',    125],
   ['dim',    '[    0.3322] all systems nominal',                                                     175],
@@ -614,12 +618,12 @@ async function runHomeTerminal() {
 
   const rows = [
     ['user',     '<span class="accent">adam</span> <span class="dim">(he/him)</span>'],
-    ['role',     '17 y/o dev · roblox + js + python'],
+    ['role',     '18 y/o dev · web + luau + c#'],
     ['location', 'the chair, somewhere'],
     ['uptime',   `<span class="live" id="liveUptime"> </span>`],
-    ['shipped',  '<span class="accent">3</span> projects · <span class="dim">4 cooking</span>'],
-    ['now',      'building <span class="accent">HOTU</span> · sleeping less than i should'],
-    ['status',   '<span class="live">● online</span>'],
+    ['projects', `${document.querySelectorAll('.proj[data-project]').length} projects · web + luau + tools`],
+    ['now',      'working on <span class="accent">Lumen</span>'],
+    ['status',   document.getElementById('statusText')?.textContent || 'unavailable'],
   ];
   for (const [k, v] of rows) {
     const div = document.createElement('div');
@@ -645,7 +649,6 @@ const PALETTE_ITEMS = [
   { id: 'tab-home',     label: 'Home',                  sub: 'go to home',         icon: 'terminal',    tag: 'tab',   action: () => switchTab('home') },
   { id: 'tab-about',    label: 'About',                 sub: 'go to about',        icon: 'user-circle', tag: 'tab',   action: () => switchTab('about') },
   { id: 'tab-projects', label: 'Projects',              sub: 'go to projects',     icon: 'layers',      tag: 'tab',   action: () => switchTab('projects') },
-  { id: 'tab-friends',  label: 'Friends',               sub: 'go to friends',      icon: 'users-round', tag: 'tab',   action: () => switchTab('friends') },
   { id: 'open-hotu',    label: 'Open HOTU',             sub: 'roblox parkour fan game', icon: 'gamepad-2', tag: 'project', action: () => { switchTab('projects'); setTimeout(() => openProjectModal('AW : Heart Of The Unreturned'), 320); } },
   { id: 'open-utility', label: 'Open utility bot',      sub: 'automation bot',      icon: 'bot',         tag: 'project', action: () => { switchTab('projects'); setTimeout(() => openProjectModal('utility bot'), 320); } },
   { id: 'github',       label: 'GitHub',                sub: ADAM_GITHUB,            icon: 'github',     tag: 'link',  action: () => window.open(ADAM_GITHUB, '_blank') },
@@ -755,8 +758,8 @@ function toggleShortcuts(force) {
   el.setAttribute('aria-hidden', open ? 'false' : 'true');
 }
 
-const TAB_BY_KEY = { '1': 'home', '2': 'projects', '3': 'about', '4': 'friends' };
-const VIM_TAB    = { 'h': 'home', 'a': 'about', 'p': 'projects', 'f': 'friends' };
+const TAB_BY_KEY = { '1': 'home', '2': 'projects', '3': 'about', '4': 'now' };
+const VIM_TAB    = { 'h': 'home', 'a': 'about', 'p': 'projects', 'n': 'now' };
 const THEME_CYCLE = ['pfp','midnight','orange','red','blue','green','purple','pink','cyan','rose'];
 
 let vimPending = false, vimTimer = null;
@@ -1156,194 +1159,8 @@ window.addEventListener('keydown', (e) => {
   if (e.key === 'm' && !e.metaKey && !e.ctrlKey) triggerMatrix();
 });
 
-const GB_API = (typeof window !== 'undefined' && window.GB_API_BASE) || '';
-
-const gbState = { me: null, entries: [], loaded: false, poll: null };
-
-function escHtml(s) {
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-}
-
-async function gbApi(path, opts = {}) {
-  const res = await fetch(GB_API + path, {
-    credentials: 'include',
-    headers: { 'Content-Type': 'application/json', ...(opts.headers || {}) },
-    ...opts,
-  });
-  let data = null;
-  try { data = await res.json(); } catch {}
-  return { ok: res.ok, status: res.status, data };
-}
-
-async function gbRefresh() {
-  const { ok, data } = await gbApi('/api/guestbook?limit=200');
-  if (!ok || !data) { gbRenderError(); return; }
-  gbState.entries = data.entries || [];
-  gbState.me = data.me || null;
-  gbState.loaded = true;
-  gbRenderAuth();
-  gbRenderEntries();
-}
-
-function gbRenderAuth() {
-  const bar = document.getElementById('gbAuth');
-  if (!bar) return;
-  const me = gbState.me;
-  if (me) {
-    const name = escHtml(me.global_name || me.username);
-    bar.innerHTML = `
-      <div class="gb-me">
-        <img class="gb-me-avatar" src="${escHtml(me.avatar_url || '')}" alt="" loading="lazy">
-        <div class="gb-me-info">
-          <span class="gb-me-name">${name}${me.is_admin ? ' <span class="gb-badge">admin</span>' : ''}</span>
-          <span class="gb-me-sub">signed in via Discord</span>
-        </div>
-      </div>
-      <button class="gb-logout" type="button" onclick="gbLogout()">
-        <i data-lucide="log-out"></i> sign out
-      </button>`;
-    document.getElementById('gbMsg')?.removeAttribute('disabled');
-    const sub = document.getElementById('gbSubmit');
-    if (sub) sub.disabled = false;
-  } else {
-    bar.innerHTML = `
-      <div class="gb-guest">
-      <input id="gbName" class="gb-name-input" type="text" maxlength="32" placeholder="your name" autocomplete="off" aria-label="your name">
-      <a class="gb-discord-btn gb-discord-mini" href="${GB_API}/api/auth/discord/login" title="optional: sign in with Discord">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.369a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.249a18.27 18.27 0 0 0-5.487 0 12.6 12.6 0 0 0-.617-1.25.077.077 0 0 0-.079-.036A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.891.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 0 0-.031-.028ZM8.02 15.331c-1.182 0-2.157-1.086-2.157-2.419 0-1.333.956-2.42 2.157-2.42 1.21 0 2.176 1.097 2.157 2.42 0 1.333-.956 2.419-2.157 2.419Zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.42 2.157-2.42 1.21 0 2.176 1.097 2.157 2.42 0 1.333-.946 2.419-2.157 2.419Z"/></svg>
-        Login with Discord
-      </a>
-      </div>`;
-    document.getElementById('gbMsg')?.removeAttribute('disabled');
-    const sub = document.getElementById('gbSubmit');
-    if (sub) sub.disabled = false;
-  }
-  if (window.lucide) lucide.createIcons();
-}
-
-function gbRenderEntries() {
-  const container = document.getElementById('gbEntries');
-  if (!container) return;
-  const entries = gbState.entries;
-  if (!entries.length) {
-    container.innerHTML = '<div class="gb-empty"><i data-lucide="sparkles"></i><span>no entries yet   be the first to leave a mark ✦</span></div>';
-    if (window.lucide) lucide.createIcons();
-    return;
-  }
-  const canDelete = !!(gbState.me && gbState.me.is_admin);
-  container.innerHTML = entries.map(e => `
-    <article class="gb-entry">
-      <img class="gb-entry-avatar" src="${escHtml(e.avatar_url || '')}" alt="" loading="lazy"
-           onerror="this.style.visibility='hidden'">
-      <div class="gb-entry-main">
-        <div class="gb-entry-head">
-          <span class="gb-entry-name">${escHtml(e.username)}</span>
-          <span class="gb-entry-time" title="${escHtml(e.created_at)}">${relativeTime(e.created_at)}</span>
-        </div>
-        <div class="gb-entry-msg">${escHtml(e.message)}</div>
-      </div>
-      ${canDelete ? `<button class="gb-del" type="button" title="delete entry"
-           aria-label="delete entry" onclick="gbDelete(${e.id})"><i data-lucide="trash-2"></i></button>` : ''}
-    </article>`).join('');
-  if (window.lucide) lucide.createIcons();
-}
-
-function gbRenderError() {
-  const c = document.getElementById('gbEntries');
-  if (c) c.innerHTML = '<div class="gb-empty gb-error"><i data-lucide="wifi-off"></i><span>couldn\'t reach the guestbook server   try again shortly</span></div>';
-  if (window.lucide) lucide.createIcons();
-}
-
-async function submitGuestbook() {
-  const msgEl = document.getElementById('gbMsg');
-  const msg = (msgEl?.value || '').trim();
-  if (!msg) { toast("message can't be empty"); msgEl?.focus(); return; }
-  if (msg.length > 280) { toast('message too long (max 280)'); return; }
-  const payload = { message: msg };
-  if (!gbState.me) {
-    const nameEl = document.getElementById('gbName');
-    const nm = (nameEl?.value || '').trim();
-    if (!nm) { toast('enter your name first'); nameEl?.focus(); return; }
-    payload.name = nm;
-  }
-  const btn = document.getElementById('gbSubmit');
-  if (btn) btn.disabled = true;
-  const { ok, status, data } = await gbApi('/api/guestbook', {
-    method: 'POST', body: JSON.stringify(payload),
-  });
-  if (btn) btn.disabled = false;
-  if (status === 401) { toast('session expired   sign in again'); gbState.me = null; gbRenderAuth(); return; }
-  if (status === 429) { toast(data?.error || 'slow down a moment'); return; }
-  if (!ok) { toast(data?.error || 'failed to post'); return; }
-  msgEl.value = '';
-  const len = document.getElementById('gbMsgLen'); if (len) len.textContent = '0';
-  await gbRefresh();
-  toast('entry posted ✦');
-}
-
-async function gbDelete(id) {
-  if (!gbState.me?.is_admin) return;
-  const { ok, status, data } = await gbApi('/api/guestbook/' + id, { method: 'DELETE' });
-  if (status === 403) { toast('admin only'); return; }
-  if (!ok) { toast(data?.error || 'delete failed'); return; }
-  gbState.entries = gbState.entries.filter(e => e.id !== id);
-  gbRenderEntries();
-  toast('entry removed');
-}
-
-async function gbLogout() {
-  await gbApi('/api/auth/logout', { method: 'POST' });
-  gbState.me = null;
-  gbRenderAuth();
-  toast('signed out');
-}
-
-function gbStartPolling() {
-  gbStopPolling();
-  gbState.poll = setInterval(() => {
-    if (document.getElementById('guestbook')?.classList.contains('active') && !document.hidden) {
-      gbRefresh();
-    }
-  }, 15000);
-}
-function gbStopPolling() { if (gbState.poll) { clearInterval(gbState.poll); gbState.poll = null; } }
-
-document.getElementById('gbMsg')?.addEventListener('input', (e) => {
-  const len = document.getElementById('gbMsgLen');
-  if (len) len.textContent = e.target.value.length;
-});
-document.getElementById('gbMsg')?.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); submitGuestbook(); }
-});
-
-(function gbHandleAuthRedirect(){
-  try {
-    const p = new URLSearchParams(location.search);
-    const a = p.get('auth');
-    if (a) {
-      setTimeout(() => toast(a === 'ok' ? 'signed in ✦' : 'sign-in failed'), 400);
-      p.delete('auth');
-      const q = p.toString();
-      history.replaceState(null, '', location.pathname + (q ? '?' + q : '') + location.hash);
-    }
-  } catch {}
-})();
-
-const _origSwitchTab2 = window.switchTab;
-window.switchTab = function(id) {
-  _origSwitchTab2(id);
-  if (id === 'guestbook') { gbRefresh(); gbStartPolling(); }
-  else gbStopPolling();
-};
-
-if (document.getElementById('guestbook')?.classList.contains('active')) {
-  gbRefresh(); gbStartPolling();
-}
-
 PALETTE_ITEMS.push(
   { id: 'tab-uses',      label: 'Uses',        sub: 'go to uses / my setup', icon: 'cpu',       tag: 'tab',     action: () => switchTab('uses') },
-  { id: 'tab-guestbook', label: 'Guestbook',   sub: 'leave a message',       icon: 'book-open', tag: 'tab',     action: () => switchTab('guestbook') },
   { id: 'bsod',          label: 'BSOD',        sub: 'press B anytime',       icon: 'monitor-x', tag: 'fun',     action: () => triggerBsod() },
   { id: 'matrix',        label: 'Matrix rain', sub: 'press M anytime',       icon: 'terminal',  tag: 'fun',     action: () => triggerMatrix() }
 );

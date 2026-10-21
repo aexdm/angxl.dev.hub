@@ -1,0 +1,39 @@
+/* Keep the personal site's original layout, type, themes and playful features. */
+.profile-card, .about-text-card, .activity-card, .social-card,
+.now-jcard, .uses-card, .proj, .term-window, .git-log {
+  box-shadow: none;
+  border-radius: 8px;
+}
+.proj:hover, .uses-card:hover, .now-jcard:hover, .nav-link:hover {
+  transform: none;
+}
+.proj-featured-badge, .proj-cover-grid { display: none; }
+.proj--featured { grid-column: auto; }
+.lang-bar {
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+.lang-flag {
+  min-height: 36px;
+  border-radius: 3px;
+  letter-spacing: 0;
+}
+.lang-flag.active {
+  background: var(--amber);
+  color: var(--bg);
+  box-shadow: none;
+  transform: none;
+}
+.lang-flag .lang-code { letter-spacing: 0; }
+.uses-item--soon .uses-soon { color: var(--text); }
+.uses-val { overflow-wrap: anywhere; }
+.proj:focus-visible { outline: 2px solid var(--amber); outline-offset: 4px; }
+.pmodal-gallery-col[hidden] { display: none; }
+.pmodal-roadmap-label[hidden], .pmodal-divider[hidden], .pmodal-action-wrap[hidden] { display: none; }
+.pmodal-shell:has(.pmodal-gallery-col[hidden]) { grid-template-columns: 1fr; max-width: 620px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
